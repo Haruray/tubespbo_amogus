@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <iomanip>
 #include "Species.h"
 #include "Skill.h"
 #include "Element.h"
@@ -24,7 +25,7 @@ class Engimon{
         static int totalEngimon;
     public:
         Engimon(); //ctor
-        Engimon(string, Engimon, Species, vector<Skill>, vector<Element>); //ctor with arguments = name, parentId, parentName, species, skills, elements
+        Engimon(string, Engimon, Species, vector<Skill>, vector<Element>, int, int, int); //ctor with arguments = name, parentId, parentName, species, skills, elements
         Engimon(const Engimon&); //cctor
         ~Engimon(); //dtor
         Engimon& operator=(const Engimon&); //operator =
@@ -38,6 +39,7 @@ class Engimon{
         void addSkill(vector<Skill>);
         void addElement(Element);
         void addElement(vector<Element>);
+        void levelUp();
         void setLevel(int);
         void addExp(int); //ini berpengaruh ke exp dan cumulative exp
         void setExp(int);

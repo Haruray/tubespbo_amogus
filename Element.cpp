@@ -40,6 +40,7 @@ int Element::elementToNumber(){
     else if (this->getElementName()=="Ice"){
         return 4;
     }
+    return -1;
 }
 
 float Element::elementAdvantage(Element e){
