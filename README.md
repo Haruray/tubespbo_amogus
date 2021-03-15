@@ -1,1 +1,1 @@
-"# tubespbo_amogus" 
+# tubespbo_amogus
