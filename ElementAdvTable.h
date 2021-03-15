@@ -2,7 +2,6 @@
 #define ELEMENTADVTABLE_H
 
 #include <iostream>
-#include <vector>
 using namespace std;
 
 extern float elmtAdvTable[5][5];
@@ -37,3 +36,5 @@ elmtAdvTable[4][1] = 1
 elmtAdvTable[4][2] = 0.5
 elmtAdvTable[4][3] = 2
 elmtAdvTable[4][4] = 1
+
+#endif

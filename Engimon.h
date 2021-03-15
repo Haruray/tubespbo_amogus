@@ -12,7 +12,7 @@ class Engimon{
     protected:
         const int id;
         string name;
-        const int parentId;
+        int parentId;
         string parentName;
         Species species;
         vector<Skill> skills;
@@ -20,15 +20,20 @@ class Engimon{
         int level;
         int exp;
         int cumulativeExp;
+
+        static int totalEngimon;
     public:
         Engimon(); //ctor
-        Engimon(string, int, string, Species, vector<Skill>, vector<Element>); //ctor with arguments = name, parentId, parentName, species, skills, elements
+        Engimon(string, Engimon, Species, vector<Skill>, vector<Element>); //ctor with arguments = name, parentId, parentName, species, skills, elements
         Engimon(const Engimon&); //cctor
         ~Engimon(); //dtor
         Engimon& operator=(const Engimon&); //operator =
 
         //setter / adder
         void setName(string);
+        void setParent(Engimon);
+        void setParent(int, string);
+        void setSpecies(Species);
         void addSkill(Skill);
         void addSkill(vector<Skill>);
         void addElement(Element);
@@ -39,6 +44,7 @@ class Engimon{
         void setCumulativeExp(int); //ini kurang perlu menurutku tapi jaga-jaga aja
 
         //getter
+        int getId();
         string getName();
         int getParentId();
         string getParentName();
