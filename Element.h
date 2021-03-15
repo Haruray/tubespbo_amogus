@@ -2,6 +2,7 @@
 #define ELEMENT_H
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 class Element{
@@ -20,6 +21,7 @@ class Element{
         string getElementName();
 
         //functions
+        int elementToNumber(); //buat mempermudah akses ke array
         float elementAdvantage(Element);
 };
 
