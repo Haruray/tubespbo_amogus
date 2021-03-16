@@ -32,8 +32,11 @@ class Inventory<Engimon>{
         void setMaxCap(int);
         void addItem(Engimon);
 
-        Engimon getItemByName(string);
-        Engimon getItemById(int);
+        //checking conditions
+        bool doesItemExist(Engimon); //true / false
+
+        Engimon getItemByName(string); //jika tidak ketemu, maka keluarannya adalah Engimon() (default)
+        Engimon getItemById(int); //jika tidak ketemu, maka keluarannya adalah Engimon() (default)
         void printItems();
 };
 
@@ -53,8 +56,15 @@ class Inventory<Skill>{
         void addItem(Skill);
 
         Skill getItemByName(string);
-        int getItemIdx(Skill);
+        int getItemIdx(Skill); //Jika itemnya tidak ketemu, maka keluarannya adalah -1
         void printItems();
+
+        //checking conditions
+        bool doesItemExist(Skill);
+        bool doesItemExist(string);
+
+        //functions
+        void learn(Skill, Engimon*);
 };
 
 #endif

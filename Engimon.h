@@ -60,6 +60,7 @@ class Engimon{
         //get status
         bool lvlUpEligibility(); //refer to spek 1.c
         bool isDead(); //refer to spek 1.d
+        bool isElement(Element); //apakah engimon berelemen x 
 
         //output function
         void printDetail();

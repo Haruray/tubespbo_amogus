@@ -17,6 +17,8 @@ int main(){
     Engimon p2("a woman",nullptr, nullptr,Species("human","im a human",Skill("walk",10,10,vector<Element> {Element("Fire")})),skills,el,0,1000);
     Engimon e("rinaldi munir",&p1, &p2,Species("human","im a human",Skill("walk",10,10,vector<Element> {Element("Fire")})),skills,el,0,1000);
     e.printDetail();
-    is.printItems();
+    cout<<"\n";
+    is.learn(Skill("run",200,200, vector<Element> {Element("Fire")}), &e);
+    e.printDetail();
     return 0;
 }

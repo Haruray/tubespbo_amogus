@@ -58,6 +58,15 @@ void Inventory<Engimon>::printItems(){
     }
 }
 
+bool Inventory<Engimon>::doesItemExist(Engimon e){
+    for (int i=0 ; this->items.size() ; i++){
+        if (this->items[i].getId() == e.getId()){
+            return true;
+        }
+    }
+    return false;
+}
+
 
 //Skill specialization
 
@@ -109,6 +118,23 @@ void Inventory<Skill>::printItems(){
     }
 }
 
+bool Inventory<Skill>::doesItemExist(Skill s){
+    for (int i=0 ; this->items.size() ; i++){
+        if (this->items[i].getSkillName() == s.getSkillName()){
+            return true;
+        }
+    }
+    return false;
+}
+bool Inventory<Skill>::doesItemExist(string s){
+    for (int i=0 ; this->items.size() ; i++){
+        if (this->items[i].getSkillName() == s){
+            return true;
+        }
+    }
+    return false;
+}
+
 int Inventory<Skill>::getItemIdx(Skill s){
     for (int i=0 ; i<this->items.size() ; i++){
         if (this->items[i].getSkillName() == s.getSkillName()){
@@ -116,4 +142,25 @@ int Inventory<Skill>::getItemIdx(Skill s){
         }
     }
     return -1;
+}
+
+void Inventory<Skill>::learn(Skill s, Engimon* e){
+    bool isEligible; 
+    for (int i = 0 ; i < s.getElmtReq().size() ; i++){
+        for (int j = 0 ; j < e->getElements().size() ; j++){
+            if (e->getElements()[i].getElementName() == s.getElmtReq()[i].getElementName()){ //jika ada yg sama, maka return true
+                isEligible = true;
+                break; //lanjut cek requirement element selanjutnya
+            }
+            else{
+                isEligible = false;
+            }
+        }
+    }
+    if (isEligible){
+        e->addSkill(s);
+    }
+    else{
+        //throw exception
+    }
 }

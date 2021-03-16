@@ -144,6 +144,15 @@ bool Engimon::lvlUpEligibility(){
 bool Engimon::isDead(){
     return (this->getCumulativeExp() >= this->getCumExpLimit());
 }
+bool Engimon::isElement(Element e){
+    vector<Element> el = this->getElements();
+    for (int i=0 ; i<el.size() ; i++){
+        if (el[i].getElementName() == e.getElementName()){
+            return true;
+        }
+    }
+    return false;
+}
 
 //output func
 void Engimon::printDetail(){
