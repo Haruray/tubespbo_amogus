@@ -10,7 +10,7 @@ Inventory<T>::Inventory(int maxcap){
     this->setMaxCap(maxcap);
 }
 
-//Engimon items
+//Engimon specialization
 Inventory<Engimon>::Inventory(){
     this->setMaxCap(0);
 }
@@ -29,7 +29,12 @@ Inventory<Engimon>::Inventory(const Inventory& i){
 Inventory<Engimon>::~Inventory(){}
 
 void Inventory<Engimon>::addItem(Engimon e){
-    this->items.push_back(e);
+    if (this->isFull()==false){
+        this->items.push_back(e);
+    }
+    else{
+        //exception : inventory is full
+    }
 }
 
 void Inventory<Engimon>::setMaxCap(int max){
@@ -67,9 +72,48 @@ bool Inventory<Engimon>::doesItemExist(Engimon e){
     return false;
 }
 
+bool Inventory<Engimon>::isFull(){
+    return this->items.size() >= this->maxCapacity;
+}
+
+int Inventory<Engimon>::getItemIdx(Engimon e){
+    for (int i=0 ; i<this->items.size();i++){
+        if (this->items[i].getName() == e.getName()){
+            return i;
+        }
+    }
+    return -1; //not found
+}
+
+void Inventory<Engimon>::deleteItem(int id){
+    if (this->items.size()>0){
+        if (doesItemExist(getItemById(id))){
+            deleteItem(getItemById(id));
+        }
+        else{
+            //exception : engimon doesnt exist
+        }
+    }
+    else{
+        //exception : inventory kosong
+    }
+    
+}
+void Inventory<Engimon>::deleteItem(Engimon e){
+    if (this->items.size() > 0){
+        if (doesItemExist(e)){
+            this->items.erase(this->items.begin() + this->getItemIdx(e));
+        }
+        else{
+            //exception : engimon doesnt exist
+        }
+    }
+    else{
+        //exception : inventory kosong
+    }
+}
 
 //Skill specialization
-
 Inventory<Skill>::Inventory(){
     this->setMaxCap(0);
 }
@@ -88,16 +132,22 @@ Inventory<Skill>::Inventory(const Inventory& i){
 Inventory<Skill>::~Inventory(){}
 
 void Inventory<Skill>::addItem(Skill e){
-    //Search existing item
-    Skill search = this->getItemByName(e.getSkillName());
-    if (search.getSkillName()!="None"){//ketemu
-        int idx = this->getItemIdx(search);
-        this->itemQty[idx] += 1;
+    if (this->isFull()==false){
+        //Search existing item
+        Skill search = this->getItemByName(e.getSkillName());
+        if (search.getSkillName()!="None"){//ketemu, maka tambah qty nya
+            int idx = this->getItemIdx(search);
+            this->itemQty[idx] += 1;
+        }
+        else{ //tidak ketemu, maka add baru
+            this->items.push_back(e);
+            this->itemQty.push_back(1);
+        }
     }
-    else{ //tidak ketemu, maka add baru
-        this->items.push_back(e);
-        this->itemQty.push_back(1);
+    else{
+        //exception : inventory is full
     }
+    
 }
 
 void Inventory<Skill>::setMaxCap(int max){
@@ -135,6 +185,15 @@ bool Inventory<Skill>::doesItemExist(string s){
     return false;
 }
 
+bool Inventory<Skill>::isFull(){
+    //penjumlahan semua anggota qty, lalu dibandingkan dengan capacitynya
+    int currentStorage=0;
+    for (int i=0 ; i<this->itemQty.size(); i++){
+        currentStorage += this->itemQty[i];
+    }
+    return currentStorage>=this->maxCapacity;
+}
+
 int Inventory<Skill>::getItemIdx(Skill s){
     for (int i=0 ; i<this->items.size() ; i++){
         if (this->items[i].getSkillName() == s.getSkillName()){
@@ -144,7 +203,42 @@ int Inventory<Skill>::getItemIdx(Skill s){
     return -1;
 }
 
+void Inventory<Skill>::deleteItem(string s){
+    if (this->items.size()>0){
+        if (doesItemExist(s)){
+            deleteItem(getItemByName(s));
+        }
+        else{
+            //exception : skill doesnt exist
+        }
+    }
+    else{
+        //exception : inventory is empty
+    }
+}
+void Inventory<Skill>::deleteItem(Skill s){
+    if (this->items.size()>0){
+        if (doesItemExist(s)){
+            int idx = this->getItemIdx(s);
+            if (this->itemQty[idx] > 1){ //qty > 1, maka kurangi qty item tsb
+                this->itemQty[idx] -= 1;
+            }
+            else{ //delete dari list item
+                this->items.erase(this->items.begin() + idx);
+                this->itemQty.erase(this->itemQty.begin() + idx);
+            }
+        }
+        else{
+            ////exception : skill doesnt exist
+        }
+    }
+    else{
+        //exception : inventory is empty
+    }
+}
+
 void Inventory<Skill>::learn(Skill s, Engimon* e){
+    //Asumsi : skill dan engimon terdapat di inventory
     bool isEligible; 
     for (int i = 0 ; i < s.getElmtReq().size() ; i++){
         for (int j = 0 ; j < e->getElements().size() ; j++){
@@ -159,8 +253,9 @@ void Inventory<Skill>::learn(Skill s, Engimon* e){
     }
     if (isEligible){
         e->addSkill(s);
+        this->deleteItem(s);
     }
     else{
-        //throw exception
+        //throw exception : engimon element nya tidak compatible dengan skill
     }
 }
