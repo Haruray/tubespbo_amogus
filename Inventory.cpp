@@ -44,6 +44,14 @@ Engimon Inventory<Engimon>::getItemByName(string name){
     return Engimon();
 }
 
+Engimon Inventory<Engimon>::getItemById(int id){
+    for (int i=0 ; i<this->items.size(); i++){
+        if (id == this->items[i].getId())
+            return this->items[i];
+    }
+    return Engimon();
+}
+
 void Inventory<Engimon>::printItems(){
     for (int i=0 ; i<this->items.size(); i++){
         cout<<this->items[i].getName()<<endl;

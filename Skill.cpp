@@ -6,10 +6,11 @@ Skill::Skill(){
     this->setMasteryLevel(0);
 }
 
-Skill::Skill(string name, int bp, int ml){
+Skill::Skill(string name, int bp, int ml, vector<Element> elmtReq){
     this->setSkillName(name);
     this->setBasePower(bp);
     this->setMasteryLevel(ml);
+    this->setElmtReq(elmtReq);
 }
 
 Skill::Skill(const Skill& s){
@@ -30,6 +31,11 @@ void Skill::setBasePower(int bp){
 void Skill::setMasteryLevel(int ml){
     this->masteryLevel = ml;
 }
+void Skill::setElmtReq(vector<Element> elmtreq){
+    for (int i=0 ; i < elmtreq.size() ; i++){
+        this->elmtReq.push_back(elmtreq[i]);
+    }
+}
 
 //getter
 string Skill::getSkillName(){
@@ -41,4 +47,6 @@ int Skill::getBasePower(){
 int Skill::getMasteryLevel(){
     return this->masteryLevel;
 }
-
+vector<Element> Skill::getElmtReq(){
+    return this->elmtReq;
+}

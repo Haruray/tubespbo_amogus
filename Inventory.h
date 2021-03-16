@@ -33,6 +33,7 @@ class Inventory<Engimon>{
         void addItem(Engimon);
 
         Engimon getItemByName(string);
+        Engimon getItemById(int);
         void printItems();
 };
 
