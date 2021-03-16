@@ -13,27 +13,26 @@ class Engimon{
     protected:
         const int id;
         string name;
-        int parentId;
-        string parentName;
+        vector<Engimon*> parents;
         Species species;
         vector<Skill> skills;
         vector<Element> elements;
         int level;
         int exp;
         int cumulativeExp;
+        int explimit;
 
         static int totalEngimon;
     public:
         Engimon(); //ctor
-        Engimon(string, Engimon, Species, vector<Skill>, vector<Element>, int, int, int); //ctor with arguments = name, parentId, parentName, species, skills, elements
+        Engimon(string, Engimon*, Engimon*, Species, vector<Skill>, vector<Element>, int, int); //ctor with arguments = name, parent1, parent2, species, skills, elements, level, batas cumxp
         Engimon(const Engimon&); //cctor
         ~Engimon(); //dtor
         Engimon& operator=(const Engimon&); //operator =
 
         //setter / adder
         void setName(string);
-        void setParent(Engimon);
-        void setParent(int, string);
+        void setParent(Engimon*, Engimon*);
         void setSpecies(Species);
         void addSkill(Skill);
         void addSkill(vector<Skill>);
@@ -44,18 +43,19 @@ class Engimon{
         void addExp(int); //ini berpengaruh ke exp dan cumulative exp
         void setExp(int);
         void setCumulativeExp(int); //ini kurang perlu menurutku tapi jaga-jaga aja
+        void setExpLimit(int);
 
         //getter
         int getId();
         string getName();
-        int getParentId();
-        string getParentName();
+        vector<Engimon*> getParents();
         Species getSpecies();
         vector<Skill> getSkills();
         vector<Element> getElements();
         int getLevel();
         int getExp();
         int getCumulativeExp();
+        int getCumExpLimit();
 
         //get status
         bool lvlUpEligibility(); //refer to spek 1.c

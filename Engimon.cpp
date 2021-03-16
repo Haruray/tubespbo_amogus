@@ -3,49 +3,54 @@
 int Engimon::totalEngimon = 0;
 Engimon::Engimon() : id(totalEngimon+1){
     this->setName("None");
-    this->setParent(-1,"None");
+    this->setParent(nullptr,nullptr);
     this->setSpecies(Species());
     this->addSkill(Skill());
+    this->addSkill(species.getUniqueSkill());
     this->addElement(Element());
     this->setLevel(0);
     this->setExp(0);
     this->setCumulativeExp(0);
+    this->setExpLimit(0);
 }
 
-Engimon::Engimon(string name, Engimon parent, Species species, vector<Skill> skills, vector<Element> elements, int level, int exp, int cumxp) : id(totalEngimon+1){
+Engimon::Engimon(string name, Engimon* parent1, Engimon* parent2, Species species, vector<Skill> skills, vector<Element> elements, int level, int explimit) : id(totalEngimon+1){
     this->setName(name);
-    this->setParent(parent);
+    this->setParent(parent1,parent2);
     this->setSpecies(species);
     this->addSkill(skills);
     this->addSkill(species.getUniqueSkill());
     this->addElement(elements);
     this->setLevel(level);
-    this->setExp(exp);
-    this->setCumulativeExp(cumxp);
+    this->setExp(0);
+    this->setCumulativeExp(this->getLevel()*100);
+    this->setExpLimit(explimit);
 }
 
 Engimon::Engimon(const Engimon& e) : id(e.id){
     this->setName(e.name);
-    this->setParent(e.parentId, e.parentName);
+    this->setParent(e.parents[0],e.parents[1]);
     this->setSpecies(e.species);
     this->addSkill(e.skills);
     this->addElement(e.elements);
-    this->setLevel(e.level);
-    this->setExp(e.exp);
-    this->setCumulativeExp(e.cumulativeExp);
+    this->setLevel(level);
+    this->setExp(0);
+    this->setCumulativeExp(this->getLevel()*100);
+    this->setExpLimit(e.explimit);
 }
 
 Engimon::~Engimon(){}
 
 Engimon& Engimon::operator=(const Engimon& e){
     this->setName(e.name);
-    this->setParent(e.parentId, e.parentName);
+    this->setParent(e.parents[0],e.parents[1]);
     this->setSpecies(e.species);
     this->addSkill(e.skills);
     this->addElement(e.elements);
-    this->setLevel(e.level);
-    this->setExp(e.exp);
-    this->setCumulativeExp(e.cumulativeExp);
+    this->setLevel(level);
+    this->setExp(0);
+    this->setCumulativeExp(this->getLevel()*100);
+    this->setExpLimit(e.explimit);
     return *this;
 }
 
@@ -53,13 +58,9 @@ Engimon& Engimon::operator=(const Engimon& e){
 void Engimon::setName(string name){
     this->name = name;
 }
-void Engimon::setParent(Engimon e){
-    this->parentId = e.id;
-    this->parentName = e.name;
-}
-void Engimon::setParent(int id, string name){
-    this->parentId = id;
-    this->parentName = name;
+void Engimon::setParent(Engimon* e1, Engimon* e2){
+    this->parents.push_back(e1);
+    this->parents.push_back(e2);
 }
 void Engimon::setSpecies(Species s){
     this->species = s;
@@ -90,7 +91,7 @@ void Engimon::setLevel(int lvl){
 void Engimon::addExp(int exp){
     this->exp += exp;
     this->cumulativeExp +=exp;
-    if (this->lvlUpEligibility()){
+    while (this->lvlUpEligibility()){
         this->levelUp();
     }
 }
@@ -100,6 +101,9 @@ void Engimon::setExp(int exp){
 void Engimon::setCumulativeExp(int cumxp){
     this->cumulativeExp = cumxp;
 }
+void Engimon::setExpLimit(int explimit){
+    this->explimit = explimit;
+}
 
 //getter
 int Engimon::getId(){
@@ -108,11 +112,8 @@ int Engimon::getId(){
 string Engimon::getName(){
     return this->name;
 }
-int Engimon::getParentId(){
-    return this->parentId;
-}
-string Engimon::getParentName(){
-    return this->parentName;
+vector<Engimon*> Engimon::getParents(){
+    return this->parents;
 }
 Species Engimon::getSpecies(){
     return this->species;
@@ -132,20 +133,26 @@ int Engimon::getExp(){
 int Engimon::getCumulativeExp(){
     return this->cumulativeExp;
 }
+int Engimon::getCumExpLimit(){
+    return this->explimit;
+}
 
 //get status
 bool Engimon::lvlUpEligibility(){
     return this->exp>=100;
 }
 bool Engimon::isDead(){
-    //masih ngga tau batas cumxp nya berapa
-    return false;
+    return (this->getCumulativeExp() >= this->getCumExpLimit());
 }
 
 //output func
 void Engimon::printDetail(){
     cout<<"Nama Engimon"<<"\t: "<<this->getName()<<endl;
-    cout<<"Nama Parent"<<"\t: "<<this->getParentName()<<endl;
+    if (this->getParents()[0] != nullptr && this->getParents()[1]!=nullptr){
+        for (int i=0 ; i<2 ; i++){
+            cout<<"Parent "<<i+1<<"\t: "<<this->getParents()[i]->getName()<<" ("<<this->getParents()[i]->getSpecies().getSpeciesName()<<")"<<endl;
+        }
+    }
     cout<<"Spesies"<<"\t\t: "<<this->getSpecies().getSpeciesName()<<endl;
     cout<<"Skill\t\t: ";
     for (int i=0;i<this->getSkills().size();i++){
