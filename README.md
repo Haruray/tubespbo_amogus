@@ -3,6 +3,7 @@
 ### To do list
 to do list dalam konteks yang sudah di commit.
 not a complete list, cuma yg inget aja sambil mengerjakan
+* Butuh testing lebih lanjut terutama method breed dari class player
 * Exceptions
   * Skill limit (Engimon)
   * Add item limit (Inventory)
