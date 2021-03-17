@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <iomanip>
+#include <algorithm>
 #include "Species.h"
 #include "Skill.h"
 #include "Element.h"
@@ -56,11 +57,13 @@ class Engimon{
         int getExp();
         int getCumulativeExp();
         int getCumExpLimit();
+        Skill getHighestMasteryLevel();
 
         //get status
         bool lvlUpEligibility(); //refer to spek 1.c
         bool isDead(); //refer to spek 1.d
         bool isElement(Element); //apakah engimon berelemen x 
+        bool hasSkill(Skill); //apakah engimon punya skill x
 
         //output function
         void printDetail();

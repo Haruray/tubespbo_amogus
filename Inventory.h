@@ -21,7 +21,7 @@ class Inventory{
 template<>
 class Inventory<Engimon>{
     private:
-        vector<Engimon> items;
+        vector<Engimon*> items;
         int maxCapacity;
     public:
         //4 sekawan
@@ -32,20 +32,20 @@ class Inventory<Engimon>{
 
         //setter/adder
         void setMaxCap(int);
-        void addItem(Engimon);
+        void addItem(Engimon*);
 
         //checking conditions
-        bool doesItemExist(Engimon); //true / false
+        bool doesItemExist(Engimon*); //true / false
         bool isFull();
 
         //delete
         void deleteItem(int); //delete engimon berdasarkan id
-        void deleteItem(Engimon); //delete engimon langsung menyebut object nya
+        void deleteItem(Engimon*); //delete engimon langsung menyebut object nya
 
         //getter
-        int getItemIdx(Engimon);
-        Engimon getItemByName(string); //jika tidak ketemu, maka keluarannya adalah Engimon() (default)
-        Engimon getItemById(int); //jika tidak ketemu, maka keluarannya adalah Engimon() (default)
+        int getItemIdx(Engimon*);
+        Engimon* getItemByName(string); //jika tidak ketemu, maka keluarannya adalah Engimon() (default)
+        Engimon* getItemById(int); //jika tidak ketemu, maka keluarannya adalah Engimon() (default)
         void printItems(); //print informasi
 };
 

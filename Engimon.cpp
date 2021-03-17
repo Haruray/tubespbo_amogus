@@ -66,11 +66,24 @@ void Engimon::setSpecies(Species s){
     this->species = s;
 }
 void Engimon::addSkill(Skill s){
-    this->skills.push_back(s);
+    if (this->skills.size() < 4 ){
+        if (this->hasSkill(s)==false){
+            this->skills.push_back(s);
+            sort(this->skills.begin(), this->skills.end());
+            reverse(this->skills.begin(), this->skills.end());
+        }
+        else{
+            //exception : sudah punya skill tsb
+            //kayanya ngga usah diimplemen, biar simple
+        }
+    }
+    else{
+        //exception : skill slot full
+    }
 }
 void Engimon::addSkill(vector<Skill> vs){
     for (int i=0; i<vs.size();i++){
-        this->skills.push_back(vs[i]);
+        this->addSkill(vs[i]);
     }
 }
 void Engimon::addElement(Element e){
@@ -93,6 +106,9 @@ void Engimon::addExp(int exp){
     this->cumulativeExp +=exp;
     while (this->lvlUpEligibility()){
         this->levelUp();
+    }
+    if (this->isDead()){
+        //idk, maybe some exception or something?
     }
 }
 void Engimon::setExp(int exp){
@@ -137,6 +153,18 @@ int Engimon::getCumExpLimit(){
     return this->explimit;
 }
 
+Skill Engimon::getHighestMasteryLevel(){
+    Skill maxSkill = this->skills[0];
+    int max = this->skills[0].getMasteryLevel();
+    for (int i = 1; i < this->skills.size() ; i++){
+        if (max < this->skills[i].getMasteryLevel()){
+            max = this->skills[i].getMasteryLevel();
+            maxSkill = this->skills[i];
+        }
+    }
+    return maxSkill;
+}
+
 //get status
 bool Engimon::lvlUpEligibility(){
     return this->exp>=100;
@@ -148,6 +176,15 @@ bool Engimon::isElement(Element e){
     vector<Element> el = this->getElements();
     for (int i=0 ; i<el.size() ; i++){
         if (el[i].getElementName() == e.getElementName()){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Engimon::hasSkill(Skill s){
+    for (int i = 0 ; i < this->skills.size() ; i++){
+        if (this->skills[i].getSkillName() == s.getSkillName()){
             return true;
         }
     }

@@ -28,7 +28,7 @@ Inventory<Engimon>::Inventory(const Inventory& i){
 
 Inventory<Engimon>::~Inventory(){}
 
-void Inventory<Engimon>::addItem(Engimon e){
+void Inventory<Engimon>::addItem(Engimon* e){
     if (this->isFull()==false){
         this->items.push_back(e);
     }
@@ -41,31 +41,31 @@ void Inventory<Engimon>::setMaxCap(int max){
     this->maxCapacity = max;
 }
 
-Engimon Inventory<Engimon>::getItemByName(string name){
+Engimon* Inventory<Engimon>::getItemByName(string name){
     for (int i=0 ; i<this->items.size(); i++){
-        if (name == this->items[i].getName())
+        if (name == this->items[i]->getName())
             return this->items[i];
     }
-    return Engimon();
+    return nullptr;
 }
 
-Engimon Inventory<Engimon>::getItemById(int id){
+Engimon* Inventory<Engimon>::getItemById(int id){
     for (int i=0 ; i<this->items.size(); i++){
-        if (id == this->items[i].getId())
+        if (id == this->items[i]->getId())
             return this->items[i];
     }
-    return Engimon();
+    return nullptr;
 }
 
 void Inventory<Engimon>::printItems(){
     for (int i=0 ; i<this->items.size(); i++){
-        cout<<this->items[i].getName()<<endl;
+        cout<<this->items[i]->getName()<<endl;
     }
 }
 
-bool Inventory<Engimon>::doesItemExist(Engimon e){
+bool Inventory<Engimon>::doesItemExist(Engimon* e){
     for (int i=0 ; this->items.size() ; i++){
-        if (this->items[i].getId() == e.getId()){
+        if (this->items[i]->getId() == e->getId()){
             return true;
         }
     }
@@ -76,9 +76,9 @@ bool Inventory<Engimon>::isFull(){
     return this->items.size() >= this->maxCapacity;
 }
 
-int Inventory<Engimon>::getItemIdx(Engimon e){
+int Inventory<Engimon>::getItemIdx(Engimon* e){
     for (int i=0 ; i<this->items.size();i++){
-        if (this->items[i].getName() == e.getName()){
+        if (this->items[i]->getName() == e->getName()){
             return i;
         }
     }
@@ -99,7 +99,7 @@ void Inventory<Engimon>::deleteItem(int id){
     }
     
 }
-void Inventory<Engimon>::deleteItem(Engimon e){
+void Inventory<Engimon>::deleteItem(Engimon* e){
     if (this->items.size() > 0){
         if (doesItemExist(e)){
             this->items.erase(this->items.begin() + this->getItemIdx(e));

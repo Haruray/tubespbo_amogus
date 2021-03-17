@@ -18,6 +18,10 @@ class Skill{
         Skill(const Skill&);
         ~Skill();
 
+        //operator overload
+        bool operator<(const Skill&) const;
+        bool operator>(const Skill&) const;
+
         //setter
         void setSkillName(string);
         void setBasePower(int);

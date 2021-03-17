@@ -21,6 +21,13 @@ Skill::Skill(const Skill& s){
 
 Skill::~Skill(){}
 
+//operator overload
+bool Skill::operator<(const Skill& s) const{
+    return this->masteryLevel < s.masteryLevel;
+}
+bool Skill::operator>(const Skill& s) const{
+    return this->masteryLevel > s.masteryLevel;
+}
 //setter
 void Skill::setSkillName(string name){
     this->skillName = name;
