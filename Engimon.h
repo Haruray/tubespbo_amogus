@@ -69,4 +69,11 @@ class Engimon{
         void printDetail();
 };
 
+class EngimonExceptionSkillFull: public exception{
+    public:
+        const char* what() const throw(){
+            cout << "Skill slot full";
+        }
+};
+
 #endif

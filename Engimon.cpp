@@ -79,6 +79,7 @@ void Engimon::addSkill(Skill s){
     }
     else{
         //exception : skill slot full
+        throw EngimonExceptionSkillFull();
     }
 }
 void Engimon::addSkill(vector<Skill> vs){
