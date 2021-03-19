@@ -34,6 +34,7 @@ void Inventory<Engimon>::addItem(Engimon* e){
     }
     else{
         //exception : inventory is full
+        throw InventoryExceptionF();
     }
 }
 
@@ -92,10 +93,12 @@ void Inventory<Engimon>::deleteItem(int id){
         }
         else{
             //exception : engimon doesnt exist
+            throw EngimonException();
         }
     }
     else{
         //exception : inventory kosong
+        throw InventoryException();
     }
     
 }
@@ -106,10 +109,12 @@ void Inventory<Engimon>::deleteItem(Engimon* e){
         }
         else{
             //exception : engimon doesnt exist
+            throw EngimonException();
         }
     }
     else{
         //exception : inventory kosong
+        throw InventoryException();
     }
 }
 
@@ -146,6 +151,7 @@ void Inventory<Skill>::addItem(Skill e){
     }
     else{
         //exception : inventory is full
+        throw InventoryExceptionF();
     }
     
 }
@@ -210,10 +216,12 @@ void Inventory<Skill>::deleteItem(string s){
         }
         else{
             //exception : skill doesnt exist
+            throw SkillException();
         }
     }
     else{
         //exception : inventory is empty
+        throw InventoryException();
     }
 }
 void Inventory<Skill>::deleteItem(Skill s){
@@ -230,10 +238,12 @@ void Inventory<Skill>::deleteItem(Skill s){
         }
         else{
             ////exception : skill doesnt exist
+            throw SkillException();
         }
     }
     else{
         //exception : inventory is empty
+        throw InventoryException();
     }
 }
 
@@ -257,5 +267,6 @@ void Inventory<Skill>::learn(Skill s, Engimon* e){
     }
     else{
         //throw exception : engimon element nya tidak compatible dengan skill
+        throw ElementException();
     }
 }

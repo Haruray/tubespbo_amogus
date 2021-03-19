@@ -84,4 +84,39 @@ class Inventory<Skill>{
         void learn(Skill, Engimon*); //fungsi learn, refer ke spek 3.b.i.2.d.
 };
 
+class SkillException: public exception{
+    public:
+        const char* what() const throw(){
+            cout << "Skill doesn't exist";
+        }
+};
+
+class InventoryException: public exception{
+    public:
+        const char* what() const throw(){
+            cout << "Inventory is empty";
+        }
+};
+
+class ElementException: public exception{
+    public:
+        const char* what() const throw(){
+            cout << "Incompatible element with skill";
+        }
+};
+
+class InventoryExceptionF: public exception{
+    public:
+        const char* what() const throw(){
+            cout << "Inventory is full";
+        }
+};
+
+class EngimonException: public exception{
+    public:
+        const char* what() const throw(){
+            cout << "Engimon doesn't exist";
+        }
+};
+
 #endif
