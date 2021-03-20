@@ -57,4 +57,17 @@ class Player{
         void interactWithActiveEngimon();
 };
 
+class BreedParentException: public exception{
+    public:
+        const char* what() const throw(){
+            return "Parent ineligible for breeding";
+        }
+};
+
+class BreedEngimonException: public exception{
+    public:
+        const char* what() const throw(){
+            return "No such Engimon in Inventory";
+        }
+};
 #endif

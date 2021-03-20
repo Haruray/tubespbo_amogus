@@ -72,7 +72,7 @@ class Engimon{
 class EngimonExceptionSkillFull: public exception{
     public:
         const char* what() const throw(){
-            cout << "Skill slot full";
+            return "Skill slot full";
         }
 };
 

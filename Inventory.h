@@ -87,35 +87,35 @@ class Inventory<Skill>{
 class SkillException: public exception{
     public:
         const char* what() const throw(){
-            cout << "Skill doesn't exist";
+            return "Skill doesn't exist";
         }
 };
 
 class InventoryException: public exception{
     public:
         const char* what() const throw(){
-            cout << "Inventory is empty";
+            return "Inventory is empty";
         }
 };
 
 class ElementException: public exception{
     public:
         const char* what() const throw(){
-            cout << "Incompatible element with skill";
+            return "Incompatible element with skill";
         }
 };
 
 class InventoryExceptionF: public exception{
     public:
         const char* what() const throw(){
-            cout << "Inventory is full";
+            return "Inventory is full";
         }
 };
 
 class EngimonException: public exception{
     public:
         const char* what() const throw(){
-            cout << "Engimon doesn't exist";
+            return "Engimon doesn't exist";
         }
 };
 

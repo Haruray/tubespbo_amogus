@@ -248,10 +248,12 @@ void Player::breeding(Engimon* e1, Engimon* e2){
         }
         else{
             //exception : parents not eligible for breeding
+            throw BreedParentException();
         }
     }
     else{
         //exception : engimons doesnt exist in inventory
+        throw BreedEngimonException();
     }
 }
 
