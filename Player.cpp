@@ -145,27 +145,83 @@ void Player::skillSelection(Engimon* e1, Engimon* e2, vector<Skill>* newSkill, v
     }
 }
 
-Element getMostAdvantageousElmt(Element e, vector<Element> elist){
-    Element eMax;
-    float advMax1;
-    float advMax2;
-    for (int i = 0 ; i < elist.size() ; i++){
-        advMax1 = e.elementAdvantage(elist[i]);
-        advMax2 = elist[i].elementAdvantage(e);
-        if (advMax1 > advMax2){
-            eMax = e;
-        }
-        else{
-            eMax = elist[0];
+vector<Element> combineElement(vector<Element> elist1, vector<Element> elist2){
+    vector<Element> elist3;
+    //menghapus duplikat pada salah satu vector
+    int elist1_size = elist1.size();
+    for (int i = 0; i < elist1.size() ; i++){
+        for (int j = 0 ; j < elist2.size() ; j++){
+            if (elist1[i].getElementName() == elist2[j].getElementName()){
+                elist1.erase(elist1.begin() + i);
+                elist1_size -= 1;
+                break;
+            }
         }
     }
-    return eMax;
+    //gabung dua vector
+    elist3.reserve(elist1.size() + elist2.size());
+    elist3.insert(elist3.end(), elist1.begin(), elist1.end());
+    elist3.insert(elist3.end(), elist2.begin(), elist2.end());
+    return elist3;
+}
+
+bool compareVectorOfElements(vector<Element> elist1, vector<Element> elist2){
+    if (elist1.size() > elist2.size()){
+        for (int i = 0; i < elist1.size() ; i++){
+            for (int j = 0 ; j < elist2.size() ; j++){
+                if (elist1[i].getElementName() != elist2[j].getElementName()){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    else{
+        for (int i = 0; i < elist2.size() ; i++){
+            for (int j = 0 ; j < elist1.size() ; j++){
+                if (elist2[i].getElementName() != elist1[j].getElementName()){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     
+}
+
+vector<Element> getMostAdvantageousElmt(vector<Element> elist1, vector<Element> elist2){
+    //Mencari himpunan elmt dengan adv terbesar. Metode nya adalah : penjumlahan
+    float adv1=0;
+    float adv2=0;
+    for (int i=0; i < elist1.size() ; i++){
+        for (int j=0 ; j < elist2.size() ; j++){
+            adv1 += elist1[i].elementAdvantage(elist2[j]);
+        }
+    }
+    for (int i=0; i < elist2.size() ; i++){
+        for (int j=0 ; j < elist1.size() ; j++){
+            adv2 += elist2[i].elementAdvantage(elist1[j]);
+        }
+    }
+    if (adv1 > adv2){
+        return elist1;
+    }
+    else if (adv1 < adv2){
+        return elist2;
+    }
+    else{ //kalau elemen sama
+        return combineElement(elist1,elist2);
+    }
 }
 
 void Player::breeding(Engimon* e1, Engimon* e2){
     if (this->getInventoryEngimon()->doesItemExist(e1) && this->getInventoryEngimon()->doesItemExist(e2)){
         if (e1->getLevel() >= 30 && e2->getLevel() >= 30){
+            //Mengurangi level parents
+            e1->setLevel(e1->getLevel()-30);
+            e1->setCumulativeExp(e1->getCumulativeExp()-30*100);
+            e2->setLevel(e2->getLevel()-30);
+            e2->setCumulativeExp(e2->getCumulativeExp()-30*100);
             string newname;
             vector<Skill> newSkill;
             vector<Element> newElement;
@@ -181,20 +237,6 @@ void Player::breeding(Engimon* e1, Engimon* e2){
             cout<<"Beri engimon baru sebuah nama : ";
             cin>>newname;
             //sorting skill based on mastery skill
-            /*
-            sort(e1->getSkills().begin(), e1->getSkills().end(), [](Skill& s1, Skill& s2){
-                return s1.getMasteryLevel() > s2.getMasteryLevel();
-            });
-            sort(e2->getSkills().begin(), e2->getSkills().end(), [](Skill& s1, Skill& s2){
-                return s1.getMasteryLevel() > s2.getMasteryLevel();
-            });
-            //sorting skillList
-            sort(skillList.begin(), skillList.end(), [](Skill& s1, Skill& s2){
-                return s1.getMasteryLevel() > s2.getMasteryLevel();
-            });
-            */
-            // sort(e1->getSkills().begin(), e1->getSkills().end());
-            // sort(e2->getSkills().begin(), e2->getSkills().end());
             sort(skillList.begin(), skillList.end(), greater<Skill>());
 
             //perbandingan skill mastery level buat dimasukin ke engimon baru
@@ -212,32 +254,11 @@ void Player::breeding(Engimon* e1, Engimon* e2){
             //asumsi kedua parent merupakan multielemen. Maka, diambil elemen yg sama terlebih dahulu
             //kalau elemen berbeda, maka dicek elmt advantage nya lebih besar yg mana
 
-            //loop, dengan asumsi jumlah element e1 <= jumlah elemen e2
-            int e1Cenderung = 0 ;
-            int e2Cenderung = 0 ;
-            Element eNew;
-            for (int i = 0; i < e1->getElements().size() ; i++){
-                if (e2->isElement(e1->getElements()[i])){ //jika berelemen true, maka elemen kedua parents sama
-                    newElement.push_back(e1->getElements()[i]);
-                }
-                else{ //jika elemen berbeda
-                    eNew = getMostAdvantageousElmt(e1->getElements()[i], e2->getElements());
-                    if (e1->isElement(eNew)){
-                        e1Cenderung++;
-                    }
-                    else{
-                        e2Cenderung++;
-                    }
-                    newElement.push_back(eNew);
-                }
-            }
-            //NOTE : KALAU ELMT ADVANTAGE NYA SAMA BELUM DI CEK
-            
-            //Set spesies, berdasarkan kecendeerungan
-            if (e1Cenderung >= e2Cenderung){
+            newElement = getMostAdvantageousElmt(e1->getElements(), e2->getElements());
+            if (compareVectorOfElements(newElement, e1->getElements())){
                 newSpecies = e1->getSpecies();
             }
-            else{
+            else{ //asumsi kalau adv elemennya sama, maka spesiesnya juga ngikut parent 2
                 newSpecies = e2->getSpecies();
             }
             //Pembuatan engimon dan dimasukkan ke inventory
