@@ -75,6 +75,9 @@ void Cell::printSymbol(int var){
                 cout << "S";
             if (elemen[0].getElementName() == "Water" && elemen[1].getElementName() == "Ground")
                 cout << "N";
+            //Symbol selain spek : dua huruf digabung. idk if this a good idea, need testing
+            else
+                cout << elemen[0].getElementName()[0] << elemen[1].getElementName()[0];
         }
         
         break;
