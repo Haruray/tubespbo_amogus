@@ -8,7 +8,7 @@ using namespace std;
 class Cell {
     private:
         string type;
-        bool isOccupied;
+        bool Occupied;
         Enemy* enemy;
     public:
         //4 sekawan
@@ -20,7 +20,7 @@ class Cell {
         //setter
         void setType(string);
         void setEnemy(Enemy*);
-        void setOccypy(bool);
+        void setOccupy(bool);
 
         //getter
         string getType();
@@ -30,8 +30,14 @@ class Cell {
         bool isOccupied();
 
         //func
-        void printSymbol(); //print symbol sesuai peta
+        void printSymbol(int); //print symbol sesuai peta
 
+};
+
+class CellException: public exception{
+    const char* what() const throw(){
+        return "Invalid Input";
+    }
 };
 
 #endif
