@@ -144,7 +144,7 @@ void Player::skillSelection(Engimon* e1, Engimon* e2, vector<Skill>* newSkill, v
         j++;
     }
 }
-
+/*
 vector<Element> combineElement(vector<Element> elist1, vector<Element> elist2){
     vector<Element> elist3;
     //menghapus duplikat pada salah satu vector
@@ -162,9 +162,12 @@ vector<Element> combineElement(vector<Element> elist1, vector<Element> elist2){
     elist3.reserve(elist1.size() + elist2.size());
     elist3.insert(elist3.end(), elist1.begin(), elist1.end());
     elist3.insert(elist3.end(), elist2.begin(), elist2.end());
+    if (elist3.size() > 2){
+        //kalau lebih dari 2, cari element yg adv nya paling tinggi
+    }
     return elist3;
 }
-
+*/
 bool compareVectorOfElements(vector<Element> elist1, vector<Element> elist2){
     if (elist1.size() > elist2.size()){
         for (int i = 0; i < elist1.size() ; i++){
@@ -191,16 +194,30 @@ bool compareVectorOfElements(vector<Element> elist1, vector<Element> elist2){
 
 vector<Element> getMostAdvantageousElmt(vector<Element> elist1, vector<Element> elist2){
     //Mencari himpunan elmt dengan adv terbesar. Metode nya adalah : penjumlahan
+    //selain itu, dicatat per elist element mana yg nilai advantage nya yg paling besar ; e1max untuk elist1 dan e2max untuk elist2
+    Element e1max = elist1[0];
+    float e1maxf = elist1[0].elementAdvantage(elist2[0]);
+    Element e2max = elist2[0];
+    float e2maxf = elist2[0].elementAdvantage(elist1[0]);
+
     float adv1=0;
     float adv2=0;
     for (int i=0; i < elist1.size() ; i++){
         for (int j=0 ; j < elist2.size() ; j++){
             adv1 += elist1[i].elementAdvantage(elist2[j]);
+            if (elist1[i].elementAdvantage(elist2[j]) > e1maxf){
+                e1maxf = elist1[i].elementAdvantage(elist2[j]);
+                e1max = elist1[i];
+            }
         }
     }
     for (int i=0; i < elist2.size() ; i++){
         for (int j=0 ; j < elist1.size() ; j++){
             adv2 += elist2[i].elementAdvantage(elist1[j]);
+            if (elist2[i].elementAdvantage(elist1[j]) > e2maxf){
+                e2maxf = elist2[i].elementAdvantage(elist1[j]);
+                e2max = elist2[i];
+            }
         }
     }
     if (adv1 > adv2){
@@ -209,8 +226,8 @@ vector<Element> getMostAdvantageousElmt(vector<Element> elist1, vector<Element> 
     else if (adv1 < adv2){
         return elist2;
     }
-    else{ //kalau elemen sama
-        return combineElement(elist1,elist2);
+    else{ //kalau elemen sama, maka digabungkan e1max dan e2max
+        return vector<Element> {e1max,e2max};
     }
 }
 

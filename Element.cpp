@@ -13,6 +13,10 @@ Element::Element(const Element& e){
 }
 Element::~Element(){}
 
+Element& Element::operator=(const Element& e){
+    this->setElementName(e.elementName);
+    return *this;
+}
 //setter
 void Element::setElementName(string name){
     this->elementName = name;

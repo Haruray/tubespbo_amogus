@@ -13,6 +13,7 @@ class Element{
         Element(string); //ctor with argument
         Element(const Element&); //cctor
         ~Element();
+        Element& operator=(const Element&);
         
         //setter
         void setElementName(string);
