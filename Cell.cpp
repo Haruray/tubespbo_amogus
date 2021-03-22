@@ -16,6 +16,11 @@ Cell::Cell(const Cell& cell){
 Cell::~Cell(){
     
 }
+Cell& Cell::operator=(const Cell& C){
+    this->enemy = C.enemy;
+    this->Occupied = C.Occupied;
+    this->type = C.type;
+}
 void Cell::setType(string type){
     this->type = type;
 };
@@ -71,9 +76,9 @@ void Cell::printSymbol(int var){
         else{
             if (elemen[0].getElementName() == "Fire" && elemen[1].getElementName() == "Electric")
                 cout << "L";
-            if (elemen[0].getElementName() == "Water" && elemen[1].getElementName() == "Ice")
+            else if (elemen[0].getElementName() == "Water" && elemen[1].getElementName() == "Ice")
                 cout << "S";
-            if (elemen[0].getElementName() == "Water" && elemen[1].getElementName() == "Ground")
+            else if (elemen[0].getElementName() == "Water" && elemen[1].getElementName() == "Ground")
                 cout << "N";
             //Symbol selain spek : dua huruf digabung. idk if this a good idea, need testing
             else
