@@ -1,6 +1,5 @@
 #include "Element.h"
-#include "EngimonUniverse.h"
-
+#include "ElmtAdvTable.h"
 //4 sekawan
 Element::Element(){
     this->setElementName("None");

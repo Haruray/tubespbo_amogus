@@ -88,11 +88,13 @@ void Engimon::addSkill(vector<Skill> vs){
     }
 }
 void Engimon::addElement(Element e){
-    this->elements.push_back(e);
+    if (this->isElement(e) == false){
+        this->elements.push_back(e);
+    }
 }
 void Engimon::addElement(vector<Element> ve){
     for (int i=0; i<ve.size();i++){
-        this->elements.push_back(ve[i]);
+        this->addElement(ve[i]);
     }
 }
 void Engimon::levelUp(){
