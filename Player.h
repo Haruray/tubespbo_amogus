@@ -17,12 +17,7 @@ class Player{
         Engimon* activeEngimon;
         struct Position{
             int x, y;
-        } position;
-
-        struct Position{
-            int x, y;
-        } positionActiveEngimon;
-        
+        } position, positionActiveEngimon;
 
     public:
         Player(); //ctor
