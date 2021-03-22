@@ -4,10 +4,12 @@
 #include <iostream>
 #include "Player.h"
 #include "Inventory.h"
+#include "Map.h"
 using namespace std;
 
 //GLOBAL VARIABLE
-
+int mapsize = 10;
+Map map;
 //ELEMENTS
 Element Fire("Fire");
 Element Water("Water");

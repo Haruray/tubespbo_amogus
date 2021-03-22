@@ -42,24 +42,3 @@ void Enemy::moveRight(){
 void Enemy::moveLeft(){
     this->position.x -= 1;
 }
-void Enemy::randomMove(){
-    int x = rand();
-    switch (x % 4)
-    {
-    case 0:
-        moveUp();
-        break;
-    case 1:
-        moveDown();
-        break;
-    case 2:
-        moveRight();
-        break;
-    case 3:
-        moveLeft();
-        break;
-    default:
-        cout << "Fail";
-        break;
-    }
-}
