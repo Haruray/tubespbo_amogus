@@ -7,22 +7,27 @@
 
 using namespace std;
 
-template <class T>
-class Inventory{
-    protected:
-        vector<T> items;
-        int maxCapacity;
+class BaseInventory {
     public:
-        Inventory();
-        Inventory(int);
+        static int capacity;
+        static int maxCapacity;
+
+        BaseInventory();
+        BaseInventory(int);
+        ~BaseInventory();
+};
+
+template <class T>
+class Inventory : BaseInventory {
+    
 };
 
 //specialization
 template<>
-class Inventory<Engimon>{
+class Inventory<Engimon> : BaseInventory {
     private:
         vector<Engimon*> items;
-        int maxCapacity;
+        //int maxCapacity;
     public:
         //4 sekawan
         Inventory();
@@ -31,7 +36,7 @@ class Inventory<Engimon>{
         ~Inventory();
 
         //setter/adder
-        void setMaxCap(int);
+        //void setMaxCap(int);
         void addItem(Engimon*);
 
         //checking conditions
@@ -50,11 +55,11 @@ class Inventory<Engimon>{
 };
 
 template<>
-class Inventory<Skill>{
+class Inventory<Skill> : BaseInventory {
     private:
         vector<Skill> items;
         vector<int> itemQty;
-        int maxCapacity;
+        //int maxCapacity;
     public:
         //4 sekawan
         Inventory();
@@ -63,7 +68,7 @@ class Inventory<Skill>{
         ~Inventory();
 
         //setter/adder
-        void setMaxCap(int);
+        //void setMaxCap(int);
         void addItem(Skill);
 
         //getter

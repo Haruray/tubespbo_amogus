@@ -41,9 +41,12 @@ int main(){
     //Mencoba delete item dari inventory Engimon
     ie.printItems();
     
+    e.addSkill(Skill("n word",200,200, vector<Element> {Element("Fire")}));
+    e.printSkill();
+
     //Setting up player
     cout<<"\n";
-    Player p("Amogus" , &is, &ie, &e, 0, 0);
+    Player p("Amogus", &is, &ie, &e, 0, 0);
     p.showEngimonList();
     p.showSkillList();
 

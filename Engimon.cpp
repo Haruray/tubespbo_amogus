@@ -79,7 +79,7 @@ void Engimon::addSkill(Skill s){
     }
     else{
         //exception : skill slot full
-        throw EngimonExceptionSkillFull();
+        this->replaceSkill(s);
     }
 }
 void Engimon::addSkill(vector<Skill> vs){
@@ -194,6 +194,26 @@ bool Engimon::hasSkill(Skill s){
     return false;
 }
 
+//delete
+void Engimon::replaceSkill(Skill s) {
+    string input;
+    int idx;
+    cout << "Skill Engimon penuh, Apakah player ingin mengganti skill yang ada? (Y/N) : ";
+    do {
+        cin >> input;
+    } while (input != "Y" && input != "N");
+    if (input == "Y") {
+        this->printSkill();
+        cout << "Pilih skill yang akan diganti (By index) : ";
+        do {
+            cin >> idx;
+        } while (idx < 1 || idx > this->skills.size());
+        this->skills.erase(this->skills.begin() + (idx-1));
+        this->addSkill(s);
+        cout << "Skill telah diganti" << endl;
+    }
+}
+
 //output func
 void Engimon::printDetail(){
     cout<<"Nama Engimon"<<"\t: "<<this->getName()<<endl;
@@ -227,4 +247,11 @@ void Engimon::printDetail(){
     cout<<"Experience"<<"\t: "<<this->getExp()<<endl;
     cout<<"Cumulative Exp."<<"\t: "<<this->getCumulativeExp()<<endl;
 
+}
+
+void Engimon::printSkill() {
+    cout << "Skill\t\t: " << endl;
+    for (int i=0; i<this->getSkills().size(); i++){
+        cout << (i+1) << ". " << this->getSkills()[i].getSkillName() << endl;
+    }
 }

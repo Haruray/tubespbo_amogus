@@ -64,9 +64,13 @@ class Engimon{
         bool isDead(); //refer to spek 1.d
         bool isElement(Element); //apakah engimon berelemen x 
         bool hasSkill(Skill); //apakah engimon punya skill x
+        
+        //delete
+        void replaceSkill(Skill); //replace skill by index
 
         //output function
         void printDetail();
+        void printSkill();
 };
 
 class EngimonExceptionSkillFull: public exception{

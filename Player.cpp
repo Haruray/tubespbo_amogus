@@ -312,6 +312,14 @@ void Player::breeding(Engimon* e1, Engimon* e2){
     }
 }
 
+void Player::swapActiveEngimon() {
+    int idx;
+    this->getInventoryEngimon()->printItems();
+    cout << "Pilih Engimon (by index) : ";
+    cin >> idx;
+    this->setActiveEngimon(this->getInventoryEngimon()->getItemById(idx));
+}
+
 void Player::interactWithActiveEngimon(){
     cout<<"["<<this->getActiveEngimon()->getName()<<"] : "<<this->getActiveEngimon()->getSpecies().getSlogan()<<endl;
 }

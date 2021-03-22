@@ -1,28 +1,30 @@
 #include "Inventory.h"
 
-template<class T>
-Inventory<T>::Inventory(){
-    this->setMaxCap(0);
+int BaseInventory::capacity = 0;
+int BaseInventory::maxCapacity = 100;
+
+BaseInventory::BaseInventory() {
+    
 }
 
-template<class T>
-Inventory<T>::Inventory(int maxcap){
-    this->setMaxCap(maxcap);
+BaseInventory::BaseInventory(int maxcap) {
+    BaseInventory::maxCapacity = maxcap;
 }
+
+BaseInventory::~BaseInventory() {}
 
 //Engimon specialization
-Inventory<Engimon>::Inventory(){
-    this->setMaxCap(0);
+Inventory<Engimon>::Inventory() : BaseInventory() {
+    
 }
 
-Inventory<Engimon>::Inventory(int maxcap){
-    this->setMaxCap(maxcap);
+Inventory<Engimon>::Inventory(int maxcap) : BaseInventory(maxcap) {
+    
 }
 
-Inventory<Engimon>::Inventory(const Inventory& i){
-    this->setMaxCap(i.maxCapacity);
+Inventory<Engimon>::Inventory(const Inventory& i) {
     for (int j=0 ; j<i.items.size(); j++){
-        this->addItem(i.items[j]);
+        this->items[j] = i.items[j];
     }
 }
 
@@ -31,6 +33,7 @@ Inventory<Engimon>::~Inventory(){}
 void Inventory<Engimon>::addItem(Engimon* e){
     if (this->isFull()==false){
         this->items.push_back(e);
+        BaseInventory::capacity += 1;
     }
     else{
         //exception : inventory is full
@@ -38,9 +41,7 @@ void Inventory<Engimon>::addItem(Engimon* e){
     }
 }
 
-void Inventory<Engimon>::setMaxCap(int max){
-    this->maxCapacity = max;
-}
+
 
 Engimon* Inventory<Engimon>::getItemByName(string name){
     for (int i=0 ; i<this->items.size(); i++){
@@ -60,7 +61,7 @@ Engimon* Inventory<Engimon>::getItemById(int id){
 
 void Inventory<Engimon>::printItems(){
     for (int i=0 ; i<this->items.size(); i++){
-        cout<<this->items[i]->getName()<<endl;
+        cout << (i+1) << this->items[i]->getName() << endl;
     }
 }
 
@@ -74,7 +75,7 @@ bool Inventory<Engimon>::doesItemExist(Engimon* e){
 }
 
 bool Inventory<Engimon>::isFull(){
-    return this->items.size() >= this->maxCapacity;
+    return BaseInventory::capacity >= BaseInventory::maxCapacity;
 }
 
 int Inventory<Engimon>::getItemIdx(Engimon* e){
@@ -106,6 +107,7 @@ void Inventory<Engimon>::deleteItem(Engimon* e){
     if (this->items.size() > 0){
         if (doesItemExist(e)){
             this->items.erase(this->items.begin() + this->getItemIdx(e));
+            BaseInventory::capacity -= 1;
         }
         else{
             //exception : engimon doesnt exist
@@ -119,18 +121,17 @@ void Inventory<Engimon>::deleteItem(Engimon* e){
 }
 
 //Skill specialization
-Inventory<Skill>::Inventory(){
-    this->setMaxCap(0);
+Inventory<Skill>::Inventory() : BaseInventory() {
+
 }
 
-Inventory<Skill>::Inventory(int maxcap){
-    this->setMaxCap(maxcap);
+Inventory<Skill>::Inventory(int maxcap) : BaseInventory(maxcap) {
+
 }
 
 Inventory<Skill>::Inventory(const Inventory& i){
-    this->setMaxCap(i.maxCapacity);
     for (int j=0 ; j<i.items.size(); j++){
-        this->addItem(i.items[j]);
+        this->items[j] = i.items[j];
     }
 }
 
@@ -148,6 +149,7 @@ void Inventory<Skill>::addItem(Skill e){
             this->items.push_back(e);
             this->itemQty.push_back(1);
         }
+        BaseInventory::capacity += 1;
     }
     else{
         //exception : inventory is full
@@ -156,9 +158,7 @@ void Inventory<Skill>::addItem(Skill e){
     
 }
 
-void Inventory<Skill>::setMaxCap(int max){
-    this->maxCapacity = max;
-}
+
 
 Skill Inventory<Skill>::getItemByName(string name){
     for (int i=0 ; i<this->items.size(); i++){
@@ -170,7 +170,7 @@ Skill Inventory<Skill>::getItemByName(string name){
 
 void Inventory<Skill>::printItems(){
     for (int i=0 ; i<this->items.size(); i++){
-        cout<<this->items[i].getSkillName()<<" ("<<this->itemQty[i]<<")"<<endl;
+        cout<< (i+1) << this->items[i].getSkillName() << " ("<<this->itemQty[i]<<")" << endl;
     }
 }
 
@@ -193,11 +193,7 @@ bool Inventory<Skill>::doesItemExist(string s){
 
 bool Inventory<Skill>::isFull(){
     //penjumlahan semua anggota qty, lalu dibandingkan dengan capacitynya
-    int currentStorage=0;
-    for (int i=0 ; i<this->itemQty.size(); i++){
-        currentStorage += this->itemQty[i];
-    }
-    return currentStorage>=this->maxCapacity;
+    return BaseInventory::capacity >= BaseInventory::maxCapacity;
 }
 
 int Inventory<Skill>::getItemIdx(Skill s){
@@ -235,6 +231,7 @@ void Inventory<Skill>::deleteItem(Skill s){
                 this->items.erase(this->items.begin() + idx);
                 this->itemQty.erase(this->itemQty.begin() + idx);
             }
+            BaseInventory::capacity -= 1;
         }
         else{
             ////exception : skill doesnt exist

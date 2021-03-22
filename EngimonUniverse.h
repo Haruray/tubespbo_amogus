@@ -16,8 +16,11 @@ Element Ground("Ground");
 Element Ice("Ice");
 
 //Species
-Species Magicarp("Magicarp", "I'm a fish meow", Skill("WaterSplash",100, 5, vector<Element> {Water}));
-
+Species Koikingu("Koikingu", "I'm a fish, meow", Skill("WaterSplash", 100, 5, vector<Element> {Water}));
+Species Impostor("Impostor", "Sus!", Skill("Sabotage", 100, 5, vector<Element> {Ice}));
+Species Bufumon("Bufumon", "", Skill("Bufu", 100, 5, vector<Element> {Ice}));
+Species Rizadon("Rizadon", "", Skill("FireFang", 100, 5, vector<Element> {Fire}));
+Species Diguda("Digoda", "Toransu!", Skill("SandAttack", 100, 5, vector<Element> {Ground}));
 
 
 #endif
