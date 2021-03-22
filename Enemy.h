@@ -30,7 +30,6 @@ class Enemy : public Engimon{
         void moveLeft();
         void moveRight();
         void moveDown();
-        void randomMove(); //fungsi random buat ingame nanti ; menentukan apakah dia bakal moveup atau movedown dst
 
 
 };

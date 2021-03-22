@@ -15,6 +15,8 @@ Player::Player(string name, Inventory<Skill>* is, Inventory<Engimon>* ie, Engimo
     this->setInventoryEngimon(ie);
     this->setActiveEngimon(e);
     this->setPosition(x,y); //starting position nanti bisa dirubah
+    this->positionActiveEngimon.x = 1;
+    this->positionActiveEngimon.y = 0;
 }
 Player::Player(const Player& p){
     this->setPlayerName(p.playerName);
