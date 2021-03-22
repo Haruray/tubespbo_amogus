@@ -20,6 +20,7 @@ Cell& Cell::operator=(const Cell& C){
     this->enemy = C.enemy;
     this->Occupied = C.Occupied;
     this->type = C.type;
+    return *this;
 }
 void Cell::setType(string type){
     this->type = type;

@@ -2,10 +2,8 @@
 #include <iostream>
 
 Map::Map(){
-    
 };
 Map::~Map(){
-    delete[] cells;
 };
 
 //setter

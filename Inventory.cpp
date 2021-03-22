@@ -52,11 +52,7 @@ Engimon* Inventory<Engimon>::getItemByName(string name){
 }
 
 Engimon* Inventory<Engimon>::getItemById(int id){
-    for (int i=0 ; i<this->items.size(); i++){
-        if (id == this->items[i]->getId())
-            return this->items[i];
-    }
-    return nullptr;
+    return this->items[id];
 }
 
 void Inventory<Engimon>::printItems(){
