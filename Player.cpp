@@ -299,7 +299,6 @@ void Player::breeding(Engimon* e1, Engimon* e2){
             Engimon* newEngimon = new Engimon(newname, e1, e2, newSpecies, newSkill, newElement, 1, 1000); //Subject to change untuk maximum cumulative exp
             this->getInventoryEngimon()->addItem(newEngimon);
             //For testing purpose, newengimon jadi active engimon
-            this->setActiveEngimon(newEngimon);
         }
         else{
             //exception : parents not eligible for breeding
@@ -319,7 +318,7 @@ void Player::swapActiveEngimon() {
     do {
         cin >> idx;
     } while (idx < 1 || idx > this->getInventoryEngimon()->getSize());
-    this->setActiveEngimon(this->getInventoryEngimon()->getItemById(idx));
+    this->setActiveEngimon(this->getInventoryEngimon()->getItemById(idx-1));
 }
 
 void Player::interactWithActiveEngimon(){
