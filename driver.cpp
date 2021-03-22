@@ -15,13 +15,13 @@ int main(){
     Engimon p2("a woman",nullptr, nullptr,Species("human","im a human",Skill("walk",10,10,vector<Element> {Element("Fire")})),skills,vector<Element> {Element("Ground"), Element("Ice")},30,10000);
     Engimon e("rinaldi munir",&p1, &p2,Species("human","im a human",Skill("walk",10,10,vector<Element> {Element("Fire")})),skills,vector<Element> {Element("Fire")},0,10000);
     //Membuat Inventory Skill
-    Inventory<Skill> is(5);
+    Inventory<Skill> is(10);
     is.addItem(Skill("normal attack",100,100, vector<Element> {Element("Fire")}));
     is.addItem(Skill("special attack",200,200, vector<Element> {Element("Fire")}));
     is.addItem(Skill("special attack",200,200, vector<Element> {Element("Fire")}));
     is.addItem(Skill("run",200,200, vector<Element> {Element("Fire")}));
     //Membuat Inventory Engimon
-    Inventory<Engimon> ie(5);
+    Inventory<Engimon> ie(10);
     ie.addItem(&p1);
     ie.addItem(&p2);
     ie.addItem(&e);
@@ -51,6 +51,8 @@ int main(){
     p.showSkillList();
 
     p.breeding(&p1,&p2);
+    p.interactWithActiveEngimon();
+    p.swapActiveEngimon();
     p.interactWithActiveEngimon();
     p.getActiveEngimon()->printDetail();
     p.getInventoryEngimon()->printItems();

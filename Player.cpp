@@ -316,7 +316,9 @@ void Player::swapActiveEngimon() {
     int idx;
     this->getInventoryEngimon()->printItems();
     cout << "Pilih Engimon (by index) : ";
-    cin >> idx;
+    do {
+        cin >> idx;
+    } while (idx < 1 || idx > this->getInventoryEngimon()->getSize());
     this->setActiveEngimon(this->getInventoryEngimon()->getItemById(idx));
 }
 

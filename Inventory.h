@@ -48,6 +48,7 @@ class Inventory<Engimon> : BaseInventory {
         void deleteItem(Engimon*); //delete engimon langsung menyebut object nya
 
         //getter
+        int getSize();
         int getItemIdx(Engimon*);
         Engimon* getItemByName(string); //jika tidak ketemu, maka keluarannya adalah Engimon() (default)
         Engimon* getItemById(int); //jika tidak ketemu, maka keluarannya adalah Engimon() (default)
@@ -72,6 +73,7 @@ class Inventory<Skill> : BaseInventory {
         void addItem(Skill);
 
         //getter
+        int getSize();
         Skill getItemByName(string);
         int getItemIdx(Skill); //Jika itemnya tidak ketemu, maka keluarannya adalah -1
         void printItems(); //print informasi

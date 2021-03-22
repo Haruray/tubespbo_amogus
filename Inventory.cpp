@@ -61,7 +61,7 @@ Engimon* Inventory<Engimon>::getItemById(int id){
 
 void Inventory<Engimon>::printItems(){
     for (int i=0 ; i<this->items.size(); i++){
-        cout << (i+1) << this->items[i]->getName() << endl;
+        cout << (i+1) << ". " << this->items[i]->getName() << endl;
     }
 }
 
@@ -120,6 +120,11 @@ void Inventory<Engimon>::deleteItem(Engimon* e){
     }
 }
 
+int Inventory<Engimon>::getSize() {
+    return this->items.size();
+}
+
+
 //Skill specialization
 Inventory<Skill>::Inventory() : BaseInventory() {
 
@@ -170,7 +175,7 @@ Skill Inventory<Skill>::getItemByName(string name){
 
 void Inventory<Skill>::printItems(){
     for (int i=0 ; i<this->items.size(); i++){
-        cout<< (i+1) << this->items[i].getSkillName() << " ("<<this->itemQty[i]<<")" << endl;
+        cout<< (i+1) << ". " << this->items[i].getSkillName() << " ("<<this->itemQty[i]<<")" << endl;
     }
 }
 
@@ -266,4 +271,8 @@ void Inventory<Skill>::learn(Skill s, Engimon* e){
         //throw exception : engimon element nya tidak compatible dengan skill
         throw ElementException();
     }
+}
+
+int Inventory<Skill>::getSize() {
+    return this->items.size();
 }
