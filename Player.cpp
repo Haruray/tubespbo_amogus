@@ -5,7 +5,9 @@ Player::Player(){
     this->setInventoryEngimon(nullptr);
     this->setInventorySkill(nullptr);
     this->setActiveEngimon(nullptr);
-    this->setPosition(0,0);
+    this->setPosition(1,1);
+    this->positionActiveEngimon.x = 1;
+    this->positionActiveEngimon.y = 0;
 }
 Player::Player(string name, Inventory<Skill>* is, Inventory<Engimon>* ie, Engimon* e, int x, int y){
     this->setPlayerName(name);
@@ -45,6 +47,10 @@ void Player::setPosition(int x, int y){
     this->position.x = x;
     this->position.y = y;
 }
+void Player::ActiveEngimonFollow(){
+    this->positionActiveEngimon.x = getPosX();
+    this->positionActiveEngimon.y = getPosY();
+}
 
 //getter
 string Player::getPlayerName(){
@@ -66,17 +72,28 @@ int Player::getPosY(){
     return this->position.y;
 }
 
+int Player::ActiveX(){
+    return this->positionActiveEngimon.x;
+}
+int Player::ActiveY(){
+    return this->positionActiveEngimon.y;
+}
+
 //functions
 void Player::moveUp(){
+    ActiveEngimonFollow();
     this->setPosition(this->getPosX(), this->getPosY()+1);
 }
 void Player::moveLeft(){
+    ActiveEngimonFollow();
     this->setPosition(this->getPosX()-1, this->getPosY());
 }
 void Player::moveRight(){
+    ActiveEngimonFollow();
     this->setPosition(this->getPosX()+1, this->getPosY());
 }
 void Player::moveDown(){
+    ActiveEngimonFollow();
     this->setPosition(this->getPosX(), this->getPosY()-1);
 }
 

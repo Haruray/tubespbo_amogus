@@ -19,6 +19,11 @@ class Player{
             int x, y;
         } position;
 
+        struct Position{
+            int x, y;
+        } positionActiveEngimon;
+        
+
     public:
         Player(); //ctor
         Player(string, Inventory<Skill>*, Inventory<Engimon>*, Engimon*, int, int); //ctor with arguments
@@ -39,12 +44,15 @@ class Player{
         Engimon* getActiveEngimon();
         int getPosX();
         int getPosY();
+        int ActiveX();
+        int ActiveY();
 
         //functions
         void moveUp();
         void moveLeft();
         void moveRight();
         void moveDown();
+        void ActiveEngimonFollow();
 
         void showEngimonList();
         void showEngimonData(Engimon);
