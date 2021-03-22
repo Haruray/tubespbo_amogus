@@ -16,6 +16,7 @@ class Cell {
         Cell(string);
         Cell(const Cell&);
         ~Cell();
+        Cell& operator=(const Cell&);
 
         //setter
         void setType(string);
