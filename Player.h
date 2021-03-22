@@ -74,4 +74,18 @@ class BreedEngimonException: public exception{
             return "No such Engimon in Inventory";
         }
 };
+
+class EngimonInvException: public exception{
+    public:
+        const char* what() const throw(){
+            return "No such Engimon in Inventory";
+        }
+};
+
+class UseException: public exception{
+    public:
+        const char* what() const throw(){
+            return "No such Engimon or Skill in Inventory";
+        }
+};
 #endif

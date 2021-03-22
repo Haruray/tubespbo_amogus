@@ -41,6 +41,7 @@ void Player::setActiveEngimon(Engimon* e){
     }
     else{
         //exception : engimon doesnt exist in inventory
+        throw EngimonInvException();
     }
 }
 void Player::setPosition(int x, int y){
@@ -105,7 +106,7 @@ void Player::showEngimonData(Engimon e){
         e.printDetail();
     }
     else{
-        //exception : engimon doesnt exist in inventory
+        throw EngimonInvException();
     }
 }
 
@@ -118,6 +119,7 @@ void Player::useSkillItem(Skill s, Engimon* e){
     }
     else{
         //exception : skill or engimon doesnt exist
+        throw UseException();
     }
 }
 
