@@ -99,4 +99,48 @@ void Cell::printSymbol(int var){
     }
 
 };
+// prekondisi: cell pasti kosong
+void Cell::generateEnemy(){
+    int x = rand() % 100;
+    this->enemy = new Enemy();
+    if (this->getType() == "Grassland"){
+        if (x < 20){
+            this->enemy->addElement(Element("Fire"));
+            // mungkin ada spesies juga, ato skill
+        }
+        else if (x < 40){
+            this->enemy->addElement(Element("Electric"));
+        }
+        else if (x < 60){
+            this->enemy->addElement(Element("Ground"));
+        }
+        else if (x < 80){
+            this->enemy->addElement(Element("Fire"));
+            this->enemy->addElement(Element("Electric"));
+        }
+        else if (x < 100){
+            this->enemy->addElement(Element("Water"));
+            this->enemy->addElement(Element("Ground"));
+        }
+
+    }
+    else{
+        if (x < 30){
+            this->enemy->addElement(Element("Water"));
+        }
+        else if (x < 60){
+            this->enemy->addElement(Element("Ice"));
+        }
+        else if (x < 90){
+            this->enemy->addElement(Element("Water"));
+            this->enemy->addElement(Element("Ice"));
+        }
+        else if (x < 100){
+            this->enemy->addElement(Element("Water"));
+            this->enemy->addElement(Element("Ground"));
+        }
+
+    }
+    this->setOccupy(true);
+};
 

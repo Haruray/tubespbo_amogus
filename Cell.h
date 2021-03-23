@@ -32,8 +32,9 @@ class Cell {
 
         //func
         void printSymbol(int); //print symbol sesuai peta
-
+        void generateEnemy(); // buat bikin enemy random di sel ini
 };
+
 
 class CellException: public exception{
     const char* what() const throw(){
