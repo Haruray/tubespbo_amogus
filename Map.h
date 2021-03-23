@@ -29,6 +29,7 @@ class Map{
 
         //function
         void printMap(Player); //ngeprint map. Karena player belum terdata di cell, maka akan dijadikan argumen saja
+        void randoEnemy(); // keluarin enemy random di map
 };
 
 #endif

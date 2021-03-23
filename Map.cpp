@@ -1,5 +1,6 @@
 #include "Map.h"
 #include <iostream>
+#include <stdlib.h>
 
 Map::Map(){
 };
@@ -73,4 +74,19 @@ void Map::printMap(Player P){
         }
     }
     
+};
+void Map::randoEnemy(){
+    bool generated = false;
+    while (!generated){
+        int randX = rand() % 10;
+        int randY = rand() % 10;
+        Cell curr = this->cells[randX][randY];
+
+        if (!curr.isOccupied()){
+            curr.generateEnemy();
+            generated = true;
+        }
+
+    }
+     
 };
