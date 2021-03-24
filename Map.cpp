@@ -55,16 +55,16 @@ Cell* Map::getCell(int x, int y){
 }; //get cell berdasarkan posisi
 
 //function
-void Map::printMap(Player P){
+void Map::printMap(Player* P){
     for (int i = 0; i < this->size; i++)
     {
         for (int j = 0; j < this->size; j++)
         {
             Cell* curr = this->cells[i][j];
-            if (P.getPosX() == i && P.getPosY() == j){
+            if (P->getPosX() == i && P->getPosY() == j){
                     curr->printSymbol(1);
             }
-            else if (P.ActiveX() == i && P.ActiveY() == j){
+            else if (P->ActiveX() == i && P->ActiveY() == j){
                     curr->printSymbol(2);
             }
             else if (curr->isOccupied()){
@@ -86,10 +86,10 @@ void Map::randoEnemy(){
     while (!generated){
         int randX = rand() % 10;
         int randY = rand() % 10;
-        Cell curr = this->cells[randX][randY];
+        Cell* curr = this->cells[randX][randY];
 
-        if (!curr.isOccupied()){
-            curr.generateEnemy();
+        if (!curr->isOccupied()){
+            curr->generateEnemy();
             generated = true;
         }
 

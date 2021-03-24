@@ -31,14 +31,14 @@ string Enemy::getLogo(Player P){
     return "???";
 }
 void Enemy::moveUp(){
-    this->position.y += 1;
-}
-void Enemy::moveDown(){
-    this->position.y -= 1;
-}
-void Enemy::moveRight(){
     this->position.x += 1;
 }
-void Enemy::moveLeft(){
+void Enemy::moveDown(){
     this->position.x -= 1;
+}
+void Enemy::moveRight(){
+    this->position.y += 1;
+}
+void Enemy::moveLeft(){
+    this->position.y -= 1;
 }

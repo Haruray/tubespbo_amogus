@@ -50,6 +50,10 @@ void Player::setPosition(int x, int y){
     this->position.x = x;
     this->position.y = y;
 }
+void Player::setActiveEngPos(int x, int y){
+    this->positionActiveEngimon.x = x;
+    this->positionActiveEngimon.y = y;
+}
 void Player::ActiveEngimonFollow(){
     this->positionActiveEngimon.x = getPosX();
     this->positionActiveEngimon.y = getPosY();
@@ -85,19 +89,19 @@ int Player::ActiveY(){
 //functions
 void Player::moveUp(){
     ActiveEngimonFollow();
-    this->setPosition(this->getPosX(), this->getPosY()+1);
+    this->setPosition(this->getPosX()-1, this->getPosY());
 }
 void Player::moveLeft(){
     ActiveEngimonFollow();
-    this->setPosition(this->getPosX()-1, this->getPosY());
+    this->setPosition(this->getPosX(), this->getPosY()-1);
 }
 void Player::moveRight(){
     ActiveEngimonFollow();
-    this->setPosition(this->getPosX()+1, this->getPosY());
+    this->setPosition(this->getPosX(), this->getPosY()+1);
 }
 void Player::moveDown(){
     ActiveEngimonFollow();
-    this->setPosition(this->getPosX(), this->getPosY()-1);
+    this->setPosition(this->getPosX()+1, this->getPosY());
 }
 
 void Player::showEngimonList(){

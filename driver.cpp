@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 #include "Player.h"
 #include "SupplementaryFunctions.h"
@@ -80,3 +81,4 @@ int main(){
     
     return 0;
 }
+*/
