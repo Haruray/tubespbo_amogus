@@ -27,6 +27,13 @@ void Cell::setType(string type){
 };
 void Cell::setEnemy(Enemy* enemy){
     this->enemy = enemy;
+    if (enemy != nullptr){
+        this->setOccupy(true);
+    }
+    else{
+        this->setOccupy(false);
+    }
+    
 };
 void Cell::setOccupy(bool occ){
     this->Occupied = occ;
@@ -55,32 +62,32 @@ void Cell::printSymbol(int var){
     switch (var)
     {
     case 1:
-        cout << "P";
+        cout << " P |";
         break;
     case 2:
-        cout << "X";
+        cout << " X |";
         break;
     case 3:
         elemen = this->enemy->getElements();
         if (elemen.size() == 1){
             if (elemen[0].getElementName() == "Water")
-                cout << "W";
+                cout << " W |";
             if (elemen[0].getElementName() == "Ice")
-                cout << "I";
+                cout << " I |";
             if (elemen[0].getElementName() == "Fire")
-                cout << "F";
+                cout << " F |";
             if (elemen[0].getElementName() == "Ground")
-                cout << "G";
+                cout << " G |";
             if (elemen[0].getElementName() == "Electric")
-                cout << "E";
+                cout << " E |";
         }
         else{
             if (elemen[0].getElementName() == "Fire" && elemen[1].getElementName() == "Electric")
-                cout << "L";
+                cout << " L |";
             else if (elemen[0].getElementName() == "Water" && elemen[1].getElementName() == "Ice")
-                cout << "S";
+                cout << " S |";
             else if (elemen[0].getElementName() == "Water" && elemen[1].getElementName() == "Ground")
-                cout << "N";
+                cout << " N |";
             //Symbol selain spek : dua huruf digabung. idk if this a good idea, need testing
             else
                 cout << elemen[0].getElementName()[0] << elemen[1].getElementName()[0];
@@ -89,58 +96,14 @@ void Cell::printSymbol(int var){
         break;
     case 4:
         if (this->type == "Grassland")
-            cout << "-";
+            cout << " - |";
         else
-            cout << "o";
+            cout << " o |";
         break;
     default:
         throw CellException();
         break;
     }
 
-};
-// prekondisi: cell pasti kosong
-void Cell::generateEnemy(){
-    int x = rand() % 100;
-    this->enemy = new Enemy();
-    if (this->getType() == "Grassland"){
-        if (x < 20){
-            this->enemy->addElement(Element("Fire"));
-            // mungkin ada spesies juga, ato skill
-        }
-        else if (x < 40){
-            this->enemy->addElement(Element("Electric"));
-        }
-        else if (x < 60){
-            this->enemy->addElement(Element("Ground"));
-        }
-        else if (x < 80){
-            this->enemy->addElement(Element("Fire"));
-            this->enemy->addElement(Element("Electric"));
-        }
-        else if (x < 100){
-            this->enemy->addElement(Element("Water"));
-            this->enemy->addElement(Element("Ground"));
-        }
-
-    }
-    else{
-        if (x < 30){
-            this->enemy->addElement(Element("Water"));
-        }
-        else if (x < 60){
-            this->enemy->addElement(Element("Ice"));
-        }
-        else if (x < 90){
-            this->enemy->addElement(Element("Water"));
-            this->enemy->addElement(Element("Ice"));
-        }
-        else if (x < 100){
-            this->enemy->addElement(Element("Water"));
-            this->enemy->addElement(Element("Ground"));
-        }
-
-    }
-    this->setOccupy(true);
 };
 
