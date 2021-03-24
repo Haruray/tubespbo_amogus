@@ -112,6 +112,7 @@ void Cell::generateEnemy(){
     int x = rand() % 100;
     if (this->getType() == "Grassland"){
         if (x < 20){
+            // gegara new keknya, jadi multi definisi
             this->enemy = new Enemy(Dio);
         }
         else if (x < 40){
