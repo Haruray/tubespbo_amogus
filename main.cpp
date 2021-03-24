@@ -87,6 +87,7 @@ int main(){
                 p.moveRight();
             }
             map.printMap(&p);
+            map.randoEnemy();
 
         }
         else if (input == "Help!") {
@@ -138,6 +139,7 @@ int main(){
         } else {
             cout << "Invalid command!" << endl;
         }
+
     }
 
 }

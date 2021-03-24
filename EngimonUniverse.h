@@ -44,6 +44,8 @@ Engimon Hilarious("Hilarious", nullptr, nullptr, Impostor, skills, vector<Elemen
 Engimon Valentine("Valentine", nullptr, nullptr, Diguda, skills, vector<Element> {Ground}, 1, 10000);
 Engimon Dio("Dio", nullptr, nullptr, IceCube, skills, vector<Element> {Ground}, 1, 10000);
 Engimon Mio("Mio", nullptr, nullptr, Koikingu, skills, vector<Element> {Water}, 1, 10000);
+Engimon Gaybon("Gaybon", nullptr, nullptr, Watortle, skills, vector<Element> {Water}, 1, 10000);
+
 
 
 //enemies
