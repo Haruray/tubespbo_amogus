@@ -39,4 +39,7 @@ Engimon Waluigi("Waluigi", nullptr, nullptr, Watortle, skills, vector<Element> {
 Engimon Ringo("Ringo", nullptr, nullptr, Raishuu, skills, vector<Element> {Electric}, 1, 10000);
 
 
+//enemies
+vector<Enemy> enemies;
+
 #endif

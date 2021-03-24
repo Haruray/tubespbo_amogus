@@ -155,4 +155,56 @@ void lose(Player* p){
     }
 }
 
+vector<Enemy*> checkEnemiesOnAdjacentTiles(Map* map, int x, int y){
+    vector<Enemy*> enemies;
+    //enemy di atas bawah kiri kanan diagonal
+    if (map->getCell(x+1,y)!=nullptr ){
+        if (map->getCell(x+1,y)->isOccupied()){
+            enemies.push_back(map->getCell(x+1,y)->getEnemy());
+        }
+    }
+    
+    if (map->getCell(x,y+1)!=nullptr){
+        if (map->getCell(x,y+1)->isOccupied()){
+            enemies.push_back(map->getCell(x,y+1)->getEnemy());
+        }
+    }
+    if (map->getCell(x-1,y)!=nullptr){
+        if (map->getCell(x-1,y)->isOccupied()){
+            enemies.push_back(map->getCell(x-1,y)->getEnemy());
+        }
+    }
+    if (map->getCell(x,y-1)!=nullptr){
+        if (map->getCell(x,y-1)->isOccupied()){
+            enemies.push_back(map->getCell(x,y-1)->getEnemy());
+        }
+    }
+    if (map->getCell(x+1,y+1)!=nullptr){
+        if (map->getCell(x+1,y+1)->isOccupied()){
+            enemies.push_back(map->getCell(x+1,y+1)->getEnemy());
+        }
+    }
+    if (map->getCell(x-1,y-1)!=nullptr){
+        if (map->getCell(x-1,y-1)->isOccupied()){
+            enemies.push_back(map->getCell(x-1,y-1)->getEnemy());
+        }
+    }
+    if (map->getCell(x+1,y-1)!=nullptr){
+        if (map->getCell(x+1,y-1)->isOccupied()){
+            enemies.push_back(map->getCell(x+1,y-1)->getEnemy());
+        }
+    }
+    if (map->getCell(x-1,y+1)!=nullptr){
+        if (map->getCell(x-1,y+1)->isOccupied()){
+            enemies.push_back(map->getCell(x-1,y+1)->getEnemy());
+        }
+    }
+    return enemies;
+}
+
+void deleteEnemy(Map* map, Enemy* e){
+    map->getCell(e->getPosX(),e->getPosY())->setEnemy(nullptr);
+    map->getCell(e->getPosX(),e->getPosY())->setOccupy(false);
+}
+
 #endif

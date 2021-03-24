@@ -51,7 +51,10 @@ void Map::generateMap(vector<Cell>* vsea, vector<Cell>* vgrass){
 
 //getter
 Cell* Map::getCell(int x, int y){
-    return cells[x][y];
+    if (x>=0 || x<10 && (y>=0 && y<10))
+        return cells[x][y];
+    else
+        return nullptr;
 }; //get cell berdasarkan posisi
 
 //function

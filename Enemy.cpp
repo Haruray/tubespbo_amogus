@@ -13,6 +13,12 @@ Enemy::Enemy(string name, Engimon* parent1, Engimon* parent2, Species species, v
 Enemy::Enemy(const Enemy& e){
     //aku lupa cara singkatnya
 }
+
+Enemy::Enemy(const Engimon& e, int x, int y) : Engimon(e){
+    this->setPosX(x);
+    this->setPosY(y);
+}
+
 Enemy::~Enemy(){}
 
 void Enemy::setPosX(int x){

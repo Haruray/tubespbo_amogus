@@ -16,6 +16,7 @@ class Enemy : public Engimon{
         Enemy();
         Enemy(string, Engimon*, Engimon*, Species, vector<Skill>, vector<Element>, int, int, int, int); //ctor with arguments = name, parent1, parent2, species, skills, elements, level, batas cumxp, posisi x, posisi y
         Enemy(const Enemy&);
+        Enemy(const Engimon&, int, int);
         ~Enemy();
         //setter
         void setPosX(int);
