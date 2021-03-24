@@ -32,11 +32,11 @@ Species Diguda("Diguda", "Toransu!", Skill("SandAttack", 100, 5, vector<Element>
 
 //Engimon
 vector<Skill> skills;
-Engimon JackFrost("Jack Frost", nullptr, nullptr, Bufumon, vector<Skill>, vector<Element> {Ice}, 1, 10000);
-Engimon Raool("Raool", nullptr, nullptr, Saider, vector<Skill>, vector<Element> {Fire}, 1, 10000);
-Engimon Dababy("Dababy", nullptr, nullptr, Golem, vector<Skill>, vector<Element> {Ground}, 1, 10000);
-Engimon Waluigi("Waluigi", nullptr, nullptr, Watortle, vector<Skill>, vector<Element> {Water}, 1, 10000);
-Engimon Ringo("Ringo", nullptr, nullptr, Raishuu, vector<Skill>, vector<Element> {Electric}, 1, 10000);
+Engimon JackFrost("Jack Frost", nullptr, nullptr, Bufumon, skills, vector<Element> {Ice}, 1, 10000);
+Engimon Raool("Raool", nullptr, nullptr, Saider, skills, vector<Element> {Fire}, 1, 10000);
+Engimon Dababy("Dababy", nullptr, nullptr, Golem, skills, vector<Element> {Ground}, 1, 10000);
+Engimon Waluigi("Waluigi", nullptr, nullptr, Watortle, skills, vector<Element> {Water}, 1, 10000);
+Engimon Ringo("Ringo", nullptr, nullptr, Raishuu, skills, vector<Element> {Electric}, 1, 10000);
 
 
 #endif
