@@ -29,6 +29,8 @@ Species Bufumon("Bufumon", "Hee Ho!", Skill("Bufu", 100, 5, vector<Element> {Ice
 Species IceCube("IceCube", "I'm just an ice cube", Skill("White Album", 100, 5, vector<Element> {Ice}));
 Species Golem("Golem", "I'm the gaming golem", Skill("Rock", 100, 5, vector<Element> {Ground}));
 Species Diguda("Diguda", "Toransu!", Skill("SandAttack", 100, 5, vector<Element> {Ground}));
+Species Wyrm("Wyrm", "No cost too great", Skill("HallowedSlash", 100, 5, vector<Element> {Fire}));
+
 
 //Engimon
 vector<Skill> skills;
@@ -37,6 +39,11 @@ Engimon Raool("Raool", nullptr, nullptr, Saider, skills, vector<Element> {Fire},
 Engimon Dababy("Dababy", nullptr, nullptr, Golem, skills, vector<Element> {Ground}, 1, 10000);
 Engimon Waluigi("Waluigi", nullptr, nullptr, Watortle, skills, vector<Element> {Water}, 1, 10000);
 Engimon Ringo("Ringo", nullptr, nullptr, Raishuu, skills, vector<Element> {Electric}, 1, 10000);
+Engimon Raoq("Raoq", nullptr, nullptr, Wyrm, skills, vector<Element> {Fire}, 1, 10000);
+Engimon Hilarious("Hilarious", nullptr, nullptr, Impostor, skills, vector<Element> {Electric}, 1, 10000);
+Engimon Valentine("Valentine", nullptr, nullptr, Diguda, skills, vector<Element> {Ground}, 1, 10000);
+Engimon Dio("Dio", nullptr, nullptr, IceCube, skills, vector<Element> {Ground}, 1, 10000);
+Engimon Mio("Mio", nullptr, nullptr, Koikingu, skills, vector<Element> {Water}, 1, 10000);
 
 
 //enemies
