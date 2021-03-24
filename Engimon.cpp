@@ -12,6 +12,7 @@ Engimon::Engimon() : id(totalEngimon+1){
     this->setExp(0);
     this->setCumulativeExp(0);
     this->setExpLimit(0);
+    totalEngimon++;
 }
 
 Engimon::Engimon(string name, Engimon* parent1, Engimon* parent2, Species species, vector<Skill> skills, vector<Element> elements, int level, int explimit) : id(totalEngimon+1){
@@ -25,6 +26,7 @@ Engimon::Engimon(string name, Engimon* parent1, Engimon* parent2, Species specie
     this->setExp(0);
     this->setCumulativeExp(this->getLevel()*100);
     this->setExpLimit(explimit);
+    totalEngimon++;
 }
 
 Engimon::Engimon(const Engimon& e) : id(e.id){
@@ -37,6 +39,7 @@ Engimon::Engimon(const Engimon& e) : id(e.id){
     this->setExp(0);
     this->setCumulativeExp(this->getLevel()*100);
     this->setExpLimit(e.explimit);
+    totalEngimon++;
 }
 
 Engimon::~Engimon(){}
