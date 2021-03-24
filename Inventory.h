@@ -75,6 +75,7 @@ class Inventory<Skill> : BaseInventory {
         //getter
         int getSize();
         Skill getItemByName(string);
+        Skill getItemById(int);
         int getItemIdx(Skill); //Jika itemnya tidak ketemu, maka keluarannya adalah -1
         void printItems(); //print informasi
 

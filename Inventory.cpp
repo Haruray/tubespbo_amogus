@@ -169,6 +169,10 @@ Skill Inventory<Skill>::getItemByName(string name){
     return Skill();
 }
 
+Skill Inventory<Skill>::getItemById(int id){
+    return this->items[id];
+}
+
 void Inventory<Skill>::printItems(){
     for (int i=0 ; i<this->items.size(); i++){
         cout<< (i+1) << ". " << this->items[i].getSkillName() << " ("<<this->itemQty[i]<<")" << endl;
