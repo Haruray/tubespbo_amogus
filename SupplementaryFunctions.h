@@ -33,14 +33,15 @@ bool battle(Engimon ourEngimon, Enemy enemyEngimon){
 }
 
 //Cell movement checking
-bool cellAreaTypeCheck(Enemy* e,int x, int y){
+bool cellAreaTypeCheck(Enemy* e,int x, int y, Player* p){
+    //koordinat harus valid, cell tipe harus sesuai dengan elemen enemy, dan tidak boleh tabrakan dengan player dan engimonnya
     if (x >= 0 && x < mapsize && y>=0 && y<mapsize){
         Cell* c = map.getCell(x,y);
         if (c->getType() == "Grassland"){
-            return e->isElement(Fire) || e->isElement(Ground) || e->isElement(Electric);
+            return (e->isElement(Fire) || e->isElement(Ground) || e->isElement(Electric)) && p->getPosX() != x && p->getPosY() != y && p->ActiveX() != x && p->ActiveY() != y;
         }
         else{
-            return e->isElement(Water) || e->isElement(Ice);
+            return (e->isElement(Water) || e->isElement(Ice)) && p->getPosX() != x && p->getPosY() != y && p->ActiveX() != x && p->ActiveY() != y;
         }
     }
     else{
@@ -49,7 +50,7 @@ bool cellAreaTypeCheck(Enemy* e,int x, int y){
     
 }
 //Enemy movement
-void enemyRandomMove(Enemy* e){
+void enemyRandomMove(Enemy* e, Player* p){
     bool valid = false;
     int x;
     while (!valid){
@@ -57,7 +58,7 @@ void enemyRandomMove(Enemy* e){
         switch (x)
         {
         case 0:
-            if (cellAreaTypeCheck(e, e->getPosX()-1,e->getPosY()) && e->getPosX()-1 > 0){
+            if (cellAreaTypeCheck(e, e->getPosX()-1,e->getPosY(), p) && e->getPosX()-1 > 0){
                 map.getCell(e->getPosX(),e->getPosY())->setEnemy(nullptr);
                 map.getCell(e->getPosX(),e->getPosY())->setOccupy(false);
                 e->moveUp();
@@ -65,7 +66,7 @@ void enemyRandomMove(Enemy* e){
             }
             break;
         case 1:
-            if (cellAreaTypeCheck(e, e->getPosX()+1,e->getPosY()) && e->getPosX()+1 < mapsize){
+            if (cellAreaTypeCheck(e, e->getPosX()+1,e->getPosY(), p) && e->getPosX()+1 < mapsize){
                 map.getCell(e->getPosX(),e->getPosY())->setEnemy(nullptr);
                 map.getCell(e->getPosX(),e->getPosY())->setOccupy(false);
                 e->moveDown();
@@ -73,7 +74,7 @@ void enemyRandomMove(Enemy* e){
             }
             break;
         case 2:
-            if (cellAreaTypeCheck(e, e->getPosX(),e->getPosY()+1) && e->getPosY()+1 < mapsize){
+            if (cellAreaTypeCheck(e, e->getPosX(),e->getPosY()+1, p) && e->getPosY()+1 < mapsize){
                 map.getCell(e->getPosX(),e->getPosY())->setEnemy(nullptr);
                 map.getCell(e->getPosX(),e->getPosY())->setOccupy(false);
                 e->moveRight();
@@ -81,7 +82,7 @@ void enemyRandomMove(Enemy* e){
             }
             break;
         case 3:
-            if (cellAreaTypeCheck(e, e->getPosX(),e->getPosY()-1) && e->getPosY()-1 > 0){
+            if (cellAreaTypeCheck(e, e->getPosX(),e->getPosY()-1, p) && e->getPosY()-1 > 0){
                 map.getCell(e->getPosX(),e->getPosY())->setEnemy(nullptr);
                 map.getCell(e->getPosX(),e->getPosY())->setOccupy(false);
                 e->moveLeft();
@@ -96,32 +97,32 @@ void enemyRandomMove(Enemy* e){
         
 }
 
-void playerMove(Player* p){
+void playerMove(Player* p, Map* map){
     string input;
     bool valid = false;
     while (!valid){
         cout<<"Where to move? input is w/a/s/d : ";
         cin>>input;
         if (input == "w"){
-            if (p->getPosX()-1 >= 0){
+            if (p->getPosX()-1 >= 0 && map->getCell(p->getPosX()-1, p->getPosY())->isOccupied() == false){ //tidak boleh tabrakan dengan enemy lain
                 valid = true;
                 p->moveUp();
             }
         }
         else if (input=="a"){
-            if (p->getPosY()-1 >= 0 ){
+            if (p->getPosY()-1 >= 0 && map->getCell(p->getPosX(), p->getPosY()-1)->isOccupied() == false ){
                 valid = true;
                 p->moveLeft();
             }
         }
         else if (input=="s"){
-            if (p->getPosX()+1 < mapsize){
+            if (p->getPosX()+1 < mapsize && map->getCell(p->getPosX()+1, p->getPosY())->isOccupied() == false){
                 valid = true;
                 p->moveDown();
             }
         }
         else if (input=="d"){
-            if (p->getPosY()+1 < mapsize ){
+            if (p->getPosY()+1 < mapsize && map->getCell(p->getPosX(), p->getPosY()+1)->isOccupied() == false ){
                 valid = true;
                 p->moveRight();
             }
