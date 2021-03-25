@@ -97,38 +97,35 @@ void enemyRandomMove(Enemy* e, Player* p){
         
 }
 
-void playerMove(Player* p, Map* map){
-    string input;
-    bool valid = false;
-    while (!valid){
-        cout<<"Where to move? input is w/a/s/d : ";
-        cin>>input;
-        if (input == "w"){
-            if (p->getPosX()-1 >= 0 && map->getCell(p->getPosX()-1, p->getPosY())->isOccupied() == false){ //tidak boleh tabrakan dengan enemy lain
-                valid = true;
+void playerMove(Player* p, Map* map, string input){
+    if (input == "w"){
+        if (p->getPosX()-1 >= 0){
+            if  (map->getCell(p->getPosX()-1, p->getPosY())->isOccupied() == false){ //tidak boleh tabrakan dengan enemy lain
                 p->moveUp();
             }
         }
-        else if (input=="a"){
-            if (p->getPosY()-1 >= 0 && map->getCell(p->getPosX(), p->getPosY()-1)->isOccupied() == false ){
-                valid = true;
+    }
+    else if (input=="a"){
+        if (p->getPosY()-1 >= 0){
+            if (map->getCell(p->getPosX(), p->getPosY()-1)->isOccupied() == false){
                 p->moveLeft();
             }
+            
         }
-        else if (input=="s"){
-            if (p->getPosX()+1 < mapsize && map->getCell(p->getPosX()+1, p->getPosY())->isOccupied() == false){
-                valid = true;
+    }
+    else if (input=="s"){
+        if (p->getPosX()+1 < mapsize){
+            if (map->getCell(p->getPosX()+1, p->getPosY())->isOccupied() == false){
                 p->moveDown();
             }
         }
-        else if (input=="d"){
-            if (p->getPosY()+1 < mapsize && map->getCell(p->getPosX(), p->getPosY()+1)->isOccupied() == false ){
-                valid = true;
+    }
+    else if (input=="d"){
+        if (p->getPosY()+1 < mapsize){
+            if (map->getCell(p->getPosX(), p->getPosY()+1)->isOccupied() == false){
                 p->moveRight();
             }
-        }
-        else{
-            cout<<"Input not valid"<<endl;
+            
         }
     }
 }

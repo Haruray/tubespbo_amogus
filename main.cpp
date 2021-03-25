@@ -78,13 +78,13 @@ int main(){
 
         if (input == "w" || input == "a" || input == "s" || input == "d") {
             if (input == "w") {
-                p.moveUp();
+                playerMove(&p,&map, "w");
             } else if (input == "a") {
-                p.moveLeft();
+                playerMove(&p,&map, "a");
             } else if (input == "s") {
-                p.moveDown();
+                playerMove(&p,&map, "s");
             } else if (input == "d") {
-                p.moveRight();
+                playerMove(&p,&map, "d");
             }
             map.printMap(&p);
 
@@ -130,6 +130,8 @@ int main(){
 
         } else if (input == "Battle") {
             // insert battle
+            //Tip : buat nyari musuh di adjacent tile, pakai fungsi checkEnemiesOnAdjacentTiles(Map* map, int x, int y), keluarnnya vector of enemy
+            // buat battle, pakai fungsi battle(Engimon ourEngimon, Enemy enemyEngimon), true kalau menang dan false kalau kalah
 
         } else if (input == "q") {
             cout << "Quitting . . . " << endl;
