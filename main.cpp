@@ -70,7 +70,7 @@ int main(){
     Player p(name, &is, &ie, ie.getItemById(0) ,0, 0);
     system("PAUSE");
     // system("CLS");
-    mapRandomizer(&map);
+    mapRandomizer(&map, &enemyReserved);
     map.printMap(&p);
     
     cout << endl;
@@ -91,8 +91,25 @@ int main(){
             } else if (input == "d") {
                 playerMove(&p,&map, "d");
             }
+            /*
+            for (int k = 0 ; k < 10; k++){
+                for (int l = 0 ; l < 10 ; l++){
+                    if (map.getCell(k,l)->isOccupied()){
+                        enemyRandomMove(map.getCell(k,l)->getEnemy(),&p);
+                        map.getCell(e->getPosX(), e->getPosY())->setEnemy(e);
+                        map.getCell(e->getPosX(), e->getPosY())->setOccupy(true);
+                    }
+                }
+            }
+            */
+            for (int k = 0 ; k < enemyReserved.size(); k++){
+                if (enemyReserved[k]){
+                    enemyRandomMove(enemies[k], &p);
+                    map.getCell(enemies[k]->getPosX(), enemies[k]->getPosY())->setEnemy(enemies[k]);
+                    map.getCell(enemies[k]->getPosX(), enemies[k]->getPosY())->setOccupy(true);
+                }
+            }
             map.printMap(&p);
-
         }
         else if (input == "Help!") {
             Help();

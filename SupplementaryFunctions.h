@@ -36,7 +36,7 @@ bool battle(Engimon* ourEngimon, Enemy* enemyEngimon){
 //Cell movement checking
 bool cellAreaTypeCheck(Enemy* e,int x, int y, Player* p){
     //koordinat harus valid, cell tipe harus sesuai dengan elemen enemy, dan tidak boleh tabrakan dengan player dan engimonnya
-    if (x >= 0 && x < mapsize && y>=0 && y<mapsize){
+    if (x >= 0 && x < mapsize && y>=0 && y < mapsize){
         Cell* c = map.getCell(x,y);
         if (c->getType() == "Grassland"){
             return (e->isElement(Fire) || e->isElement(Ground) || e->isElement(Electric)) && p->getPosX() != x && p->getPosY() != y && p->ActiveX() != x && p->ActiveY() != y;
@@ -55,7 +55,10 @@ void enemyRandomMove(Enemy* e, Player* p){
     bool valid = false;
     int x;
     while (!valid){
-        x = rand() % 4;
+        x = rand() % 5;
+        e->printDetail();
+        cout<<e->getPosX()<<" , "<<e->getPosY()<<endl;
+        cout<<x<<endl;
         switch (x)
         {
         case 0:
@@ -89,6 +92,9 @@ void enemyRandomMove(Enemy* e, Player* p){
                 e->moveLeft();
                 valid = true;
             }
+            break;
+        case 4:
+            valid = true;
             break;
         default:
             valid=true;
@@ -235,14 +241,13 @@ bool cellRandomizer(Cell* c, vector<Enemy*>* e, vector<bool>* reserved){
     }
 }
 
-void mapRandomizer(Map* m){
+void mapRandomizer(Map* m, vector<bool>* enemyReserved){
     //ALGORITMA RANDOMIZER
     //Dipindah dari method map ke sini biar definisi tidak dobel
     //untuk enemies, itu berada di engimonuniverse.h
     bool flag;
-    vector<bool> enemyReserved; //mengecek enemy sudah dideploy ke sebuah cell atau belum
     for (int i = 0 ; i < enemies.size() ; i++){ //default value enemyReserved adalah false
-        enemyReserved.push_back(false);
+        enemyReserved->push_back(false);
     }
 
     int limit = 0;
@@ -251,7 +256,7 @@ void mapRandomizer(Map* m){
         int randY = rand() % 10;
         Cell* curr = m->getCell(randX,randY);
         if (!curr->isOccupied()){
-            if (cellRandomizer(curr, &enemies, &enemyReserved)){ //jika enemy sudah dideploy, maka atur posisi enemy
+            if (cellRandomizer(curr, &enemies, enemyReserved)){ //jika enemy sudah dideploy, maka atur posisi enemy
                 curr->getEnemy()->setPosX(randX);
                 curr->getEnemy()->setPosY(randY);
             }

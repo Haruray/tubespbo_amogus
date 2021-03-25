@@ -120,4 +120,6 @@ Skill* getRelatedSkill(Skill s){
     return nullptr;
 }
 
+vector<bool> enemyReserved;
+
 #endif
