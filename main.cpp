@@ -177,6 +177,7 @@ int main(){
                 Enemy* selectedEnemy = adjEnemy[idx-1];
                 battleResult = battle(p.getActiveEngimon(), selectedEnemy);
                 if (battleResult) {
+                    p.getInventorySkill()->addItem(selectedEnemy->getSkills()[0]);
                     winReward(&p, *selectedEnemy);
                     deleteEnemy(&map, selectedEnemy);
                 } else {

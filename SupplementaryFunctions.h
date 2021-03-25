@@ -135,13 +135,10 @@ void winReward(Player* p, Enemy e){
     cout<<"You win!!"<<endl;
     cout<<"Reward\t:"<<endl;
     Engimon* reward = new Engimon(e.getName(),e.getParents()[0], e.getParents()[1], e.getSpecies(), e.getSkills(), e.getElements(), e.getLevel(), e.getCumExpLimit());
-    Skill* rewardSkill = new Skill(e.getSkills()[0]);
-    rewardSkill->setMasteryLevel(1);
     try{
         p->getInventoryEngimon()->addItem(reward);
         cout<<"- New Engimon!! "<<reward->getName()<<", a "<<reward->getSpecies().getSpeciesName()<<endl;
-        p->getInventorySkill()->addItem(*rewardSkill);
-        cout<<"- New Skill Item!! "<<rewardSkill->getSkillName()<<endl;
+        cout<<"- New Skill Item!! "<<e.getSkills()[0].getSkillName()<<endl;
     }
     catch(exception& e){
         cout<<e.what()<<endl;

@@ -251,16 +251,14 @@ void Inventory<Skill>::deleteItem(Skill s){
 
 void Inventory<Skill>::learn(Skill s, Engimon* e){
     //Asumsi : skill dan engimon terdapat di inventory
-    bool isEligible; 
+    cout<<s.getSkillName()<<" COOCOOOOK"<<endl;
+    bool isEligible = false; 
     for (int i = 0 ; i < s.getElmtReq().size() ; i++){
-        for (int j = 0 ; j < e->getElements().size() ; j++){
-            if (e->getElements()[i].getElementName() == s.getElmtReq()[i].getElementName()){ //jika ada yg sama, maka return true
-                isEligible = true;
-                break; //lanjut cek requirement element selanjutnya
-            }
-            else{
-                isEligible = false;
-            }
+        if (e->isElement(s.getElmtReq()[i])){
+            isEligible = true;
+        }
+        else{
+            isEligible = false;
         }
     }
     if (isEligible){
