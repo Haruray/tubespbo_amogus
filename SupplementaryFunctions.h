@@ -39,10 +39,10 @@ bool cellAreaTypeCheck(Enemy* e,int x, int y, Player* p){
     if (x >= 0 && x < mapsize && y>=0 && y < mapsize){
         Cell* c = map.getCell(x,y);
         if (c->getType() == "Grassland"){
-            return (e->isElement(Fire) || e->isElement(Ground) || e->isElement(Electric)) && p->getPosX() != x && p->getPosY() != y && p->ActiveX() != x && p->ActiveY() != y;
+            return (e->isElement(Fire) || e->isElement(Ground) || e->isElement(Electric)) && p->getPosX() != x && p->getPosY() != y && p->ActiveX() != x && p->ActiveY() != y && !c->isOccupied();
         }
         else{
-            return (e->isElement(Water) || e->isElement(Ice)) && p->getPosX() != x && p->getPosY() != y && p->ActiveX() != x && p->ActiveY() != y;
+            return (e->isElement(Water) || e->isElement(Ice)) && p->getPosX() != x && p->getPosY() != y && p->ActiveX() != x && p->ActiveY() != y && !c->isOccupied();
         }
     }
     else{
@@ -197,9 +197,14 @@ vector<Enemy*> checkEnemiesOnAdjacentTiles(Map* map, int x, int y){
     return enemies;
 }
 
-void deleteEnemy(Map* map, Enemy* e){
+void deleteEnemy(Map* map, Enemy* e, vector<bool>* enemyReserved){
     map->getCell(e->getPosX(),e->getPosY())->setEnemy(nullptr);
     map->getCell(e->getPosX(),e->getPosY())->setOccupy(false);
+    for (int i = 0 ; i < enemyReserved->size() ; i++){
+        if (enemies[i]->getId() == e->getId()){
+            enemyReserved->at(i) = false;
+        }
+    }
 }
 
 //Random Enemy Generator
