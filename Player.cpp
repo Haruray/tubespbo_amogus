@@ -258,12 +258,10 @@ vector<Element> getMostAdvantageousElmt(vector<Element> elist1, vector<Element> 
 
 void Player::breeding(Engimon* e1, Engimon* e2, vector<Species*>* splist){
     if (this->getInventoryEngimon()->doesItemExist(e1) && this->getInventoryEngimon()->doesItemExist(e2)){
-        if (e1->getLevel() >= 30 && e2->getLevel() >= 30){
+        if (e1->getLevel() > 30 && e2->getLevel() > 30){
             //Mengurangi level parents
             e1->setLevel(e1->getLevel()-30);
-            e1->setCumulativeExp(e1->getCumulativeExp()-30*100);
             e2->setLevel(e2->getLevel()-30);
-            e2->setCumulativeExp(e2->getCumulativeExp()-30*100);
             string newname;
             vector<Skill> newSkill;
             vector<Element> newElement;
