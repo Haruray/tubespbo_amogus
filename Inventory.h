@@ -89,7 +89,7 @@ class Inventory<Skill> : BaseInventory {
         void deleteItem(Skill); //delete skill berdasarkan object langsung
 
         //functions
-        void learn(Skill, Engimon*); //fungsi learn, refer ke spek 3.b.i.2.d.
+        void learn(Skill*, Engimon*); //fungsi learn, refer ke spek 3.b.i.2.d.
 };
 
 class SkillException: public exception{

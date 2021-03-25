@@ -125,7 +125,7 @@ int main(){
             } while (engimonIdx < 1 || engimonIdx > p.getInventoryEngimon()->getSize());
 
             try {
-                p.useSkillItem(p.getInventorySkill()->getItemById(skillIdx-1), p.getInventoryEngimon()->getItemById(engimonIdx-1));
+                p.useSkillItem(getRelatedSkill(p.getInventorySkill()->getItemById(skillIdx-1)), p.getInventoryEngimon()->getItemById(engimonIdx-1));
             } catch (exception& e) {
                 cout << e.what() << endl; //engimon is incompatible
             }
@@ -177,7 +177,7 @@ int main(){
                 Enemy* selectedEnemy = adjEnemy[idx-1];
                 battleResult = battle(p.getActiveEngimon(), selectedEnemy);
                 if (battleResult) {
-                    p.getInventorySkill()->addItem(selectedEnemy->getSkills()[0]);
+                    p.getInventorySkill()->addItem(*getRelatedSkill(selectedEnemy->getSkills()[0]));
                     winReward(&p, *selectedEnemy);
                     deleteEnemy(&map, selectedEnemy);
                 } else {
