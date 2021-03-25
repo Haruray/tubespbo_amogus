@@ -56,9 +56,6 @@ void enemyRandomMove(Enemy* e, Player* p){
     int x;
     while (!valid){
         x = rand() % 5;
-        e->printDetail();
-        cout<<e->getPosX()<<" , "<<e->getPosY()<<endl;
-        cout<<x<<endl;
         switch (x)
         {
         case 0:
