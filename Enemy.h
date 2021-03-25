@@ -32,6 +32,7 @@ class Enemy : public Engimon{
         void moveRight();
         void moveDown();
 
+        void printEnemyDetails();
 
 };
 

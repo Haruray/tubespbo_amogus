@@ -50,3 +50,28 @@ void Enemy::moveRight(){
 void Enemy::moveLeft(){
     this->position.y -= 1;
 }
+
+void Enemy::printEnemyDetails() {
+    cout<<"Spesies"<<"\t: "<<this->getSpecies().getSpeciesName()<<endl;
+    cout<<"Element\t: ";
+    for (int i=0;i<this->getElements().size();i++){
+        if (i<this->getElements().size()-1){
+            cout<<this->getElements()[i].getElementName()<<", ";
+        }
+        else{
+            cout<<this->getElements()[i].getElementName()<<endl;
+        }
+        
+    }
+    cout<<"Skill\t: ";
+    for (int i=0;i<this->getSkills().size();i++){
+        if (i<this->getSkills().size()-1){
+            cout<<this->getSkills()[i].getSkillName()<<", ";
+        }
+        else{
+            cout<<this->getSkills()[i].getSkillName()<<endl;
+        }
+        
+    }
+    cout<<"Level"<<"\t: "<<this->getLevel()<<endl;
+}

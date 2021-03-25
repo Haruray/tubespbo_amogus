@@ -69,7 +69,8 @@ int main(){
     // system("CLS");
     mapRandomizer(&map);
     map.printMap(&p);
-
+    
+    cout << endl;
     cout << "Let us commence forth!" << endl;
     cout << "To show available commands, Type : 'Help!'" << endl;
 
@@ -107,33 +108,77 @@ int main(){
 
         } else if (input == "UseSkillItem") {
             int skillIdx, engimonIdx;
+
             p.showSkillList();
-            cout << "Choose which skill item to use : ";
             do {
+                cout << "Choose which skill item to use : ";
                 cin >> skillIdx;
             } while (skillIdx < 1 || skillIdx > p.getInventorySkill()->getSize());
+
+            p.showEngimonList();
             do {
+                cout << "Choose which engimon to inherit the skill : ";
                 cin >> engimonIdx;
             } while (engimonIdx < 1 || engimonIdx > p.getInventoryEngimon()->getSize());
-            p.useSkillItem(p.getInventorySkill()->getItemById(skillIdx-1), p.getInventoryEngimon()->getItemById(engimonIdx-1));
+
+            try {
+                p.useSkillItem(p.getInventorySkill()->getItemById(skillIdx-1), p.getInventoryEngimon()->getItemById(engimonIdx-1));
+            } catch (ElementException e) {
+                cout << "Engimon is incompatible" << endl;
+            }
 
         } else if (input == "Breed") {
             int eng1, eng2;
             do {
                 do {
+                    cout << "Choose parent 1 : ";
                     cin >> eng1;
                 } while (eng1 < 1 || eng1 > p.getInventoryEngimon()->getSize());
                 do {
+                    cout << "Choose parent 2 : ";
                     cin >> eng2;
                 } while (eng2 < 1 || eng2 > p.getInventoryEngimon()->getSize());
             } while (eng1 == eng2);
-            p.breeding(p.getInventoryEngimon()->getItemById(eng1-1), p.getInventoryEngimon()->getItemById(eng2-1));
+            try {
+                p.breeding(p.getInventoryEngimon()->getItemById(eng1-1), p.getInventoryEngimon()->getItemById(eng2-1));
+            } catch (BreedParentException e) {
+                cout << "Parent is ineligible for breeding" << endl;
+            }
 
         } else if (input == "Battle") {
             // insert battle
-            //Tip : buat nyari musuh di adjacent tile, pakai fungsi checkEnemiesOnAdjacentTiles(Map* map, int x, int y), keluarnnya vector of enemy
+            // Tip : buat nyari musuh di adjacent tile, pakai fungsi checkEnemiesOnAdjacentTiles(Map* map, int x, int y), keluarnnya vector of enemy
             // buat battle, pakai fungsi battle(Engimon ourEngimon, Enemy enemyEngimon), true kalau menang dan false kalau kalah
             // kalau menang, tambahin fungsi deleteEnemy(Map* map, Enemy* e) buat ngedelete enemy dari map
+            
+            vector<Enemy*> adjEnemy = checkEnemiesOnAdjacentTiles(&map, p.getPosX(), p.getPosY());
+            if (adjEnemy.empty()) {
+                cout << "There are no enemies nearby . . . " << endl;
+            } else {
+                int i = 1, idx;
+                bool battleResult;
+
+                for (Enemy* e : adjEnemy) {
+                    cout << "Enemy " << i << " : " << endl;
+                    e->printEnemyDetails();
+                    cout << endl;
+                    i++;
+                }
+                do {
+                    cout << "Select the enemy that you want to fight : ";
+                    cin >> idx;
+                } while (idx < 1 || idx > adjEnemy.size());
+
+                Enemy* selectedEnemy = adjEnemy[idx-1];
+                battleResult = battle(p.getActiveEngimon(), selectedEnemy);
+                if (battleResult) {
+                    winReward(&p, *selectedEnemy);
+                    deleteEnemy(&map, selectedEnemy);
+                } else {
+                    //lose cond
+                }
+            }
+            
 
         } else if (input == "q") {
             cout << "Quitting . . . " << endl;
@@ -142,6 +187,7 @@ int main(){
         } else {
             cout << "Invalid command!" << endl;
         }
+        cout << endl;
     }
 
 }

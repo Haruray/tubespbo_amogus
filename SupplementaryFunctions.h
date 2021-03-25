@@ -1,6 +1,7 @@
 #ifndef SUPPLEMENTARYFUNCTION_H
 #define SUPPLEMENTARYFUNCTION_H
 #include <iostream>
+#include <math.h>
 #include "EngimonUniverse.h"
 
 //BATTLE FUNCTION
@@ -24,9 +25,9 @@ float sumSkillLevelAndPower(vector<Skill> vs){
     return float(sum);
 }
 
-bool battle(Engimon ourEngimon, Enemy enemyEngimon){
-    float ourPower = ourEngimon.getLevel() * getHighestAdvantage(ourEngimon.getElements() , enemyEngimon.getElements()) + sumSkillLevelAndPower(ourEngimon.getSkills());
-    float enemyPower = enemyEngimon.getLevel() * getHighestAdvantage(enemyEngimon.getElements() , ourEngimon.getElements()) + sumSkillLevelAndPower(enemyEngimon.getSkills());
+bool battle(Engimon* ourEngimon, Enemy* enemyEngimon){
+    float ourPower = ourEngimon->getLevel() * getHighestAdvantage(ourEngimon->getElements() , enemyEngimon->getElements()) + sumSkillLevelAndPower(ourEngimon->getSkills());
+    float enemyPower = enemyEngimon->getLevel() * getHighestAdvantage(enemyEngimon->getElements() , ourEngimon->getElements()) + sumSkillLevelAndPower(enemyEngimon->getSkills());
     cout<<"Player Engimon's Power Level\t: "<<fixed<<setprecision(2)<<ourPower<<endl;
     cout<<"Enemy Engimon's Power Level\t: "<<fixed<<setprecision(2)<<enemyPower<<endl;
     return ourPower > enemyPower;
@@ -156,47 +157,27 @@ void lose(Player* p){
 vector<Enemy*> checkEnemiesOnAdjacentTiles(Map* map, int x, int y){
     vector<Enemy*> enemies;
     //enemy di atas bawah kiri kanan diagonal
-    if (map->getCell(x+1,y)!=nullptr ){
+    if (x < 9 && map->getCell(x+1,y)!=nullptr){
         if (map->getCell(x+1,y)->isOccupied()){
             enemies.push_back(map->getCell(x+1,y)->getEnemy());
         }
     }
-    
-    if (map->getCell(x,y+1)!=nullptr){
+    if (y < 9 && map->getCell(x,y+1)!=nullptr){
         if (map->getCell(x,y+1)->isOccupied()){
             enemies.push_back(map->getCell(x,y+1)->getEnemy());
         }
     }
-    if (map->getCell(x-1,y)!=nullptr){
+    if (x > 0 && map->getCell(x-1,y)!=nullptr){
         if (map->getCell(x-1,y)->isOccupied()){
             enemies.push_back(map->getCell(x-1,y)->getEnemy());
         }
     }
-    if (map->getCell(x,y-1)!=nullptr){
+    if (y > 0 && map->getCell(x,y-1)!=nullptr){
         if (map->getCell(x,y-1)->isOccupied()){
             enemies.push_back(map->getCell(x,y-1)->getEnemy());
         }
     }
-    if (map->getCell(x+1,y+1)!=nullptr){
-        if (map->getCell(x+1,y+1)->isOccupied()){
-            enemies.push_back(map->getCell(x+1,y+1)->getEnemy());
-        }
-    }
-    if (map->getCell(x-1,y-1)!=nullptr){
-        if (map->getCell(x-1,y-1)->isOccupied()){
-            enemies.push_back(map->getCell(x-1,y-1)->getEnemy());
-        }
-    }
-    if (map->getCell(x+1,y-1)!=nullptr){
-        if (map->getCell(x+1,y-1)->isOccupied()){
-            enemies.push_back(map->getCell(x+1,y-1)->getEnemy());
-        }
-    }
-    if (map->getCell(x-1,y+1)!=nullptr){
-        if (map->getCell(x-1,y+1)->isOccupied()){
-            enemies.push_back(map->getCell(x-1,y+1)->getEnemy());
-        }
-    }
+    
     return enemies;
 }
 
