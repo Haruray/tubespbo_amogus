@@ -87,6 +87,7 @@ int main(){
                 playerMove(&p,&map, "d");
             }
             map.printMap(&p);
+            map.randoEnemy();
 
         }
         else if (input == "Help!") {
