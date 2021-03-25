@@ -87,7 +87,6 @@ int main(){
                 playerMove(&p,&map, "d");
             }
             map.printMap(&p);
-            map.randoEnemy();
 
         }
         else if (input == "Help!") {
@@ -133,6 +132,7 @@ int main(){
             // insert battle
             //Tip : buat nyari musuh di adjacent tile, pakai fungsi checkEnemiesOnAdjacentTiles(Map* map, int x, int y), keluarnnya vector of enemy
             // buat battle, pakai fungsi battle(Engimon ourEngimon, Enemy enemyEngimon), true kalau menang dan false kalau kalah
+            // kalau menang, tambahin fungsi deleteEnemy(Map* map, Enemy* e) buat ngedelete enemy dari map
 
         } else if (input == "q") {
             cout << "Quitting . . . " << endl;
@@ -141,7 +141,6 @@ int main(){
         } else {
             cout << "Invalid command!" << endl;
         }
-
     }
 
 }
