@@ -215,7 +215,7 @@ bool cellRandomizer(Cell* c, vector<Enemy*>* e, vector<bool>* reserved){
     int limit = 0;
     bool valid = false;
     int x;
-    while(!valid && limit < e->size()){
+    while(!valid && limit < e->size()*10){ //randomizer dibatasi sampe e->size()*10 kali aja, mencegah infinite loop
         x = rand() % (e->size());
         if (c->getType() == "Grassland"){
             if ((e->at(x)->isElement(Fire) || e->at(x)->isElement(Ground) || e->at(x)->isElement(Electric)) && reserved->at(x)==false){

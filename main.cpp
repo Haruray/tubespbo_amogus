@@ -68,6 +68,7 @@ int main(){
         Waluigi.printDetail();
         ie.addItem(&Waluigi);
     }
+    bool clear;
     Player p(name, &is, &ie, ie.getItemById(0) ,0, 0);
     system("PAUSE");
     // system("CLS");
@@ -79,6 +80,7 @@ int main(){
     cout << "To show available commands, Type : 'Help!'" << endl;
 
     while (1) {
+        clear = true;
         cout << "Command: ";
         cin >> input;
 
@@ -92,17 +94,7 @@ int main(){
             } else if (input == "d") {
                 playerMove(&p,&map, "d");
             }
-            /*
-            for (int k = 0 ; k < 10; k++){
-                for (int l = 0 ; l < 10 ; l++){
-                    if (map.getCell(k,l)->isOccupied()){
-                        enemyRandomMove(map.getCell(k,l)->getEnemy(),&p);
-                        map.getCell(e->getPosX(), e->getPosY())->setEnemy(e);
-                        map.getCell(e->getPosX(), e->getPosY())->setOccupy(true);
-                    }
-                }
-            }
-            */
+            //Enemy movement
             for (int k = 0 ; k < enemyReserved.size(); k++){
                 if (enemyReserved[k]){
                     enemyRandomMove(enemies[k], &p);
@@ -197,7 +189,19 @@ int main(){
                 if (battleResult) {
                     p.getInventorySkill()->addItem(*getRelatedSkill(selectedEnemy->getSkills()[0]));
                     winReward(&p, *selectedEnemy);
-                    deleteEnemy(&map, selectedEnemy);
+                    deleteEnemy(&map, selectedEnemy, &enemyReserved);
+                    if (p.getActiveEngimon()->isDead()){
+                        cout<<"Your Engimon is very old...deathed.\n"<<endl;
+                        p.getInventoryEngimon()->deleteItem(p.getActiveEngimon());
+                        if (p.getInventoryEngimon()->getSize() == 0){
+                            cout<<"You don't have any engimon left..."<<endl;
+                            system("PAUSE");
+                            exit(0);
+                        }
+                        else{
+                            p.swapActiveEngimon();
+                        }
+                    }
                 } else {
                     p.getInventoryEngimon()->deleteItem(p.getActiveEngimon());
                     lose(&p);
@@ -212,7 +216,20 @@ int main(){
         } else {
             cout << "Invalid command!" << endl;
         }
+        //cek apakah semua musuh sudah kalah
+        for (int l = 0 ; l < 10 ; l++){
+            for (int p = 0 ; p < 10 ; p++){
+                if (map.getCell(l,p)->isOccupied()){
+                    clear = false;
+                }
+            }
+        }
+        if (clear){
+            cout<<"########"<<endl;
+            cout<<"YOU WIN THIS GAME!!! NOW F*CK OFF, LET US REST"<<endl;
+            cout<<"########"<<endl;
+            break;
+        }
         cout << endl;
     }
-
 }
