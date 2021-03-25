@@ -93,6 +93,8 @@ void Map::randoEnemy(){
 
         if (!curr->isOccupied()){
             curr->generateEnemy();
+            curr->getEnemy()->setPosX(randX);
+            curr->getEnemy()->setPosY(randY);
             generated = true;
         }
 

@@ -1,4 +1,5 @@
 #include "Cell.h"
+#include "EngimonUniverse.h"
 #include <iostream>
 
 Cell::Cell(){
@@ -109,42 +110,37 @@ void Cell::printSymbol(int var){
 
 void Cell::generateEnemy(){
     int x = rand() % 100;
-    this->enemy = new Enemy();
     if (this->getType() == "Grassland"){
         if (x < 20){
-            this->enemy->addElement(Element("Fire"));
-            // mungkin ada spesies juga, ato skill
+            // gegara new keknya, jadi multi definisi
+            this->enemy = new Enemy(Dio);
         }
         else if (x < 40){
-            this->enemy->addElement(Element("Electric"));
+            this->enemy = new Enemy(Raool);
         }
         else if (x < 60){
-            this->enemy->addElement(Element("Ground"));
+            this->enemy = new Enemy(Raoq);
         }
         else if (x < 80){
-            this->enemy->addElement(Element("Fire"));
-            this->enemy->addElement(Element("Electric"));
+            this->enemy = new Enemy(Hilarious);
         }
         else if (x < 100){
-            this->enemy->addElement(Element("Water"));
-            this->enemy->addElement(Element("Ground"));
+            this->enemy = new Enemy(Valentine);
         }
 
     }
     else{
         if (x < 30){
-            this->enemy->addElement(Element("Water"));
+            this->enemy = new Enemy(JackFrost);
         }
         else if (x < 60){
-            this->enemy->addElement(Element("Ice"));
+            this->enemy = new Enemy(Waluigi);
         }
         else if (x < 90){
-            this->enemy->addElement(Element("Water"));
-            this->enemy->addElement(Element("Ice"));
+            this->enemy = new Enemy(Mio);
         }
         else if (x < 100){
-            this->enemy->addElement(Element("Water"));
-            this->enemy->addElement(Element("Ground"));
+            this->enemy = new Enemy(Gaybon);
         }
 
     }
