@@ -33,6 +33,8 @@ class Skill{
         int getBasePower();
         int getMasteryLevel();
         vector<Element> getElmtReq();
+
+        void printSkillDetail();
 };
 
 #endif

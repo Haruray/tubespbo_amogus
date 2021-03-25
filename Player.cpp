@@ -119,8 +119,8 @@ void Player::showEngimonData(Engimon e){
 void Player::showSkillList(){
     this->getInventorySkill()->printItems();
 }
-void Player::useSkillItem(Skill s, Engimon* e){
-    if (this->getInventorySkill()->doesItemExist(s) && this->getInventoryEngimon()->doesItemExist(e)){
+void Player::useSkillItem(Skill* s, Engimon* e){
+    if (this->getInventorySkill()->doesItemExist(*s) && this->getInventoryEngimon()->doesItemExist(e)){
         this->getInventorySkill()->learn(s,e);
     }
     else{

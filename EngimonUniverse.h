@@ -17,32 +17,56 @@ Element Water("Water");
 Element Electric("Electric");
 Element Ground("Ground");
 Element Ice("Ice");
-
+//Skills
+Skill WaterfallSkill("Waterfall", 80, 5, vector<Element> {Element("Water")});
+Skill WaterSplash("WaterSplash", 100, 4, vector<Element> {Element("Water")});
+Skill Sabotage("Sabotage", 20, 10, vector<Element> {Element("Electric")});
+Skill Mandom("Mandom", 120, 3, vector<Element> {Element("Electric")});
+Skill Crimson("Crimson", 200, 2, vector<Element> {Element("Fire")});
+Skill FireFang("FireFang", 100, 5, vector<Element> {Element("Fire")});
+Skill Bufu("Bufu", 120, 3, vector<Element> {Element("Ice")});
+Skill WhiteAlbum("White Album", 100, 5, vector<Element> {Element("Ice")});
+Skill Rock("Rock", 100, 4, vector<Element> {Element("Ground")});
+Skill SandAttack("SandAttack", 150, 2, vector<Element> {Element("Ground")});
+Skill HallowedSlash("HallowedSlash", 120, 5, vector<Element> {Element("Fire")});
+Skill Rumbling("Rumbling",150, 5, vector<Element> {Element("Ground")});
+Skill Freeze("Freeze!", 20 , 4, vector<Element> {Element("Ice")});
+Skill BurstStream("BURST STREAM OF DESTRUCTION!", 150, 5, vector<Element> {Element("Fire"), Element("Electric")});
+Skill InfernoFire("Inferno Fire Blast", 170, 4, vector<Element> {Element("Fire"), Element("Ground")});
+Skill Pftz("pftzzz", 100, 6, vector<Element> {Element("Fire"), Element("Ice")});
+Skill DualBreath("Dual Breath", 110, 6, vector<Element> {Element("Fire"), Element("Ice")});
+Skill StinkyBreath("Stinky Breath", 110, 6, vector<Element> {Element("Water"), Element("Ground")});
+Skill Zap("Zap!", 130, 6, vector<Element> {Element("Water"), Element("Electric")});
+Skill Castle("Make a castle", 120, 7, vector<Element> {Element("Water"), Element("Ice")});
+Skill NoVoltage("No Voltage", 100, 8, vector<Element> {Element("Electric"), Element("Ground")});
+Skill Incest("Incest", 100, 6, vector<Element> {Element("Ground"), Element("Ice")});
+Skill ZapRequiem("Zap Requiem", 130, 7, vector<Element> {Element("Electric"), Element("Ice")});
+vector<Skill*> skillList = {&WaterfallSkill, &WaterSplash, &Sabotage, &Mandom, &Crimson, &FireFang, &Bufu, &WhiteAlbum, &Rock, &SandAttack, &HallowedSlash, &Rumbling, &Freeze, &BurstStream, &InfernoFire, &Pftz, &DualBreath, &StinkyBreath, &Zap, &Castle, &Castle, &NoVoltage, &Incest, &ZapRequiem};
 //Species
-Species Watortle("Watortle", "Waaaa!", Skill("Waterfall", 80, 5, vector<Element> {Water}));
-Species Koikingu("Koikingu", "I'm a fish, meow", Skill("WaterSplash", 100, 4, vector<Element> {Water}));
-Species Impostor("Impostor", "Sus!", Skill("Sabotage", 20, 10, vector<Element> {Electric}));
-Species Raishuu("Raishuu", "Rokubyou", Skill("Mandom", 120, 3, vector<Element> {Electric}));
-Species Saider("Saider", "Apple Sauce", Skill("Crimson", 200, 2, vector<Element> {Fire}));
-Species Rizadon("Rizadon", "420 Moyase!", Skill("FireFang", 100, 5, vector<Element> {Fire}));
-Species Bufumon("Bufumon", "Hee Ho!", Skill("Bufu", 120, 3, vector<Element> {Ice}));
-Species IceCube("IceCube", "I'm just an ice cube", Skill("White Album", 100, 5, vector<Element> {Ice}));
-Species Golem("Golem", "I'm the gaming golem", Skill("Rock", 100, 4, vector<Element> {Ground}));
-Species Diguda("Diguda", "Toransu!", Skill("SandAttack", 150, 2, vector<Element> {Ground}));
-Species Wyrm("Wyrm", "No cost too great", Skill("HallowedSlash", 120, 5, vector<Element> {Fire}));
-Species Ymir("Ymir", "To you, 2000 years from now", Skill("Rumbling",150, 5, vector<Element> {Ground}));
-Species SuperSuit("SuperSuit","WHERE IS MY SUPER SUIT??", Skill("Freeze!", 20 , 4, vector<Element> {Ice}));
+Species Watortle("Watortle", "Waaaa!", WaterfallSkill);
+Species Koikingu("Koikingu", "I'm a fish, meow", WaterSplash);
+Species Impostor("Impostor", "Sus!", Sabotage);
+Species Raishuu("Raishuu", "Rokubyou", Mandom);
+Species Saider("Saider", "Apple Sauce", Crimson);
+Species Rizadon("Rizadon", "420 Moyase!", FireFang);
+Species Bufumon("Bufumon", "Hee Ho!", Bufu);
+Species IceCube("IceCube", "I'm just an ice cube", WhiteAlbum);
+Species Golem("Golem", "I'm the gaming golem", Rock);
+Species Diguda("Diguda", "Toransu!", SandAttack);
+Species Wyrm("Wyrm", "No cost too great", HallowedSlash);
+Species Ymir("Ymir", "To you, 2000 years from now", Rumbling);
+Species SuperSuit("SuperSuit","WHERE IS MY SUPER SUIT??", Freeze);
 
-Species BlueEyes("Blue Eyes", "Kaiba is my b*tch, b*tch.", Skill("BURST STREAM OF DESTRUCTION!", 150, 5, vector<Element> {Fire, Electric}));
-Species RedEyes("Red Eyes", "I'm a plot armor.", Skill("Inferno Fire Blast", 170, 4, vector<Element> {Fire, Ground}));
-Species GreenEyes("Green Eyes", "I'm not canon kekw", Skill("pftzzz", 100, 6, vector<Element> {Fire, Ice}));
-Species Jakiro("Jakiro", "from dota or warcraft, idk", Skill("Dual Breath", 110, 6, vector<Element> {Fire, Ice}));
-Species Schnozer("Schnozer", "nose.", Skill("Stinky Breath", 110, 6, vector<Element> {Water, Ground}));
-Species CyberDragon("Cyber Dragon", "Another yu-gi-oh reference..yay", Skill("Zap!", 130, 6, vector<Element> {Water, Electric}));
-Species DisneyPrincess("Disney Princess", "Let it go... Let it go! (that gay disney song)", Skill("Make a castle", 120, 7, vector<Element> {Water, Ice}));
-Species Grounded("Grounded", "Get it? ahahahahAHHAHAHA", Skill("No Voltage", 100, 8, vector<Element> {Electric, Ground}));
-Species ACDC("ACDC", "You see, in JoJo part 2, ACDC controls heat. So, we made ACDC controls electric now", Skill("Zap Requiem", 130, 7, vector<Element> {Electric, Ice}));
-Species Trump("Trump", "Make Americunt great again", Skill("Incest", 100, 6, vector<Element> {Ground, Ice}));
+Species BlueEyes("Blue Eyes", "Kaiba is my b*tch, b*tch.", BurstStream);
+Species RedEyes("Red Eyes", "I'm a plot armor.", InfernoFire);
+Species GreenEyes("Green Eyes", "I'm not canon kekw", Pftz);
+Species Jakiro("Jakiro", "from dota or warcraft, idk", DualBreath);
+Species Schnozer("Schnozer", "nose.", StinkyBreath);
+Species CyberDragon("Cyber Dragon", "Another yu-gi-oh reference..yay", Zap);
+Species DisneyPrincess("Disney Princess", "Let it go... Let it go! (that gay disney song)", Castle);
+Species Grounded("Grounded", "Get it? ahahahahAHHAHAHA", NoVoltage);
+Species ACDC("ACDC", "You see, in JoJo part 2, ACDC controls heat. So, we made ACDC controls electric now", ZapRequiem);
+Species Trump("Trump", "Make Americunt great again",Incest);
 vector<Species*> multElementSpecies = {&BlueEyes, &RedEyes, &GreenEyes, &Jakiro, &Schnozer, &CyberDragon, &DisneyPrincess, &Grounded, &ACDC, &Trump};
 
 //Engimon
@@ -60,7 +84,7 @@ Engimon Mio("Mio", nullptr, nullptr, Koikingu, skills, vector<Element> {Water}, 
 Engimon Gaybon("Gaybon", nullptr, nullptr, Watortle, skills, vector<Element> {Water}, 1, 10000);
 Engimon Eren("Eren", nullptr, nullptr, Ymir, skills, vector<Element> {Ground}, 1 , 10000);
 Engimon Frozone("Frozone", nullptr, nullptr, SuperSuit, skills, vector<Element> {Ice}, 1, 10000);
-
+vector<Engimon*> engimons = {&JackFrost, &Raool, &Dababy, &Waluigi, &Ringo, &Raoq, &Hilarious, &Valentine, &Dio, &Mio, &Gaybon, &Eren, &Frozone};
 
 //enemies
 Enemy JackFrostE(JackFrost);
@@ -77,5 +101,23 @@ Enemy GaybonE(Gaybon);
 Enemy ErenE(Eren);
 Enemy FrozoneE(Frozone);
 vector<Enemy*> enemies ={&JackFrostE, &RaoolE, &DababyE, &WaluigiE, &RingoE, &RaoqE, &HilariousE, &ValentineE, &DioE, &MioE, &GaybonE, &ErenE, &FrozoneE};
+
+Engimon* getRelatedEngimon(Enemy* e){
+    for (int i = 0 ; i < engimons.size() ; i++){
+        if (e->getId() == engimons[i]->getId()){
+            return engimons[i];
+        }
+    }
+    return nullptr;
+}
+
+Skill* getRelatedSkill(Skill s){
+    for (int i = 0 ; i < skillList.size() ; i++){
+        if (s.getSkillName() == skillList[i]->getSkillName()){
+            return skillList[i];
+        }
+    }
+    return nullptr;
+}
 
 #endif

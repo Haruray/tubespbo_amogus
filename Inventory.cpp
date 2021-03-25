@@ -249,12 +249,11 @@ void Inventory<Skill>::deleteItem(Skill s){
     }
 }
 
-void Inventory<Skill>::learn(Skill s, Engimon* e){
+void Inventory<Skill>::learn(Skill* s, Engimon* e){
     //Asumsi : skill dan engimon terdapat di inventory
-    cout<<s.getSkillName()<<" COOCOOOOK"<<endl;
     bool isEligible = false; 
-    for (int i = 0 ; i < s.getElmtReq().size() ; i++){
-        if (e->isElement(s.getElmtReq()[i])){
+    for (int i = 0 ; i < s->getElmtReq().size() ; i++){
+        if (e->isElement(s->getElmtReq()[i])){
             isEligible = true;
         }
         else{
@@ -262,8 +261,8 @@ void Inventory<Skill>::learn(Skill s, Engimon* e){
         }
     }
     if (isEligible){
-        e->addSkill(s);
-        this->deleteItem(s);
+        e->addSkill(*s);
+        this->deleteItem(*s);
     }
     else{
         //throw exception : engimon element nya tidak compatible dengan skill

@@ -54,7 +54,7 @@ class Player{
         void showEngimonData(Engimon);
 
         void showSkillList();
-        void useSkillItem(Skill, Engimon*);
+        void useSkillItem(Skill*, Engimon*);
         void skillSelection(Engimon*, Engimon*, vector<Skill>*, vector<Skill>*);
         void breeding(Engimon*, Engimon*, vector<Species*>*);
 

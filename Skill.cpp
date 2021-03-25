@@ -57,3 +57,18 @@ int Skill::getMasteryLevel(){
 vector<Element> Skill::getElmtReq(){
     return this->elmtReq;
 }
+void Skill::printSkillDetail(){
+    cout<<"Skill Name : "<<this->skillName<<endl;
+    cout<<"Base power :"<<this->basePower<<endl;
+    cout<<"Mastery lvl:"<<this->masteryLevel<<endl;
+    cout<<"Elmt Req : ";
+    for (int i = 0 ; i < this->elmtReq.size() ; i++){
+        if (i < this->elmtReq.size()-1){
+            cout<<this->elmtReq[i].getElementName()<<", ";
+        }
+        else{
+            cout<<this->elmtReq[i].getElementName()<<endl;;
+        }
+        
+    }
+}
