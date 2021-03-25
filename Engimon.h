@@ -39,7 +39,7 @@ class Engimon{
         void addSkill(vector<Skill>);
         void addElement(Element);
         void addElement(vector<Element>);
-        void levelUp();
+        virtual void levelUp();
         void setLevel(int);
         void addExp(int); //ini berpengaruh ke exp dan cumulative exp
         void setExp(int);
@@ -69,7 +69,7 @@ class Engimon{
         void replaceSkill(Skill); //replace skill by index
 
         //output function
-        void printDetail();
+        virtual void printDetail();
         void printSkill();
 };
 

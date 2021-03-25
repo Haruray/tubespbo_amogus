@@ -30,7 +30,7 @@ bool battle(Engimon* ourEngimon, Enemy* enemyEngimon){
     float enemyPower = enemyEngimon->getLevel() * getHighestAdvantage(enemyEngimon->getElements() , ourEngimon->getElements()) + sumSkillLevelAndPower(enemyEngimon->getSkills());
     cout<<"Player Engimon's Power Level\t: "<<fixed<<setprecision(2)<<ourPower<<endl;
     cout<<"Enemy Engimon's Power Level\t: "<<fixed<<setprecision(2)<<enemyPower<<endl;
-    return ourPower > enemyPower;
+    return ourPower >= enemyPower;
 }
 
 //Cell movement checking
@@ -135,11 +135,27 @@ void winReward(Player* p, Enemy e){
     cout<<"You win!!"<<endl;
     cout<<"Reward\t:"<<endl;
     Engimon* reward = new Engimon(e.getName(),e.getParents()[0], e.getParents()[1], e.getSpecies(), e.getSkills(), e.getElements(), e.getLevel(), e.getCumExpLimit());
-    p->getInventoryEngimon()->addItem(reward);
     Skill* rewardSkill = new Skill(e.getSkills()[0]);
-    p->getInventorySkill()->addItem(*rewardSkill);
-    cout<<"- New Engimon!! "<<reward->getName()<<" , a "<<reward->getSpecies().getSpeciesName()<<endl;
-    cout<<"- New Skill Item!! "<<rewardSkill->getSkillName()<<endl;
+    rewardSkill->setMasteryLevel(1);
+    try{
+        p->getInventoryEngimon()->addItem(reward);
+        cout<<"- New Engimon!! "<<reward->getName()<<", a "<<reward->getSpecies().getSpeciesName()<<endl;
+        p->getInventorySkill()->addItem(*rewardSkill);
+        cout<<"- New Skill Item!! "<<rewardSkill->getSkillName()<<endl;
+    }
+    catch(exception& e){
+        cout<<e.what()<<endl;
+    }
+    //add exp, berdasarkan presentase perbedaan power
+    float ourPower = p->getActiveEngimon()->getLevel() * getHighestAdvantage(p->getActiveEngimon()->getElements() , e.getElements()) + sumSkillLevelAndPower(p->getActiveEngimon()->getSkills());
+    float enemyPower = p->getActiveEngimon()->getLevel() * getHighestAdvantage(e.getElements() , p->getActiveEngimon()->getElements()) + sumSkillLevelAndPower(e.getSkills());
+    int expGained = int(((ourPower - enemyPower) / ourPower)*100);
+    p->getActiveEngimon()->addExp((30+expGained)*2);
+
+    //semua musuh nambah exp sebanyak 50
+    for (int i = 0 ; i < enemies.size() ; i++){
+        enemies[i]->addExp(80);
+    }
 }
 
 void lose(Player* p){

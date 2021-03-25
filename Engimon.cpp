@@ -24,7 +24,7 @@ Engimon::Engimon(string name, Engimon* parent1, Engimon* parent2, Species specie
     this->addElement(elements);
     this->setLevel(level);
     this->setExp(0);
-    this->setCumulativeExp(this->getLevel()*100);
+    this->setCumulativeExp(this->getLevel()*100 - 100);
     this->setExpLimit(explimit);
     totalEngimon++;
 }
@@ -35,9 +35,9 @@ Engimon::Engimon(const Engimon& e) : id(e.id){
     this->setSpecies(e.species);
     this->addSkill(e.skills);
     this->addElement(e.elements);
-    this->setLevel(level);
-    this->setExp(0);
-    this->setCumulativeExp(this->getLevel()*100);
+    this->setLevel(e.level);
+    this->setExp(e.exp);
+    this->setCumulativeExp(this->getLevel()*100 - 100);
     this->setExpLimit(e.explimit);
     totalEngimon++;
 }
@@ -52,7 +52,7 @@ Engimon& Engimon::operator=(const Engimon& e){
     this->addElement(e.elements);
     this->setLevel(level);
     this->setExp(0);
-    this->setCumulativeExp(this->getLevel()*100);
+    this->setCumulativeExp(this->getLevel()*100 - 100);
     this->setExpLimit(e.explimit);
     return *this;
 }
@@ -103,9 +103,12 @@ void Engimon::addElement(vector<Element> ve){
 void Engimon::levelUp(){
     this->exp -= 100;
     this->level++;
+    cout<<"\nEngimon level up!!"<<endl;
+    cout<<this->name<<", current level : "<<this->level<<endl;
 }
 void Engimon::setLevel(int lvl){
     this->level = lvl;
+    this->setCumulativeExp(this->level*100 - 100);
 }
 void Engimon::addExp(int exp){
     this->exp += exp;
@@ -219,6 +222,7 @@ void Engimon::replaceSkill(Skill s) {
 
 //output func
 void Engimon::printDetail(){
+    cout<<"Engimon ID\t: "<<this->getId()<<endl;
     cout<<"Nama Engimon"<<"\t: "<<this->getName()<<endl;
     if (this->getParents()[0] != nullptr && this->getParents()[1]!=nullptr){
         for (int i=0 ; i<2 ; i++){

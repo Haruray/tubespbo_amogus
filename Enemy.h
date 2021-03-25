@@ -22,6 +22,7 @@ class Enemy : public Engimon{
         void setPosX(int);
         void setPosY(int);
 
+        void levelUp();
         //getter
         int getPosX();
         int getPosY();
@@ -32,7 +33,7 @@ class Enemy : public Engimon{
         void moveRight();
         void moveDown();
 
-        void printEnemyDetails();
+        void printDetail();
 
 };
 

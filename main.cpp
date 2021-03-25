@@ -31,36 +31,39 @@ int main(){
     map.generateMap(&vsea,&vgrass);
 
     //PEMBUATAN PLAYER
-    cout<<"Enter name\t: ";
+    cout<<"Enter your name : ";
     cin>>name;
     //inventory
-    Inventory<Skill> is(20);
-    Inventory<Engimon> ie(20);
-    cout<<"Choose engimon (by number) :"<<endl;
+    Inventory<Skill> is(30);
+    Inventory<Engimon> ie(30);
     cout<<"1. "<<JackFrost.getName()<<endl;
     cout<<"2. "<<Dababy.getName()<<endl;
     cout<<"3. "<<Waluigi.getName()<<endl;
+    cout<<"Choose engimon (by number) : ";
     cin>>starterEngimon;
     while(starterEngimon<=0 || starterEngimon>3){
         cout<<"starterEngimon not valid.\n"<<endl;
-        cout<<"Choose engimon (by number) :"<<endl;
         cout<<"1. "<<JackFrost.getName()<<endl;
         cout<<"2. "<<Dababy.getName()<<endl;
         cout<<"3. "<<Waluigi.getName()<<endl;
+        cout<<"Choose engimon (by number) : ";
     }
     if (starterEngimon==1){
         cout<<"You've chosen Jack Frost!"<<endl;
+        JackFrost.setLevel(2); //starting level
         JackFrost.printDetail();
         ie.addItem(&JackFrost);
     }
     else if (starterEngimon==2){
         cout<<"You've chosen Dababy! Less goo"<<endl;
+        Dababy.setLevel(2); //starting level
         Dababy.printDetail();
         ie.addItem(&Dababy);
     }
         
     else{
         cout<<"You've chosen Waluigi!"<<endl;
+        Waluigi.setLevel(2); //starting level
         Waluigi.printDetail();
         ie.addItem(&Waluigi);
     }
@@ -123,12 +126,13 @@ int main(){
 
             try {
                 p.useSkillItem(p.getInventorySkill()->getItemById(skillIdx-1), p.getInventoryEngimon()->getItemById(engimonIdx-1));
-            } catch (ElementException e) {
-                cout << "Engimon is incompatible" << endl;
+            } catch (exception& e) {
+                cout << e.what() << endl; //engimon is incompatible
             }
 
         } else if (input == "Breed") {
             int eng1, eng2;
+            p.getInventoryEngimon()->printItems();
             do {
                 do {
                     cout << "Choose parent 1 : ";
@@ -141,9 +145,9 @@ int main(){
             } while (eng1 == eng2);
             
             try {
-                p.breeding(p.getInventoryEngimon()->getItemById(eng1-1), p.getInventoryEngimon()->getItemById(eng2-1));
-            } catch (BreedParentException e) {
-                cout << "Parent is ineligible for breeding" << endl;
+                p.breeding(p.getInventoryEngimon()->getItemById(eng1-1), p.getInventoryEngimon()->getItemById(eng2-1), &multElementSpecies);
+            } catch (exception& e) {
+                cout << e.what() << endl; // exception : ineligible for breeding
             }
 
         } else if (input == "Battle") {
@@ -160,13 +164,13 @@ int main(){
                 bool battleResult;
 
                 for (Enemy* e : adjEnemy) {
-                    cout << "Enemy " << i << " : " << endl;
-                    e->printEnemyDetails();
+                    cout << "Enemy " << i << endl;
+                    e->printDetail();
                     cout << endl;
                     i++;
                 }
                 do {
-                    cout << "Select the enemy that you want to fight : ";
+                    cout << "Select the enemy that you want to fight (enter a number) : ";
                     cin >> idx;
                 } while (idx < 1 || idx > adjEnemy.size());
 
@@ -176,7 +180,8 @@ int main(){
                     winReward(&p, *selectedEnemy);
                     deleteEnemy(&map, selectedEnemy);
                 } else {
-                    //lose cond
+                    p.getInventoryEngimon()->deleteItem(p.getActiveEngimon());
+                    lose(&p);
                 }
             }
             

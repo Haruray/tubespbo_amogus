@@ -51,7 +51,13 @@ void Enemy::moveLeft(){
     this->position.y -= 1;
 }
 
-void Enemy::printEnemyDetails() {
+void Enemy::levelUp(){
+    this->exp -= 100;
+    this->level++;
+}
+
+void Enemy::printDetail() {
+    cout<<"Name\t: "<<this->getName()<<endl;
     cout<<"Spesies"<<"\t: "<<this->getSpecies().getSpeciesName()<<endl;
     cout<<"Element\t: ";
     for (int i=0;i<this->getElements().size();i++){
