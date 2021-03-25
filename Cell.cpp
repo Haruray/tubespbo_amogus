@@ -1,6 +1,6 @@
 #include "Cell.h"
 #include <iostream>
-
+int MINLEVEL = 3;
 Cell::Cell(){
     this->type = "Grassland";
     this->Occupied = false;
@@ -56,6 +56,73 @@ bool Cell::isOccupied(){
 };
 
 //func
+void Cell::printElement(){
+    vector<Element> elemen = this->enemy->getElements();
+        if (elemen.size() == 1){
+            if (elemen[0].getElementName() == "Water")
+                if (this->enemy->getLevel() > MINLEVEL){
+                    cout << " W |"; 
+                }
+                else{
+                    cout << " w |";
+                }
+            if (elemen[0].getElementName() == "Ice")
+                if (this->enemy->getLevel() > MINLEVEL){
+                    cout << " I |"; 
+                }
+                else{
+                    cout << " i |";
+                }
+            if (elemen[0].getElementName() == "Fire")
+                if (this->enemy->getLevel() > MINLEVEL){
+                    cout << " F |"; 
+                }
+                else{
+                    cout << " f |";
+                }
+            if (elemen[0].getElementName() == "Ground")
+                if (this->enemy->getLevel() > MINLEVEL){
+                    cout << " G |"; 
+                }
+                else{
+                    cout << " g |";
+                }
+            if (elemen[0].getElementName() == "Electric")
+                if (this->enemy->getLevel() > MINLEVEL){
+                    cout << " E |"; 
+                }
+                else{
+                    cout << " e |";
+                }
+        }
+        else{
+            if (elemen[0].getElementName() == "Fire" && elemen[1].getElementName() == "Electric")
+                if (this->enemy->getLevel() > MINLEVEL){
+                    cout << " L |"; 
+                }
+                else{
+                    cout << " l |";
+                }
+            else if (elemen[0].getElementName() == "Water" && elemen[1].getElementName() == "Ice")
+                if (this->enemy->getLevel() > MINLEVEL){
+                    cout << " S |"; 
+                }
+                else{
+                    cout << " s |";
+                }
+            else if (elemen[0].getElementName() == "Water" && elemen[1].getElementName() == "Ground")
+                if (this->enemy->getLevel() > MINLEVEL){
+                    cout << " N |"; 
+                }
+                else{
+                    cout << " n |";
+                }
+            //Symbol selain spek : dua huruf digabung. idk if this a good idea, need testing
+            else
+                cout << elemen[0].getElementName()[0] << elemen[1].getElementName()[0]<<" |";
+        }
+}
+//func
 void Cell::printSymbol(int var){
     // 1: player
     // 2: active engimon
@@ -71,31 +138,7 @@ void Cell::printSymbol(int var){
         cout << " X |";
         break;
     case 3:
-        elemen = this->enemy->getElements();
-        if (elemen.size() == 1){
-            if (elemen[0].getElementName() == "Water")
-                cout << " W |";
-            if (elemen[0].getElementName() == "Ice")
-                cout << " I |";
-            if (elemen[0].getElementName() == "Fire")
-                cout << " F |";
-            if (elemen[0].getElementName() == "Ground")
-                cout << " G |";
-            if (elemen[0].getElementName() == "Electric")
-                cout << " E |";
-        }
-        else{
-            if (elemen[0].getElementName() == "Fire" && elemen[1].getElementName() == "Electric")
-                cout << " L |";
-            else if (elemen[0].getElementName() == "Water" && elemen[1].getElementName() == "Ice")
-                cout << " S |";
-            else if (elemen[0].getElementName() == "Water" && elemen[1].getElementName() == "Ground")
-                cout << " N |";
-            //Symbol selain spek : dua huruf digabung. idk if this a good idea, need testing
-            else
-                cout << elemen[0].getElementName()[0] << elemen[1].getElementName()[0]<<" |";
-        }
-        
+        printElement();
         break;
     case 4:
         if (this->type == "Grassland")

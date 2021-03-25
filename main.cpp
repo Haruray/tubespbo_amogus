@@ -47,6 +47,7 @@ int main(){
         cout<<"2. "<<Dababy.getName()<<endl;
         cout<<"3. "<<Waluigi.getName()<<endl;
         cout<<"Choose engimon (by number) : ";
+        cin >> starterEngimon;
     }
     if (starterEngimon==1){
         cout<<"You've chosen Jack Frost!"<<endl;

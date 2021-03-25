@@ -32,6 +32,7 @@ class Cell {
 
         //func
         void printSymbol(int); //print symbol sesuai peta
+        void printElement();
         // void generateEnemy(); // buat bikin enemy random di sel ini
 };
 
