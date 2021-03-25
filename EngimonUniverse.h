@@ -47,8 +47,18 @@ Engimon Mio("Mio", nullptr, nullptr, Koikingu, skills, vector<Element> {Water}, 
 Engimon Gaybon("Gaybon", nullptr, nullptr, Watortle, skills, vector<Element> {Water}, 1, 10000);
 
 
-
 //enemies
-vector<Enemy> enemies;
+Enemy JackFrostE(JackFrost);
+Enemy RaoolE(Raool);
+Enemy DababyE(Dababy);
+Enemy WaluigiE(Waluigi);
+Enemy RingoE(Ringo);
+Enemy RaoqE(Raoq);
+Enemy HilariousE(Hilarious);
+Enemy ValentineE(Valentine);
+Enemy DioE(Dio);
+Enemy MioE(Mio);
+Enemy GaybonE(Gaybon);
+vector<Enemy*> enemies ={&JackFrostE, &RaoolE, &DababyE, &WaluigiE, &RingoE, &RaoqE, &HilariousE, &ValentineE, &DioE, &MioE, &GaybonE};
 
 #endif

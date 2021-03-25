@@ -1,18 +1,20 @@
 #include "Cell.h"
-#include "EngimonUniverse.h"
 #include <iostream>
 
 Cell::Cell(){
     this->type = "Grassland";
     this->Occupied = false;
+    this->enemy = nullptr;
 }
 Cell::Cell(string type){
     this->type = type;
     this->Occupied = false;
+    this->enemy = nullptr;
 }
 Cell::Cell(const Cell& cell){
     this->type = cell.type;
     this->Occupied = cell.Occupied;
+    this->enemy = nullptr;
 }
 Cell::~Cell(){
     
@@ -91,7 +93,7 @@ void Cell::printSymbol(int var){
                 cout << " N |";
             //Symbol selain spek : dua huruf digabung. idk if this a good idea, need testing
             else
-                cout << elemen[0].getElementName()[0] << elemen[1].getElementName()[0];
+                cout << elemen[0].getElementName()[0] << elemen[1].getElementName()[0]<<" |";
         }
         
         break;
@@ -108,6 +110,7 @@ void Cell::printSymbol(int var){
 
 };
 
+/*
 void Cell::generateEnemy(){
     int x = rand() % 100;
     if (this->getType() == "Grassland"){
@@ -146,4 +149,5 @@ void Cell::generateEnemy(){
     }
     this->setOccupy(true);
 };
+*/
 

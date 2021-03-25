@@ -66,7 +66,8 @@ int main(){
     }
     Player p(name, &is, &ie, ie.getItemById(0) ,0, 0);
     system("PAUSE");
-    system("CLS");
+    // system("CLS");
+    mapRandomizer(&map);
     map.printMap(&p);
 
     cout << "Let us commence forth!" << endl;
@@ -87,7 +88,6 @@ int main(){
                 playerMove(&p,&map, "d");
             }
             map.printMap(&p);
-            map.randoEnemy();
 
         }
         else if (input == "Help!") {

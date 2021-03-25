@@ -10,23 +10,17 @@ Enemy::Enemy(string name, Engimon* parent1, Engimon* parent2, Species species, v
     this->setPosX(x);
     this->setPosY(y);
 }
-Enemy::Enemy(Enemy& e): Engimon(e){
-    this->setPosX(e.getPosX());
-    this->setPosY(e.getPosY());
+Enemy::Enemy(const Enemy& e): Engimon(e){
+    this->setPosX(e.position.x);
+    this->setPosY(e.position.y);
     //aku lupa cara singkatnya
 }
 
-Enemy::Enemy(Engimon& e): Engimon(e){
+Enemy::Enemy(const Engimon& e): Engimon(e){
     this->setPosX(0);
     this->setPosY(0);
     //aku lupa cara singkatnya
 }
-
-Enemy::Enemy(const Engimon& e, int x, int y) : Engimon(e){
-    this->setPosX(x);
-    this->setPosY(y);
-}
-
 Enemy::~Enemy(){}
 
 void Enemy::setPosX(int x){

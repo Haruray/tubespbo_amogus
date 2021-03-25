@@ -205,4 +205,65 @@ void deleteEnemy(Map* map, Enemy* e){
     map->getCell(e->getPosX(),e->getPosY())->setOccupy(false);
 }
 
+//Random Enemy Generator
+bool cellRandomizer(Cell* c, vector<Enemy*>* e, vector<bool>* reserved){
+    //Dipindah dari method cell biar menghindari definisi dobel
+    //Algonya masih sama, tapi aku tambahin return value boolean
+    //true kalau berhasil deploy, false kalau tidak ada enemy yang bisa di deploy
+    int limit = 0;
+    bool valid = false;
+    int x;
+    while(!valid && limit < e->size()){
+        x = rand() % (e->size());
+        if (c->getType() == "Grassland"){
+            if ((e->at(x)->isElement(Fire) || e->at(x)->isElement(Ground) || e->at(x)->isElement(Electric)) && reserved->at(x)==false){
+                valid = true;
+                c->setEnemy(e->at(x));
+                c->setOccupy(true);
+                reserved->at(x) = true;
+            }
+        }
+        else{
+            if ((e->at(x)->isElement(Water) || e->at(x)->isElement(Ice)) && reserved->at(x)==false){
+                valid = true;
+                c->setEnemy(e->at(x));
+                c->setOccupy(true);
+                reserved->at(x) = true;
+            }
+        }
+        limit++;
+    }
+    if (valid){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+void mapRandomizer(Map* m){
+    //ALGORITMA RANDOMIZER
+    //Dipindah dari method map ke sini biar definisi tidak dobel
+    //untuk enemies, itu berada di engimonuniverse.h
+    bool flag;
+    vector<bool> enemyReserved; //mengecek enemy sudah dideploy ke sebuah cell atau belum
+    for (int i = 0 ; i < enemies.size() ; i++){ //default value enemyReserved adalah false
+        enemyReserved.push_back(false);
+    }
+
+    int limit = 0;
+    while (limit < enemies.size()){
+        int randX = rand() % 10;
+        int randY = rand() % 10;
+        Cell* curr = m->getCell(randX,randY);
+        if (!curr->isOccupied()){
+            if (cellRandomizer(curr, &enemies, &enemyReserved)){ //jika enemy sudah dideploy, maka atur posisi enemy
+                curr->getEnemy()->setPosX(randX);
+                curr->getEnemy()->setPosY(randY);
+            }
+            limit++;
+        }
+    }
+}
+
 #endif
