@@ -256,7 +256,7 @@ vector<Element> getMostAdvantageousElmt(vector<Element> elist1, vector<Element> 
     }
 }
 
-void Player::breeding(Engimon* e1, Engimon* e2){
+void Player::breeding(Engimon* e1, Engimon* e2, vector<Species*>* splist){
     if (this->getInventoryEngimon()->doesItemExist(e1) && this->getInventoryEngimon()->doesItemExist(e2)){
         if (e1->getLevel() >= 30 && e2->getLevel() >= 30){
             //Mengurangi level parents
@@ -300,8 +300,17 @@ void Player::breeding(Engimon* e1, Engimon* e2){
             if (compareVectorOfElements(newElement, e1->getElements())){
                 newSpecies = e1->getSpecies();
             }
-            else{ //asumsi kalau adv elemennya sama, maka spesiesnya juga ngikut parent 2
+            else if (compareVectorOfElements(newElement, e2->getElements())){ 
                 newSpecies = e2->getSpecies();
+            }
+            else{//kalau berbeda dari keduanya, maka speciesnya random
+                for (int j = 0 ; j < splist->size() ; j++){
+                    Element splisEl1 = splist->at(j)->getUniqueSkill().getElmtReq()[0];
+                    Element splisEl2 = splist->at(j)->getUniqueSkill().getElmtReq()[1];
+                    if ((splisEl1.getElementName() == newElement[0].getElementName() || splisEl1.getElementName() == newElement[1].getElementName()) && (splisEl2.getElementName() == newElement[0].getElementName() || splisEl2.getElementName() == newElement[1].getElementName())){
+                        newSpecies = *splist->at(j);
+                    }
+                }
             }
             //Pembuatan engimon dan dimasukkan ke inventory
             Engimon* newEngimon = new Engimon(newname, e1, e2, newSpecies, newSkill, newElement, 1, 1000); //Subject to change untuk maximum cumulative exp

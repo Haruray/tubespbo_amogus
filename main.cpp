@@ -127,7 +127,7 @@ int main(){
                     cin >> eng2;
                 } while (eng2 < 1 || eng2 > p.getInventoryEngimon()->getSize());
             } while (eng1 == eng2);
-            p.breeding(p.getInventoryEngimon()->getItemById(eng1-1), p.getInventoryEngimon()->getItemById(eng2-1));
+            p.breeding(p.getInventoryEngimon()->getItemById(eng1-1), p.getInventoryEngimon()->getItemById(eng2-1), &multElementSpecies);
 
         } else if (input == "Battle") {
             // insert battle
