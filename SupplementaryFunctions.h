@@ -151,11 +151,11 @@ void winReward(Player* p, Enemy e){
     float ourPower = p->getActiveEngimon()->getLevel() * getHighestAdvantage(p->getActiveEngimon()->getElements() , e.getElements()) + sumSkillLevelAndPower(p->getActiveEngimon()->getSkills());
     float enemyPower = p->getActiveEngimon()->getLevel() * getHighestAdvantage(e.getElements() , p->getActiveEngimon()->getElements()) + sumSkillLevelAndPower(e.getSkills());
     int expGained = int(((ourPower - enemyPower) / ourPower)*100);
-    p->getActiveEngimon()->addExp((30+expGained)*2);
+    p->getActiveEngimon()->addExp((200+expGained)*2);
 
-    //semua musuh nambah exp sebanyak 50
+    //semua musuh nambah exp sebanyak 400
     for (int i = 0 ; i < enemies.size() ; i++){
-        enemies[i]->addExp(80);
+        enemies[i]->addExp(400);
     }
 }
 
