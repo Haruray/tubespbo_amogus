@@ -2,6 +2,7 @@
 #define MAP_H
 
 #include <iostream>
+#include <fstream>
 #include "Cell.h"
 #include "Player.h"
 using namespace std;
@@ -23,7 +24,7 @@ class Map{
         void setCell(Cell*, int , int); //set sebuah cell di posisi x dan y
 
         void generateMap(vector<Cell>* vsea, vector<Cell>* vgrass); //Maksudnya adalah memasukkan cell ke cells, ini bisa didesain map nya gmn, atau random generated, belum aku putusin
-
+        void generateMapFromFile(vector<Cell>* vsea, vector<Cell>* vgrass);
         //getter
         Cell* getCell(int, int); //get cell berdasarkan posisi
 

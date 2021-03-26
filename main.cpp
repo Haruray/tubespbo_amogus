@@ -28,7 +28,7 @@ int main(){
         vsea.push_back(Cell("Sea"));
         vgrass.push_back(Cell("Grassland"));
     }
-    map.generateMap(&vsea,&vgrass);
+    map.generateMapFromFile(&vsea,&vgrass);
 
     //PEMBUATAN PLAYER
     cout<<"Enter your name : ";

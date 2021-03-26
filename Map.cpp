@@ -14,7 +14,7 @@ void Map::setCell(Cell* C, int x, int y){
     this->cells[x][y] = C;
 }; //set sebuah cell di posisi x dan y
 
-void Map::generateMap(vector<Cell>* vsea, vector<Cell>* vgrass){
+void Map::generateMapFromFile(vector<Cell>* vsea, vector<Cell>* vgrass){
     // mapnya gini kira kira:
     //
     // o o o o o o o o o o
@@ -29,6 +29,31 @@ void Map::generateMap(vector<Cell>* vsea, vector<Cell>* vgrass){
     // o o o o o o o o o o
     //
     // blom fix, ganti gpp
+    ifstream file("Map.txt");
+    int vseaint = 0;
+    int vgrassint = 0;
+    char c = 0;
+    int i = 0, j = 0;
+    while (file.get(c)) {
+        if (c == '\n') {
+            i++;
+            j = 0;
+        }
+        if (c == 'o') {
+            this->cells[i][j] = &vsea->at(vseaint);
+            j++;
+            vseaint++;
+        }
+        if (c == '-') {
+            this->cells[i][j] = &vgrass->at(vgrassint);
+            j++;
+            vgrassint++;
+        }
+    }
+    
+}; //Maksudnya adalah memasukkan cell ke cells, ini bisa didesain map nya gmn, atau random generated, belum aku putusin
+
+void Map::generateMap(vector<Cell>* vsea, vector<Cell>* vgrass){
     int vseaint = 0;
     int vgrassint = 0;
     for (int i = 0; i < this->size; i++)
@@ -46,8 +71,7 @@ void Map::generateMap(vector<Cell>* vsea, vector<Cell>* vgrass){
         }
         
     }
-    
-}; //Maksudnya adalah memasukkan cell ke cells, ini bisa didesain map nya gmn, atau random generated, belum aku putusin
+}
 
 //getter
 Cell* Map::getCell(int x, int y){
