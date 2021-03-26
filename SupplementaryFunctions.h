@@ -270,7 +270,6 @@ void mapRandomizer(Map* m, vector<bool>* enemyReserved){
 
 void restorecin() {
     if (cin.fail()) {
-        cout << "Please enter an integer";
         cin.clear();
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
