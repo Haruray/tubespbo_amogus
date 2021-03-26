@@ -329,9 +329,10 @@ void Player::breeding(Engimon* e1, Engimon* e2, vector<Species*>* splist){
 void Player::swapActiveEngimon() {
     int idx;
     this->getInventoryEngimon()->printItems();
-    cout << "Pilih Engimon (by index) : ";
     do {
+        cout << "Pilih Engimon (by index) : ";
         cin >> idx;
+        restorecin();
     } while (idx < 1 || idx > this->getInventoryEngimon()->getSize());
     this->setActiveEngimon(this->getInventoryEngimon()->getItemById(idx-1));
 }

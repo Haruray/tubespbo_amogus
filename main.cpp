@@ -18,6 +18,7 @@ void Help() {
 }
 
 int main(){
+    srand(time(0));
     string input;
     string name;
     int starterEngimon;
@@ -126,12 +127,14 @@ int main(){
             do {
                 cout << "Choose which skill item to use : ";
                 cin >> skillIdx;
+                restorecin();
             } while (skillIdx < 1 || skillIdx > p.getInventorySkill()->getSize());
 
             p.showEngimonList();
             do {
                 cout << "Choose which engimon to inherit the skill : ";
                 cin >> engimonIdx;
+                restorecin();
             } while (engimonIdx < 1 || engimonIdx > p.getInventoryEngimon()->getSize());
 
             try {
@@ -147,10 +150,12 @@ int main(){
                 do {
                     cout << "Choose parent 1 : ";
                     cin >> eng1;
+                    restorecin();
                 } while (eng1 < 1 || eng1 > p.getInventoryEngimon()->getSize());
                 do {
                     cout << "Choose parent 2 : ";
                     cin >> eng2;
+                    restorecin();
                 } while (eng2 < 1 || eng2 > p.getInventoryEngimon()->getSize());
             } while (eng1 == eng2);
             
@@ -182,6 +187,7 @@ int main(){
                 do {
                     cout << "Select the enemy that you want to fight (enter a number) : ";
                     cin >> idx;
+                    restorecin();
                 } while (idx < 1 || idx > adjEnemy.size());
 
                 Enemy* selectedEnemy = adjEnemy[idx-1];

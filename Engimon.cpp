@@ -204,15 +204,17 @@ bool Engimon::hasSkill(Skill s){
 void Engimon::replaceSkill(Skill s) {
     string input;
     int idx;
-    cout << "Skill Engimon penuh, Apakah player ingin mengganti skill yang ada? (Y/N) : ";
     do {
+        cout << "Skill Engimon penuh, Apakah player ingin mengganti skill yang ada? (Y/N) : ";
         cin >> input;
+        restorecin();
     } while (input != "Y" && input != "N");
     if (input == "Y") {
         this->printSkill();
-        cout << "Pilih skill yang akan diganti (By index) : ";
         do {
+            cout << "Pilih skill yang akan diganti (By index) : ";
             cin >> idx;
+            restorecin();
         } while (idx < 1 || idx > this->skills.size());
         this->skills.erase(this->skills.begin() + (idx-1));
         this->addSkill(s);

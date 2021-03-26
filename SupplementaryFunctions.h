@@ -2,6 +2,7 @@
 #define SUPPLEMENTARYFUNCTION_H
 #include <iostream>
 #include <math.h>
+#include <ctime>
 #include "EngimonUniverse.h"
 
 //BATTLE FUNCTION
@@ -264,6 +265,14 @@ void mapRandomizer(Map* m, vector<bool>* enemyReserved){
             }
             limit++;
         }
+    }
+}
+
+void restorecin() {
+    if (cin.fail()) {
+        cout << "Please enter an integer";
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 }
 
