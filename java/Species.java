@@ -4,6 +4,7 @@ public class Species {
     String speciesName;
     String slogan;
     Skill uniqueSkill;
+    int life; //Update: ada informasi life, methods TBA
 
     Species(){
         setSpeciesName("None");

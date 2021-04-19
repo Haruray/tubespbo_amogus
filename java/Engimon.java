@@ -20,7 +20,7 @@ public class Engimon {
     Engimon(){
         setName("None");
         setParent(null,null);
-        setSpecies(Species());
+        setSpecies(new Species());
         addSkill(Skill());
         addSkill(species.getUniqueSkill());
         addElement(Element());
@@ -153,23 +153,28 @@ public class Engimon {
         }
         return maxSkill;
     }
-    bool lvlUpEligibility(){
-
+    Boolean lvlUpEligibility(){
+        return this.exp >= 100;
     } //refer to spek 1.c
-    bool isDead(){
-
+    Boolean isDead(){
+        return getCumulativeExp() >= getCumExpLimit();
     } //refer to spek 1.d
-    bool isElement(Element E){
-
+    Boolean isElement(Element E){
+        return this.elements.contains(E);
     } //apakah engimon berelemen x 
-    bool hasSkill(Skill S){
-
+    Boolean hasSkill(Skill S){
+        return this.skills.contains(S);
     } //apakah engimon punya skill x
     
     //delete
     void replaceSkill(Skill S){
 
     } //replace skill by index
+
+    // Update: Passive exp nambah buat engimon liar
+    void passiveExp(){
+
+    }
 
     //output function
     void printDetail(){

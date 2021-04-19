@@ -2,6 +2,7 @@ package java;
 import java.util.ArrayList;
 
 public class Skill {
+    final int masteryLimit = 3;
     String skillName;
     int basePower;
     int masteryLevel;
@@ -25,7 +26,13 @@ public class Skill {
         this.basePower = base;
     }
     void setMasteryLevel(int mastery){
-        this.masteryLevel = mastery;
+        // Update: mastery maks level 3
+        if (mastery <= 3){
+            this.masteryLevel = mastery;
+        }
+        else{
+            // exception mastery melebihi batas (?)
+        }
     }
     void setElmtReq(ArrayList<Element> E){
         this.elmtReq = new ArrayList<Element>(E);
