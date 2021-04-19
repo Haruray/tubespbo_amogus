@@ -173,7 +173,7 @@ public class Engimon {
 
     // Update: Passive exp nambah buat engimon liar
     void passiveExp(){
-
+        addExp(100);
     }
 
     //output function
