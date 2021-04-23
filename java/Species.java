@@ -1,4 +1,4 @@
-package java;
+package willywangkyjava;
 
 public class Species {
     String speciesName;
