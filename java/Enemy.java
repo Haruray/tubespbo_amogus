@@ -1,35 +1,31 @@
-package java;
+package willywangkyjava;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import javax.lang.model.element.Element;
 
 public class Enemy extends Engimon{
-    Point position;
+    int posX;
+    int posY;
 
-    Enemy(){
-        super();
-        setPosX(0);
-        setPosY(0);
-    }
-    Enemy(String name, Engimon p1, Engimon p2, Species species, ArrayList<Skill> skills, ArrayList<Element> elements, int level, int explimit, int x, int y){
-        super(name, p1, p2, species, skills, elements, level, explimit, x, y);
+    Enemy(String name, Engimon p1, Engimon p2, Species species, List<Skill> skills, List<willywangkyjava.Element> elements, int level, int explimit, int x, int y){
+        super(name, p1, p2, species, skills, elements, level, explimit);
         setPosX(x);
         setPosY(y);
     }
     void setPosX(int x){
-        this.position.setLocation(x, this.position.getY());
+        this.posX=x;
     }
     void setPosY(int y){
-        this.position.setLocation(this.position.getX(), y);
+        this.posY=y;
     }
     int getPosX(){
-        return this.position.getX();
+        return this.posX;
     }
     int getPosY(){
-        return this.position.getY();
+        return this.posY;
     }
-    string getLogo(Player P){
+    String getLogo(Player P){
         return "???";
     } //mendapatkan logo sesuai acive engimon player ; refer ke spek poin 6
     //movement
