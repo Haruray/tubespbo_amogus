@@ -1,4 +1,4 @@
-package java;
+package willywangkyjava;
 
 import java.util.*;
 
@@ -69,7 +69,7 @@ public class Cell{
         }
     } //print symbol sesuai peta
     void printElement(){
-        List<java.Element> elemen = this.enemy.getElements();
+        List<willywangkyjava.Element> elemen = this.enemy.getElements();
         if (elemen.size() == 1){
             if (elemen.get(0).getElementName().equals("Water")){
                 if (this.enemy.getLevel() > 3){
