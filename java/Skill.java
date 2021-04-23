@@ -1,24 +1,46 @@
-package java;
-import java.util.ArrayList;
+package willywangkyjava;
+import java.util.*;
 
 public class Skill {
     final int masteryLimit = 3;
     String skillName;
     int basePower;
     int masteryLevel;
-    ArrayList<Element> elmtReq;
+    List<Element> elmtReq = new ArrayList<>();
 
     Skill(){
         setSkillName("None");
         setBasePower(0);
         setMasteryLevel(0);
     }
-    Skill(String name, int base, int mastery, ArrayList<Element> E){
+    Skill(String name, int base, int mastery, List<Element> E){
         setSkillName(name);
         setBasePower(base);
         setMasteryLevel(mastery);
         setElmtReq(E);
     }
+
+    @Override
+    public boolean equals(Object o) {
+
+        // If the object is compared with itself then return true
+        if (o == this) {
+            return true;
+        }
+
+        /* Check if o is an instance of Complex or not
+          "null instanceof [type]" also returns false */
+        if (!(o instanceof Engimon)) {
+            return false;
+        }
+
+        // typecast o to Complex so that we can compare data members
+        Skill s = (Skill) o;
+
+        // Compare the data members and return accordingly
+        return (this.skillName.equals(s.skillName));
+    }
+
     void setSkillName(String name){
         this.skillName = name;
     }
@@ -34,8 +56,8 @@ public class Skill {
             // exception mastery melebihi batas (?)
         }
     }
-    void setElmtReq(ArrayList<Element> E){
-        this.elmtReq = new ArrayList<Element>(E);
+    void setElmtReq(List<Element> E){
+        this.elmtReq.addAll(E);
     }
     String getSkillName(){
         return this.skillName;
@@ -49,6 +71,12 @@ public class Skill {
     ArrayList<Element> getElmtReq(){
         return getElmtReq();
     }
+
+    @Override
+    public String toString() {
+        return String.format(this.skillName + " / Base Power "+this.basePower+" / Master Lv."+this.masteryLevel);
+    }
+
     void printSkillDetail(){
         System.out.println("Skill Name: " + this.skillName);
         System.out.println("Base Power: " + this.basePower);
