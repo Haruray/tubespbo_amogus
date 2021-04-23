@@ -1,4 +1,4 @@
-package java;
+package willywangkyjava;
 
 import java.util.*;
 import java.util.Collections;
@@ -18,6 +18,7 @@ public class Engimon {
     static int totalEngimon = 0;
 
     Engimon(String name, Engimon p1, Engimon p2, Species species, List<Skill> skills, List<Element> elements, int level, int explimit){
+        this.id = totalEngimon+1;
         setName(name);
         setParent(p1,p2);
         setSpecies(species);
@@ -30,6 +31,28 @@ public class Engimon {
         setExpLimit(explimit);
         totalEngimon++;
     }
+
+    @Override
+    public boolean equals(Object o) {
+
+        // If the object is compared with itself then return true
+        if (o == this) {
+            return true;
+        }
+
+        /* Check if o is an instance of Complex or not
+          "null instanceof [type]" also returns false */
+        if (!(o instanceof Engimon)) {
+            return false;
+        }
+
+        // typecast o to Complex so that we can compare data members
+        Engimon e = (Engimon) o;
+
+        // Compare the data members and return accordingly
+        return (id == e.id);
+    }
+
     void setName(String name){
         this.name = name;
     }
@@ -44,8 +67,6 @@ public class Engimon {
         if (this.skills.size() < 4){
             if (!this.hasSkill(skill)){
                 this.skills.add(skill);
-                Collections.sort(this.skills);
-                Collections.reverse(this.skills);
             }
             else{
                 //exception
@@ -170,6 +191,10 @@ public class Engimon {
     }
     void printSkill(){
 
+    }
+    @Override
+    public String toString() {
+        return String.format(this.name+" / "+this.getElements().get(0).getElementName()+" / Lv."+this.getLevel());
     }
 
 }
