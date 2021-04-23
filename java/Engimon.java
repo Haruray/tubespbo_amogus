@@ -1,15 +1,15 @@
 package java;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Collections;
 
 public class Engimon {
     int id;
     String name;
-    ArrayList<Engimon> parents;
+    List<Engimon> parents = new ArrayList<>();
     Species species;
-    ArrayList<Skill> skills;
-    ArrayList<Element> elements;
+    List<Skill> skills = new ArrayList<>();
+    List<Element> elements = new ArrayList<>();
     int level;
     int exp;
     int cumulativeExp;
@@ -17,20 +17,7 @@ public class Engimon {
 
     static int totalEngimon = 0;
 
-    Engimon(){
-        setName("None");
-        setParent(null,null);
-        setSpecies(new Species());
-        addSkill(Skill());
-        addSkill(species.getUniqueSkill());
-        addElement(Element());
-        setLevel(0);
-        setExp(0);
-        setCumulativeExp(0);
-        setExpLimit(0);
-        totalEngimon++;
-    }
-    Engimon(String name, Engimon p1, Engimon p2, Species species, ArrayList<Skill> skills, ArrayList<Element> elements, int level, int explimit){
+    Engimon(String name, Engimon p1, Engimon p2, Species species, List<Skill> skills, List<Element> elements, int level, int explimit){
         setName(name);
         setParent(p1,p2);
         setSpecies(species);
@@ -69,25 +56,26 @@ public class Engimon {
         }
         
     }
-    void addSkill(ArrayList<Skill> arr){
+
+    void addSkill(List<Skill> arr){
         for (Skill skill : arr) {
-            this.skills.addSkill(skill);
+            this.addSkill(skill);
         }
     }
     void addElement(Element E){
         if (!isElement(E))
             this.elements.add(E);
     }
-    void addElement(ArrayList<Element> E){
+    void addElement(List<Element> E){
         for (Element element : E) {
-            this.elements.addElement(element);
+            this.addElement(element);
         }
     }
     void levelUp(){
         this.exp -= 100;
         this.level++;
         System.out.println("\nEngimon Level Up!");
-        System.out.println(this.name + ", current level" + this.level());
+        System.out.println(this.name + ", current level" + this.level);
     }
     void setLevel(int level){
         this.level = level;
@@ -115,19 +103,19 @@ public class Engimon {
     int getId(){
         return this.id;
     }
-    string getName(){
+    String getName(){
         return this.name;
     }
-    ArrayList<Engimon> getParents(){
+    List<Engimon> getParents(){
         return this.parents;
     }
     Species getSpecies(){
         return this.species;
     }
-    ArrayList<Skill> getSkills(){
+    List<Skill> getSkills(){
         return this.skills;
     }
-    ArrayList<Element> getElements(){
+    List<Element> getElements(){
         return this.elements;
     }
     int getLevel(){
