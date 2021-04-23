@@ -1,6 +1,6 @@
 package java;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import javax.lang.model.element.Element;
 
@@ -56,7 +56,7 @@ public class Cell{
                 printElement();
                 break;
             case 4:
-                if (this.type == "Grassland"){
+                if (this.type.equals("Grassland")){
                     System.out.print(" - |");
                 }
                 else{
@@ -69,9 +69,9 @@ public class Cell{
         }
     } //print symbol sesuai peta
     void printElement(){
-        ArrayList<Element> elemen = this.enemy.getElements();
+        List<java.Element> elemen = this.enemy.getElements();
         if (elemen.size() == 1){
-            if (elemen.get(0).getElementName() == "Water"){
+            if (elemen.get(0).getElementName().equals("Water")){
                 if (this.enemy.getLevel() > 3){
                     System.out.print(" W |");
                 }
@@ -79,7 +79,7 @@ public class Cell{
                     System.out.print(" w |");
                 }
             }
-            if (elemen.get(0).getElementName() == "Ice"){
+            if (elemen.get(0).getElementName().equals("Ice")){
                 if (this.enemy.getLevel() > 3){
                     System.out.print(" I |");
                 }
@@ -87,7 +87,7 @@ public class Cell{
                     System.out.print(" i |");
                 }
             }
-            if (elemen.get(0).getElementName() == "Fire"){
+            if (elemen.get(0).getElementName().equals("Fire")){
                 if (this.enemy.getLevel() > 3){
                     System.out.print(" F |");
                 }
@@ -95,7 +95,7 @@ public class Cell{
                     System.out.print(" f |");
                 }
             }
-            if (elemen.get(0).getElementName() == "Ground"){
+            if (elemen.get(0).getElementName().equals("Ground")){
                 if (this.enemy.getLevel() > 3){
                     System.out.print(" G |");
                 }
@@ -103,7 +103,7 @@ public class Cell{
                     System.out.print(" g |");
                 }
             }
-            if (elemen.get(0).getElementName() == "Electric"){
+            if (elemen.get(0).getElementName().equals("Electric")){
                 if (this.enemy.getLevel() > 3){
                     System.out.print(" E |");
                 }
@@ -113,7 +113,7 @@ public class Cell{
             }
         }
         else{
-            if (elemen.get(0).getElementName() == "Fire" && elemen.get(1).getElementName() == "Electric"){
+            if (elemen.get(0).getElementName().equals("Fire") && elemen.get(1).getElementName().equals("Electric")){
                 if (this.enemy.getLevel() > 3){
                     System.out.print(" L |");
                 }
@@ -121,7 +121,7 @@ public class Cell{
                     System.out.print(" l |");
                 }
             }
-            if (elemen.get(0).getElementName() == "Water" && elemen.get(1).getElementName() == "Ice"){
+            if (elemen.get(0).getElementName().equals("Water") && elemen.get(1).getElementName().equals("Ice")){
                 if (this.enemy.getLevel() > 3){
                     System.out.print(" S |");
                 }
@@ -129,7 +129,7 @@ public class Cell{
                     System.out.print(" s |");
                 }
             }
-            if (elemen.get(0).getElementName() == "Water" && elemen.get(1).getElementName() == "Ground"){
+            if (elemen.get(0).getElementName().equals("Water") && elemen.get(1).getElementName().equals("Ground")){
                 if (this.enemy.getLevel() > 3){
                     System.out.print(" N |");
                 }
