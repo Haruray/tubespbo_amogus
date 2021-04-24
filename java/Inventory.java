@@ -39,6 +39,46 @@ public class Inventory<T> extends BaseInventory{
         }
     }
 
+    public void deleteItem(String name){
+        //khusus skill
+        if (this.items.size()>0){
+            if (this.items.get(0) instanceof Skill){
+                int idx=0;
+                for (T item : items){
+                    Skill s = (Skill) item;
+                    if (s.getSkillName().equals(name)){
+                        deleteItem(idx);
+                        break;
+                    }
+                    idx++;
+                }
+            }
+        }
+        else{
+            //exception : inventory is empty
+        }
+    }
+
+    public void deleteItemEngimon(int id){
+        //khusus engimon, berdasarkan id engimon
+        if (this.items.size()>0){
+            if (this.items.get(0) instanceof Engimon){
+                int idx=0;
+                for (T item : items){
+                    Engimon e = (Engimon) item;
+                    if (e.getId()==id){
+                        deleteItem(idx);
+                        break;
+                    }
+                    idx++;
+                }
+            }
+        }
+        else{
+            //exception : inventory is empty
+        }
+    }
+
     public void deleteItem(T item){
         if (this.items.size()>0 ){
             if (this.doesItemExist(item)){
