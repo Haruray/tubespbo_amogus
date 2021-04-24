@@ -1,7 +1,9 @@
-package java;
+package willywangkyjava;
 
 public class Element {
+    final float[][] elmtAdvTable  = {{1,0,1,0.5f,2},{2,1,0,1,1},{1,2,1,0,1.5f},{1.5f,1,2,1,0},{0,1,0.5f,2,1}};
     String elementName;
+    
     Element(){
         setElementName("None");
     }
@@ -18,25 +20,19 @@ public class Element {
         switch (this.elementName) {
             case "Fire":
                 return 0;
-                break;
             case "Water":
                 return 1;
-                break;
             case "Electric":
                 return 2;
-                break;
             case "Ground":
                 return 3;
-                break;
             case "Ice":
                 return 4;
-                break;
             default:
                 return -1;
-                break;
         }
     }
     float elementAdvantage(Element E){
-
+        return elmtAdvTable[elementToNumber()][E.elementToNumber()];
     }
 }
