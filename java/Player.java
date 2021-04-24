@@ -28,10 +28,10 @@ public class Player {
         this.playerName=name;
     }
     void setInventorySkill(Inventory<Skill> is){
-
+        this.skillList.items.addAll(is.items);
     }
     void setInventoryEngimon(Inventory<Engimon> ie){
-
+        this.engimonList.items.addAll(ie.items);
     }
     void setActiveEngimon(Engimon ae){
         this.activeEngimon=ae;
@@ -48,12 +48,12 @@ public class Player {
     String getPlayerName(){
         return this.playerName;
     }
-//    Inventory<Skill> getInventorySkill(){
-//
-//    }
-//    Inventory<Engimon> getInventoryEngimon(){
-//
-//    }
+    Inventory<Skill> getInventorySkill(){
+        return this.skillList;
+    }
+    Inventory<Engimon> getInventoryEngimon(){
+        return this.engimonList;
+    }
     Engimon getActiveEngimon(){
         return this.activeEngimon;
     }
@@ -70,33 +70,43 @@ public class Player {
         return this.activeEngimonPosY;
     }
     void moveUp(){
-
+        this.ActiveEngimonFollow();
+        this.posX--;
     }
     void moveLeft(){
-
+        this.ActiveEngimonFollow();
+        this.posY--;
     }
     void moveRight(){
-
+        this.ActiveEngimonFollow();
+        this.posY++;
     }
     void moveDown(){
-
+        this.ActiveEngimonFollow();
+        this.posX++;
     }
     void ActiveEngimonFollow(){
-
+        this.activeEngimonPosX = this.posX;
+        this.activeEngimonPosY = this.posY;
     }
 
     void showEngimonList(){
-
+        this.getInventoryEngimon().printItems();
     }
     void showEngimonData(Engimon e){
-
+        e.printDetail();
     }
 
     void showSkillList(){
-
+        this.getInventorySkill().printItems();
     }
     void useSkillItem(Skill s, Engimon e){
-
+        if (this.getInventorySkill().doesItemExist(s) && this.getInventoryEngimon().doesItemExist(e)){
+            //learn something
+        }
+        else{
+            //exception : skill or engimon doesn't exist in inventory
+        }
     }
     void skillSelection(Engimon e1, Engimon e2, List<Skill> newSkill, List<Skill> skillList){
 
@@ -106,7 +116,7 @@ public class Player {
     }
 
     void swapActiveEngimon(){
-
+        
     }
     void interactWithActiveEngimon(){
 
