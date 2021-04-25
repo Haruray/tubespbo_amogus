@@ -38,6 +38,13 @@ public class Map {
                 j++;
             } else if (ch == '-') {
                 this.cells[i][j] = new Cell("Grassland");
+                j++;
+            } else if (ch == '^') {
+                this.cells[i][j] = new Cell("Mountains");
+                j++;
+            } else if (ch == 'v') {
+                this.cells[i][j] = new Cell("Tundra");
+                j++;
             }
         }
     }

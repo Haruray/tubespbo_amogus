@@ -55,11 +55,17 @@ public class Cell {
                 printElement();
                 break;
             case 4:
-                if (this.type.equals("Grassland")){
+                if (this.type.equals("Mountains")){
+                    System.out.print(" ^ |");
+                }
+                else if (this.type.equals("Sea")){
+                    System.out.print(" o |");
+                }
+                else if (this.type.equals("Grassland")){
                     System.out.print(" - |");
                 }
                 else{
-                    System.out.print(" o |");
+                    System.out.print(" v |");
                 }
                 break;
             default:

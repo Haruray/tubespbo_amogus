@@ -99,11 +99,17 @@ public class SupplementaryFunctions {
         //koordinat harus valid, cell tipe harus sesuai dengan elemen enemy, dan tidak boleh tabrakan dengan player dan engimonnya
         if (x >= 0 && x < EngimonUniverse.mapsize && y>=0 && y < EngimonUniverse.mapsize) {
             Cell c = EngimonUniverse.map.getCell(x,y);
-            if (c.getType() == "Grassland"){
-                return (e.isElement(EngimonUniverse.Fire) || e.isElement(EngimonUniverse.Ground) || e.isElement(EngimonUniverse.Electric)) && p.getPosX() != x && p.getPosY() != y && p.ActiveX() != x && p.ActiveY() != y && !c.isOccupied();
+            if (c.getType() == "Mountains"){
+                return e.isElement(EngimonUniverse.Fire) && p.getPosX() != x && p.getPosY() != y && p.ActiveX() != x && p.ActiveY() != y && !c.isOccupied();
+            }
+            else if (c.getType() == "Sea"){
+                return e.isElement(EngimonUniverse.Water) && p.getPosX() != x && p.getPosY() != y && p.ActiveX() != x && p.ActiveY() != y && !c.isOccupied();
+            }
+            else if (c.getType() == "Grassland"){
+                return (e.isElement(EngimonUniverse.Ground) || e.isElement(EngimonUniverse.Electric)) && p.getPosX() != x && p.getPosY() != y && p.ActiveX() != x && p.ActiveY() != y && !c.isOccupied();
             }
             else{
-                return (e.isElement(EngimonUniverse.Water) || e.isElement(EngimonUniverse.Ice)) && p.getPosX() != x && p.getPosY() != y && p.ActiveX() != x && p.ActiveY() != y && !c.isOccupied();
+                return e.isElement(EngimonUniverse.Ice) && p.getPosX() != x && p.getPosY() != y && p.ActiveX() != x && p.ActiveY() != y && !c.isOccupied();
             }
         }
         else{
@@ -181,15 +187,32 @@ public class SupplementaryFunctions {
         int x;
         while (!valid && limit < e.size() * 10) {
             x = rand.nextInt(e.size());
-            if (c.getType() == "Grassland") {
-                if (e.get(x).isElement(EngimonUniverse.Fire) || e.get(x).isElement(EngimonUniverse.Ground) || e.get(x).isElement(EngimonUniverse.Electric) && reserved.get(x) == false) {
+            if (c.getType() == "Mountains") {
+                if (e.get(x).isElement(EngimonUniverse.Fire) && reserved.get(x) == false) {
                     valid = true;
                     c.setEnemy(e.get(x));
                     c.setOccupy(true);
                     reserved.set(x, true);
                 }
-            } else {
-                if (e.get(x).isElement(EngimonUniverse.Water) || e.get(x).isElement(EngimonUniverse.Water) && reserved.get(x) == false) {
+            }
+            if (c.getType() == "Sea") {
+                if (e.get(x).isElement(EngimonUniverse.Water) && reserved.get(x) == false) {
+                    valid = true;
+                    c.setEnemy(e.get(x));
+                    c.setOccupy(true);
+                    reserved.set(x, true);
+                }
+            }
+            if (c.getType() == "Grassland") {
+                if ((e.get(x).isElement(EngimonUniverse.Ground) || e.get(x).isElement(EngimonUniverse.Electric)) && reserved.get(x) == false) {
+                    valid = true;
+                    c.setEnemy(e.get(x));
+                    c.setOccupy(true);
+                    reserved.set(x, true);
+                }
+            }
+            else {
+                if (e.get(x).isElement(EngimonUniverse.Ice) && reserved.get(x) == false) {
                     valid = true;
                     c.setEnemy(e.get(x));
                     c.setOccupy(true);
