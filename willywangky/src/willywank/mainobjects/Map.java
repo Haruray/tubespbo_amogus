@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class Map {
     public final int size;
-    Cell[][] cells;
+    public Cell[][] cells;
 
     public Map() {
         this.size = 10;
