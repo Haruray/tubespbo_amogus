@@ -70,7 +70,7 @@ public class Skill {
     int getMasteryLevel(){
         return this.masteryLevel;
     }
-    ArrayList<Element> getElmtReq(){
+    public List<Element> getElmtReq(){
         return getElmtReq();
     }
 

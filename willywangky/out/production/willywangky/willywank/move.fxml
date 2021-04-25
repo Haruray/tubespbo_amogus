@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="willywank.Move">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -17,9 +18,21 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.columnIndex="1" />
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.rowIndex="1" />
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.columnIndex="1">
+         <children>
+            <Button layoutX="54.0" layoutY="75.0" mnemonicParsing="false" onAction="#upClicked" text="Button" />
+         </children></Pane>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.rowIndex="1">
+         <children>
+            <Button layoutX="67.0" layoutY="75.0" mnemonicParsing="false" onAction="#leftClicked" text="Button" />
+         </children></Pane>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <children>
+            <Button layoutX="63.0" layoutY="75.0" mnemonicParsing="false" onAction="#rightClicked" text="Button" />
+         </children></Pane>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <children>
+            <Button layoutX="54.0" layoutY="61.0" mnemonicParsing="false" onAction="#downClicked" text="Button" />
+         </children></Pane>
    </children>
 </GridPane>

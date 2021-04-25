@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -24,14 +26,15 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     //Variable global yang merupakan data player
-    public willywank.mainobjects.Inventory<Engimon> ie = new willywank.mainobjects.Inventory<>();
-    public willywank.mainobjects.Inventory<Skill> is = new willywank.mainobjects.Inventory<>();
+    public static willywank.mainobjects.Inventory<Engimon> ie = new willywank.mainobjects.Inventory<>();
+    public static willywank.mainobjects.Inventory<Skill> is = new willywank.mainobjects.Inventory<>();
     //Bagian ini cuma buat dummy engimon
     public Species s = new Species();
     public Element Fire = new Element("Fire");
+    public Element Water = new Element("Water");
     public List<Skill> ls = new ArrayList<>();
     public List<Element> le= new ArrayList<Element>(){{
-       add(Fire);
+       add(Water);
     }};
     public Engimon e = new Engimon("cock3", null, null, s, ls, le, 10, 10);
     //Dummy engimon created
@@ -44,8 +47,6 @@ public class Controller implements Initializable {
     @FXML
     private GridPane map;
     @FXML
-    private FlowPane container; //buat inventory
-    @FXML
     private Text engimonName;
     @FXML
     private Text health;
@@ -56,13 +57,16 @@ public class Controller implements Initializable {
     //Start game
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("coook");
+        //Info pemain
+        ie.addItem(e);
+        ie.addItem(e);
         try {
             updateData();
         } catch (Exception exception) {
             exception.printStackTrace();
         }
     }
+
     public void updateData() throws Exception{
 
 //        newGame.getScene().getWindow().hide();
@@ -80,10 +84,12 @@ public class Controller implements Initializable {
         //sea warna  #a4ebf3
         //Sekarang, isi dari map di loop dan akan dibuat kotak dengan warna yang sesuai.
         List<Pane> kotakPeta = new ArrayList<>();
+        Image dababy = new Image("file:assets/dababy.png");
         Image grass = new Image("file:assets/tiles-grass.png");
         Image sea = new Image("file:assets/tiles-water.png");
         Image mountain = new Image("file:assets/tiles-mountain.png");
         Image tundra = new Image("file:assets/tiles-ice.png");
+        Image space = new Image("file:assets/tiles-space.png");
         m.generateMap();
 
         for (int i = 0 ; i < m.size ; i++){
@@ -94,13 +100,30 @@ public class Controller implements Initializable {
                     //kalau grassland, sesuaikan warna
                     kotakPeta.get(kotakPeta.size()-1).setStyle("-fx-background-color : #59dd60 ; -fx-border-color : black");
                     //Image harus dicocokin apakah ada entity disana atau tidak ; menyusul
-                    kotakPeta.get(kotakPeta.size()-1).getChildren().add(new ImageView(grass));
+                    if (m.getCell(i,j).isOccupied()){
+                        //gambar musuh
+                    }
+                    else if (p.getPosX()==i && p.getPosY()==j){
+                        kotakPeta.get(kotakPeta.size()-1).getChildren().add(new ImageView(dababy));
+                    }
+                    else{
+                        kotakPeta.get(kotakPeta.size()-1).getChildren().add(new ImageView(grass));
+                    }
+
                 }
                 else{
                     //karena di kodenya masih hanya ada dua jenis, maka percabangannya masih 2. update nanti
                     kotakPeta.get(kotakPeta.size()-1).setStyle("-fx-background-color : #a4ebf3 ; -fx-border-color : black");
                     //Image harus dicocokin apakah ada entity disana atau tidak ; menyusul
-                    kotakPeta.get(kotakPeta.size()-1).getChildren().add(new ImageView(sea));
+                    if (m.getCell(i,j).isOccupied()){
+                        //gambar musuh
+                    }
+                    else if (p.getPosX()==i && p.getPosY()==j){
+                        kotakPeta.get(kotakPeta.size()-1).getChildren().add(new ImageView(dababy));
+                    }
+                    else{
+                        kotakPeta.get(kotakPeta.size()-1).getChildren().add(new ImageView(sea));
+                    }
                 }
                 //Setelah itu, atur kotak ini mau ditampilin di row dan column ke berapa
                 GridPane.setConstraints(kotakPeta.get(kotakPeta.size()-1),j,i);
@@ -114,6 +137,7 @@ public class Controller implements Initializable {
                 if (i > m.size-1 || j>m.size-1){
                     kotakPeta.add(new Pane());
                     kotakPeta.get(kotakPeta.size()-1).setStyle("-fx-background-color : black");
+                    kotakPeta.get(kotakPeta.size()-1).getChildren().add(new ImageView(space));
                     GridPane.setConstraints(kotakPeta.get(kotakPeta.size()-1),j,i);
                     map.getChildren().add(kotakPeta.get(kotakPeta.size()-1));
                 }
@@ -125,12 +149,6 @@ public class Controller implements Initializable {
         health.setText("Health "+p.getActiveEngimon().getHealth()+"/3");
         healthBar.setProgress((float) (p.getActiveEngimon().getHealth() / 3));
         level.setText("Level "+p.getActiveEngimon().getLevel());
-    }
-    public void loadGame(){
-
-    }
-    public void exit(){
-
     }
 
     public void interactButton(){
@@ -147,6 +165,7 @@ public class Controller implements Initializable {
 
     }
     public void fillInventory(){
+        /*
         ie.addItem(e);
         ie.addItem(e);
         List<Pane> kotaks = new ArrayList<>();
@@ -162,24 +181,20 @@ public class Controller implements Initializable {
             }
 
             container.getChildren().add(kotaks.get(kotaks.size()-1));
-        }
-
+        }*/
     }
+
+
     public void moveButton() throws Exception{
         Move.display();
+        changePlayerPos(Move.command);
+        updateData();
     }
-    public void moveUpButton(){
 
+    public void changePlayerPos(String command){
+        SupplementaryFunctions.playerMove(p,m,command);
     }
-    public void moveRightButton(){
 
-    }
-    public void moveLeftButton(){
-
-    }
-    public void moveDownButton(){
-
-    }
     public void battleButton(){
 
     }
@@ -187,7 +202,7 @@ public class Controller implements Initializable {
 
     }
     public void inventoryButton() throws Exception{
-        Inventory.display();
+        Main.getInventoryStage().show();
     }
     public void changeEngimonButton(){
 

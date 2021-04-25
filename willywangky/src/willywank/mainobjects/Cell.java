@@ -32,12 +32,12 @@ public class Cell {
     public String getType(){
         return this.type;
     }
-    Enemy getEnemy(){
+    public Enemy getEnemy(){
         return this.enemy;
     }
 
     //boolean
-    boolean isOccupied(){
+    public boolean isOccupied(){
         return this.occupied;
     }
 

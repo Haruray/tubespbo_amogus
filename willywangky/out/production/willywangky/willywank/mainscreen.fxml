@@ -63,34 +63,34 @@
       </VBox>
    </left>
    <right>
-      <VBox alignment="CENTER" prefHeight="826.0" prefWidth="250.0" spacing="50.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER_RIGHT" prefHeight="826.0" prefWidth="250.0" spacing="50.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#moveButton" prefHeight="50.0" prefWidth="200.0" text="Move">
+            <Button mnemonicParsing="false" onAction="#moveButton" prefHeight="50.0" prefWidth="180.0" text="Move">
                <font>
                   <Font name="Century Gothic" size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#battleButton" prefHeight="50.0" prefWidth="200.0" text="Battle">
+            <Button mnemonicParsing="false" onAction="#battleButton" prefHeight="50.0" prefWidth="180.0" text="Battle">
                <font>
                   <Font name="Century Gothic" size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#inventoryButton" prefHeight="50.0" prefWidth="200.0" text="Show Inventory">
+            <Button mnemonicParsing="false" onAction="#inventoryButton" prefHeight="50.0" prefWidth="180.0" text="Show Inventory">
                <font>
                   <Font name="Century Gothic" size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#changeEngimonButton" prefHeight="50.0" prefWidth="200.0" text="Change Engimon">
+            <Button mnemonicParsing="false" onAction="#changeEngimonButton" prefHeight="50.0" prefWidth="180.0" text="Change Engimon">
                <font>
                   <Font name="Century Gothic" size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#breedButton" prefHeight="50.0" prefWidth="200.0" text="Breed">
+            <Button mnemonicParsing="false" onAction="#breedButton" prefHeight="50.0" prefWidth="180.0" text="Breed">
                <font>
                   <Font name="Century Gothic" size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#useSkillItemButton" prefHeight="50.0" prefWidth="200.0" text="Use Skill Item">
+            <Button mnemonicParsing="false" onAction="#useSkillItemButton" prefHeight="50.0" prefWidth="180.0" text="Use Skill Item">
                <font>
                   <Font name="Century Gothic" size="15.0" />
                </font>
@@ -99,6 +99,9 @@
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
+         <padding>
+            <Insets right="15.0" />
+         </padding>
       </VBox>
    </right>
    <center>

@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import willywank.mainobjects.*;
@@ -11,6 +13,7 @@ import willywank.mainobjects.*;
 public class Main extends Application {
     private static Stage mainStage;
     private static Stage startStage;
+    private static Stage inventoryStage;
     private static Controller controller;
 
     @Override
@@ -21,6 +24,7 @@ public class Main extends Application {
         controller =loader1.getController();
         primaryStage.setTitle("Main Game");
         primaryStage.setScene(new Scene(root, 1600, 900));
+
 //        primaryStage.show();
 //        NewGameNameInput.display();
         Parent root2 = FXMLLoader.load(getClass().getResource("start.fxml"));
@@ -28,6 +32,12 @@ public class Main extends Application {
         startStage.setTitle("Start");
         startStage.setScene(new Scene(root2, 1600, 900));
         startStage.show();
+        //Inventory Window
+        Parent root3 = FXMLLoader.load(getClass().getResource("inventory.fxml"));
+        inventoryStage = new Stage();
+        inventoryStage.setTitle("Start");
+        inventoryStage.initModality(Modality.APPLICATION_MODAL);
+        inventoryStage.setScene(new Scene(root3, 800, 800));
     }
 
     public static Stage getMainScreen(){
@@ -35,6 +45,9 @@ public class Main extends Application {
     }
     public static Stage getStartScreen(){
         return startStage;
+    }
+    public static Stage getInventoryStage(){
+        return inventoryStage;
     }
     public static Controller getMainController(){
         return controller;
