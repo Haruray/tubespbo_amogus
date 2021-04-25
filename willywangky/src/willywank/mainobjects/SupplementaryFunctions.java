@@ -222,4 +222,28 @@ public class SupplementaryFunctions {
             }
         }
     }
+
+    public static void winReward(Player p, Enemy e){
+        System.out.println("You won!!");
+        System.out.println("Rewards\t:");
+
+        Engimon reward = new Engimon(e.getName(),e.getParents().get(0), e.getParents().get(1), e.getSpecies(), e.getSkills(), e.getElements(), e.getLevel(), e.getCumExpLimit());
+        try {
+            p.getInventoryEngimon().addItem(reward);
+            System.out.println("- New Engimon!! "+ reward.getName() +", a " + reward.getSpecies().getSpeciesName());
+            System.out.println("- New Skill item!! " + e.getSkills().get(0).getSkillName());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            //TODO: handle exception
+        }
+        float ourPower = p.getActiveEngimon().getLevel() * getHighestAdvantage(p.getActiveEngimon().getElements() , e.getElements()) + sumSkillLevelAndPower(p.getActiveEngimon().getSkills());
+        float enemyPower = p.getActiveEngimon().getLevel() * getHighestAdvantage(e.getElements() , p.getActiveEngimon().getElements()) + sumSkillLevelAndPower(e.getSkills());
+        int expGained = (int)(((ourPower - enemyPower) / ourPower)*100);
+        p.getActiveEngimon().addExp((200+expGained)*2);
+
+        // aku ga ketemu array enemies, mungkin bsia bantu
+        // for (int i = 0 ; i < enemies.size() ; i++){
+        //     enemies[i].addExp(400);
+        // }
+    }
 }
