@@ -30,18 +30,18 @@
             </Pane>
             <Pane prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: #d75f8f; -fx-background-radius: 20;">
                <children>
-                  <Text layoutX="32.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Engimon" wrappingWidth="205.60334014892578">
+                  <Text fx:id="engimonName" layoutX="32.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Engimon" wrappingWidth="205.60334014892578">
                      <font>
                         <Font name="Century Gothic" size="20.0" />
                      </font>
                   </Text>
-                  <Text layoutX="240.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level XX">
+                  <Text fx:id="level" layoutX="240.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level XX">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Text>
-                  <ProgressBar layoutX="64.0" layoutY="36.0" prefWidth="200.0" progress="0.52" />
-                  <Text layoutX="123.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Health : X/X">
+                  <ProgressBar fx:id="healthBar" layoutX="64.0" layoutY="36.0" prefWidth="200.0" progress="0.52" />
+                  <Text fx:id="health" layoutX="123.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Health : X/X">
                      <font>
                         <Font name="Century Gothic" size="14.0" />
                      </font>

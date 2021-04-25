@@ -2,9 +2,11 @@ package willywank;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -14,10 +16,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import willywank.mainobjects.*;
 
+import javax.print.DocFlavor;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class Controller {
+public class Controller implements Initializable {
     //Variable global yang merupakan data player
     public willywank.mainobjects.Inventory<Engimon> ie = new willywank.mainobjects.Inventory<>();
     public willywank.mainobjects.Inventory<Skill> is = new willywank.mainobjects.Inventory<>();
@@ -32,26 +37,42 @@ public class Controller {
     //Dummy engimon created
     public Player p = new Player("cock",is,ie,e,0,0); //player info
     public Map m = new Map();
+
     //Dibawah ini adalah variable dari gui
     @FXML
     private Text playerName;
     @FXML
     private GridPane map;
     @FXML
-    private FlowPane container;
+    private FlowPane container; //buat inventory
+    @FXML
+    private Text engimonName;
+    @FXML
+    private Text health;
+    @FXML
+    private ProgressBar healthBar;
+    @FXML
+    private Text level;
     //Start game
-    @FXML
-    private Button newGame;
-    @FXML
-    private Button loadGame;
-    public void newGame() throws Exception{
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("coook");
+        try {
+            updateData();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+    public void updateData() throws Exception{
+
+//        newGame.getScene().getWindow().hide();
         //Ini adalah controller new game
         //Fungsinya ngebuat window baru yang tampilannya dari mainscreen.fxml
-        Parent root = FXMLLoader.load(Move.class.getResource("mainscreen.fxml"));
-        Stage window = new Stage();
-        window.setTitle("Game");
-        window.setScene(new Scene(root, 1600, 900));
-        newGame.getScene().getWindow().hide(); //Menyembunyikan window sebelumnya
+//        Parent root = FXMLLoader.load(Move.class.getResource("mainscreen.fxml"));
+//        Stage window = new Stage();
+//        window.setTitle("Game");
+//        window.setScene(new Scene(root, 1600, 900));
+//        newGame.getScene().getWindow().hide(); //Menyembunyikan window sebelumnya
         //Setelah ini, ngesetup peta
         //greenland warna  #59dd60
         //mountains warna  #709fb0
@@ -59,17 +80,27 @@ public class Controller {
         //sea warna  #a4ebf3
         //Sekarang, isi dari map di loop dan akan dibuat kotak dengan warna yang sesuai.
         List<Pane> kotakPeta = new ArrayList<>();
+        Image grass = new Image("file:assets/tiles-grass.png");
+        Image sea = new Image("file:assets/tiles-water.png");
+        Image mountain = new Image("file:assets/tiles-mountain.png");
+        Image tundra = new Image("file:assets/tiles-ice.png");
+        m.generateMap();
+
         for (int i = 0 ; i < m.size ; i++){
             for (int j = 0 ; j < m.size ; j++){
                 //ngebuat "Pane" (pane adalah kotak) di list kotakPeta
                 kotakPeta.add(new Pane());
                 if (m.getCell(i,j).getType().equals("Grassland")){
                     //kalau grassland, sesuaikan warna
-                    kotakPeta.get(kotakPeta.size()-1).setStyle("-fx-background-color : #59dd60");
+                    kotakPeta.get(kotakPeta.size()-1).setStyle("-fx-background-color : #59dd60 ; -fx-border-color : black");
+                    //Image harus dicocokin apakah ada entity disana atau tidak ; menyusul
+                    kotakPeta.get(kotakPeta.size()-1).getChildren().add(new ImageView(grass));
                 }
                 else{
                     //karena di kodenya masih hanya ada dua jenis, maka percabangannya masih 2. update nanti
-                    kotakPeta.get(kotakPeta.size()-1).setStyle("-fx-background-color : #a4ebf3");
+                    kotakPeta.get(kotakPeta.size()-1).setStyle("-fx-background-color : #a4ebf3 ; -fx-border-color : black");
+                    //Image harus dicocokin apakah ada entity disana atau tidak ; menyusul
+                    kotakPeta.get(kotakPeta.size()-1).getChildren().add(new ImageView(sea));
                 }
                 //Setelah itu, atur kotak ini mau ditampilin di row dan column ke berapa
                 GridPane.setConstraints(kotakPeta.get(kotakPeta.size()-1),j,i);
@@ -77,7 +108,23 @@ public class Controller {
                 map.getChildren().add(kotakPeta.get(kotakPeta.size()-1));
             }
         }
-        window.show();
+        //Set tiles selain ukuran peta menjadi hitam
+        for (int i =0 ; i < 24 ; i++){
+            for (int j = 0 ; j < 24 ; j++){
+                if (i > m.size-1 || j>m.size-1){
+                    kotakPeta.add(new Pane());
+                    kotakPeta.get(kotakPeta.size()-1).setStyle("-fx-background-color : black");
+                    GridPane.setConstraints(kotakPeta.get(kotakPeta.size()-1),j,i);
+                    map.getChildren().add(kotakPeta.get(kotakPeta.size()-1));
+                }
+            }
+        }
+        //Set Informasi Pemain di layar utama
+        playerName.setText("Player : "+p.getPlayerName());
+        engimonName.setText(p.getActiveEngimon().getName());
+        health.setText("Health "+p.getActiveEngimon().getHealth()+"/3");
+        healthBar.setProgress((float) (p.getActiveEngimon().getHealth() / 3));
+        level.setText("Level "+p.getActiveEngimon().getLevel());
     }
     public void loadGame(){
 
@@ -97,6 +144,7 @@ public class Controller {
         GridPane.setConstraints(kotak,0,0);
         map.getChildren().addAll(kotak);
          */
+
     }
     public void fillInventory(){
         ie.addItem(e);
@@ -150,4 +198,6 @@ public class Controller {
     public void useSkillItemButton(){
 
     }
+
+
 }

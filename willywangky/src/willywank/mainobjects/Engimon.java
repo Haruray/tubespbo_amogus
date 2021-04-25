@@ -14,6 +14,7 @@ public class Engimon {
     int exp;
     int cumulativeExp;
     int explimit;
+    int health;
 
     static int totalEngimon = 0;
 
@@ -29,6 +30,7 @@ public class Engimon {
         setExp(0);
         setCumulativeExp(getLevel()*100 - 100);
         setExpLimit(explimit);
+        this.health = 3;
         totalEngimon++;
     }
 
@@ -63,7 +65,7 @@ public class Engimon {
     void setSpecies(Species species){
         this.species = species;
     }
-    void addSkill(Skill skill){
+    public void addSkill(Skill skill){
         if (this.skills.size() < 4){
             if (!this.hasSkill(skill)){
                 this.skills.add(skill);
@@ -78,16 +80,16 @@ public class Engimon {
 
     }
 
-    void addSkill(List<Skill> arr){
+    public void addSkill(List<Skill> arr){
         for (Skill skill : arr) {
             this.addSkill(skill);
         }
     }
-    void addElement(Element E){
+    public void addElement(Element E){
         if (!isElement(E))
             this.elements.add(E);
     }
-    void addElement(List<Element> E){
+    public void addElement(List<Element> E){
         for (Element element : E) {
             this.addElement(element);
         }
@@ -102,7 +104,7 @@ public class Engimon {
         this.level = level;
         setCumulativeExp(this.level*100 - 100);
     }
-    void addExp(int exp){
+    public void addExp(int exp){
         this.exp += exp;
         this.cumulativeExp +=exp;
         while (lvlUpEligibility()){
@@ -121,36 +123,37 @@ public class Engimon {
     void setExpLimit(int lim){
         this.explimit = lim;
     }
-    int getId(){
+    public int getId(){
         return this.id;
     }
-    String getName(){
+    public String getName(){
         return this.name;
     }
-    List<Engimon> getParents(){
+    public List<Engimon> getParents(){
         return this.parents;
     }
-    Species getSpecies(){
+    public Species getSpecies(){
         return this.species;
     }
-    List<Skill> getSkills(){
+    public List<Skill> getSkills(){
         return this.skills;
     }
     public List<Element> getElements(){
         return this.elements;
     }
-    int getLevel(){
+    public int getLevel(){
         return this.level;
     }
-    int getExp(){
+    public int getExp(){
         return this.exp;
     }
-    int getCumulativeExp(){
+    public int getCumulativeExp(){
         return this.cumulativeExp;
     }
-    int getCumExpLimit(){
+    public int getCumExpLimit(){
         return this.explimit;
     }
+    public int getHealth(){return this.health;}
     Skill getHighestMasteryLevel(){
         Skill maxSkill = this.skills.get(0);
         int max = maxSkill.getMasteryLevel();
@@ -165,13 +168,13 @@ public class Engimon {
     Boolean lvlUpEligibility(){
         return this.exp >= 100;
     } //refer to spek 1.c
-    Boolean isDead(){
+    public Boolean isDead(){
         return getCumulativeExp() >= getCumExpLimit();
     } //refer to spek 1.d
-    Boolean isElement(Element E){
+    public Boolean isElement(Element E){
         return this.elements.contains(E);
     } //apakah engimon berelemen x
-    Boolean hasSkill(Skill S){
+    public Boolean hasSkill(Skill S){
         return this.skills.contains(S);
     } //apakah engimon punya skill x
 

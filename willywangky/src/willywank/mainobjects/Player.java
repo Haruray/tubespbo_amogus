@@ -57,44 +57,44 @@ public class Player {
     public String getPlayerName(){
         return this.playerName;
     }
-    Inventory<Skill> getInventorySkill(){
+    public Inventory<Skill> getInventorySkill(){
         return this.skillList;
     }
-    Inventory<Engimon> getInventoryEngimon(){
+    public Inventory<Engimon> getInventoryEngimon(){
         return this.engimonList;
     }
-    Engimon getActiveEngimon(){
+    public Engimon getActiveEngimon(){
         return this.activeEngimon;
     }
-    int getPosX(){
+    public int getPosX(){
         return this.posX;
     }
-    int getPosY(){
+    public int getPosY(){
         return this.posY;
     }
-    int ActiveX(){
+    public int ActiveX(){
         return this.activeEngimonPosX;
     }
-    int ActiveY(){
+    public int ActiveY(){
         return this.activeEngimonPosY;
     }
-    void moveUp(){
+    public void moveUp(){
         this.ActiveEngimonFollow();
         this.posX--;
     }
-    void moveLeft(){
+    public void moveLeft(){
         this.ActiveEngimonFollow();
         this.posY--;
     }
-    void moveRight(){
+    public void moveRight(){
         this.ActiveEngimonFollow();
         this.posY++;
     }
-    void moveDown(){
+    public void moveDown(){
         this.ActiveEngimonFollow();
         this.posX++;
     }
-    void ActiveEngimonFollow(){
+    public void ActiveEngimonFollow(){
         this.activeEngimonPosX = this.posX;
         this.activeEngimonPosY = this.posY;
     }
@@ -109,7 +109,7 @@ public class Player {
     void showSkillList(){
         this.getInventorySkill().printItems();
     }
-    void useSkillItem(Skill s, Engimon e){
+    public void useSkillItem(Skill s, Engimon e){
         if (this.getInventorySkill().doesItemExist(s) && this.getInventoryEngimon().doesItemExist(e)){
             //learn something
         }
