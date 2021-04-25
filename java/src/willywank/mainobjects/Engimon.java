@@ -1,7 +1,7 @@
-package willywangkyjava;
+package willywank.mainobjects;
 
-import java.util.*;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Engimon {
     int id;
@@ -17,7 +17,7 @@ public class Engimon {
 
     static int totalEngimon = 0;
 
-    Engimon(String name, Engimon p1, Engimon p2, Species species, List<Skill> skills, List<Element> elements, int level, int explimit){
+    public Engimon(String name, Engimon p1, Engimon p2, Species species, List<Skill> skills, List<Element> elements, int level, int explimit){
         this.id = totalEngimon+1;
         setName(name);
         setParent(p1,p2);
@@ -75,7 +75,7 @@ public class Engimon {
         else{
             //exception
         }
-        
+
     }
 
     void addSkill(List<Skill> arr){
@@ -136,7 +136,7 @@ public class Engimon {
     List<Skill> getSkills(){
         return this.skills;
     }
-    List<Element> getElements(){
+    public List<Element> getElements(){
         return this.elements;
     }
     int getLevel(){
@@ -170,11 +170,11 @@ public class Engimon {
     } //refer to spek 1.d
     Boolean isElement(Element E){
         return this.elements.contains(E);
-    } //apakah engimon berelemen x 
+    } //apakah engimon berelemen x
     Boolean hasSkill(Skill S){
         return this.skills.contains(S);
     } //apakah engimon punya skill x
-    
+
     //delete
     void replaceSkill(Skill S){
 
@@ -196,6 +196,4 @@ public class Engimon {
     public String toString() {
         return String.format(this.name+" / "+this.getElements().get(0).getElementName()+" / Lv."+this.getLevel());
     }
-
 }
-

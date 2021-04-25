@@ -1,10 +1,12 @@
-package willywangkyjava;
+package willywank.mainobjects;
 
-import java.util.List;
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Map {
-    final int size;
+    public final int size;
     Cell[][] cells;
 
     public Map() {
@@ -17,11 +19,11 @@ public class Map {
         this.cells = new Cell[this.size][this.size];
     }
 
-    void setCell(Cell c, int x, int y) {
+    public void setCell(Cell c, int x, int y) {
         this.cells[x][y] = c;
     }
 
-    void generateMapFromFile() throws FileNotFoundException, IOException {
+    public void generateMapFromFile() throws FileNotFoundException, IOException {
         File file = new File("Map.txt");
         FileReader fr = new FileReader(file);
         int c;
@@ -40,7 +42,7 @@ public class Map {
         }
     }
 
-    void generateMap() {
+    public void generateMap() {
         for (int i = 0; i < this.size; i++) {
             for (int j = 0; j < this.size; j++) {
                 if (i <= 2 || i >= 8 || j <= 2 || j >= 8){
@@ -53,7 +55,7 @@ public class Map {
         }
     }
 
-    Cell getCell(int x, int y) {
+    public Cell getCell(int x, int y) {
         if ((x >= 0 && x < this.size) && (y >= 0 || y < this.size)) {
             return this.cells[x][y];
         } else {
@@ -61,10 +63,10 @@ public class Map {
         }
     }
 
-    void printMap(Player P) {
+    public void printMap(Player P) {
         for (int i = 0; i < this.size; i++) {
             for (int j = 0; j < this.size; j++) {
-                
+
                 if (P.getPosX() == i && P.getPosY() == j){
                     this.cells[i][j].printSymbol(1);
 

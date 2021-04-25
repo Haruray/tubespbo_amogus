@@ -1,5 +1,4 @@
-package java;
+package willywank.mainobjects;
 
 public class SupplementaryFunctions {
-    
 }

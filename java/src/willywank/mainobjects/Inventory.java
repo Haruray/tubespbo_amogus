@@ -1,7 +1,6 @@
-package willywangkyjava;
+package willywank.mainobjects;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 abstract class BaseInventory{
     static int maxCap = 30;
@@ -139,5 +138,12 @@ public class Inventory<T> extends BaseInventory{
                 System.out.println(currentQty);
             }
         }
+    }
+    public int getSize(){
+        return this.items.size();
+    }
+
+    public List<T> getItems(){
+        return this.items;
     }
 }

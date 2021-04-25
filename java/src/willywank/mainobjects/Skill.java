@@ -1,5 +1,7 @@
-package willywangkyjava;
-import java.util.*;
+package willywank.mainobjects;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Skill {
     final int masteryLimit = 3;
@@ -88,34 +90,3 @@ public class Skill {
         System.out.println(this.elmtReq.get(this.elmtReq.size()-1));
     }
 }
-
-// class Skill{
-//     protected:
-//         string skillName;
-//         int basePower;
-//         int masteryLevel;
-//         vector<Element> elmtReq;
-//     public:
-//         Skill(); //ctor
-//         Skill(string, int,int, vector<Element>); //ctor with arguments
-//         Skill(const Skill&);
-//         ~Skill();
-
-//         //operator overload
-//         bool operator<(const Skill&) const;
-//         bool operator>(const Skill&) const;
-
-//         //setter
-//         void setSkillName(string);
-//         void setBasePower(int);
-//         void setMasteryLevel(int);
-//         void setElmtReq(vector<Element>);
-
-//         //getter
-//         string getSkillName();
-//         int getBasePower();
-//         int getMasteryLevel();
-//         vector<Element> getElmtReq();
-
-//         void printSkillDetail();
-// };

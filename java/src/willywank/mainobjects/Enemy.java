@@ -1,14 +1,12 @@
-package willywangkyjava;
+package willywank.mainobjects;
 
-import java.util.*;
+import java.util.List;
 
-import javax.lang.model.element.Element;
-
-public class Enemy extends Engimon{
+public class Enemy extends Engimon {
     int posX;
     int posY;
 
-    Enemy(String name, Engimon p1, Engimon p2, Species species, List<Skill> skills, List<willywangkyjava.Element> elements, int level, int explimit, int x, int y){
+    Enemy(String name, Engimon p1, Engimon p2, Species species, List<Skill> skills, List<Element> elements, int level, int explimit, int x, int y){
         super(name, p1, p2, species, skills, elements, level, explimit);
         setPosX(x);
         setPosY(y);

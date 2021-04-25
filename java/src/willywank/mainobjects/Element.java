@@ -1,19 +1,19 @@
-package willywangkyjava;
+package willywank.mainobjects;
 
 public class Element {
     final float[][] elmtAdvTable  = {{1,0,1,0.5f,2},{2,1,0,1,1},{1,2,1,0,1.5f},{1.5f,1,2,1,0},{0,1,0.5f,2,1}};
     String elementName;
-    
-    Element(){
+
+    public Element(){
         setElementName("None");
     }
-    Element(String name){
+    public Element(String name){
         setElementName(name);
     }
     void setElementName(String name){
         this.elementName = name;
     }
-    String getElementName(){
+    public String getElementName(){
         return this.elementName;
     }
     int elementToNumber(){

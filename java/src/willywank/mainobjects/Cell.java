@@ -1,10 +1,9 @@
-package willywangkyjava;
-
-import java.util.*;
+package willywank.mainobjects;
 
 import javax.lang.model.element.Element;
+import java.util.*;
 
-public class Cell{
+public class Cell {
     String type;
     boolean occupied;
     Enemy enemy;
@@ -30,7 +29,7 @@ public class Cell{
     }
 
     //getter
-    String getType(){
+    public String getType(){
         return this.type;
     }
     Enemy getEnemy(){
@@ -69,7 +68,7 @@ public class Cell{
         }
     } //print symbol sesuai peta
     void printElement(){
-        List<willywangkyjava.Element> elemen = this.enemy.getElements();
+        List<willywank.mainobjects.Element> elemen = this.enemy.getElements();
         if (elemen.size() == 1){
             if (elemen.get(0).getElementName().equals("Water")){
                 if (this.enemy.getLevel() > 3){

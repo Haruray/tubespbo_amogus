@@ -1,8 +1,6 @@
-package willywangkyjava;
-
+package willywank.mainobjects;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Player {
@@ -15,7 +13,18 @@ public class Player {
     int activeEngimonPosX;
     int activeEngimonPosY;
 
-    Player(String name, Inventory<Skill> is, Inventory<Engimon> ie, Engimon ae, int x, int y){
+//    public Player(){
+//        this.setPlayerName("tes");
+//        Species s = new Species();
+//        Element Fire = new Element("Fire");
+//        List<Skill> ls = new ArrayList<>();
+//        List<Element> le= new ArrayList<>();
+//        Engimon e2 = new Engimon("cock2", null, null, s, ls, le, 10, 10);
+//        this.setActiveEngimon(e2);
+//        this.setPosition(0,0); //starting position nanti bisa dirubah
+//        this.setActiveEngPos(1, 0);
+//    }
+    public Player(String name, Inventory<Skill> is, Inventory<Engimon> ie, Engimon ae, int x, int y){
         this.setPlayerName(name);
         this.setInventorySkill(is);
         this.setInventoryEngimon(ie);
@@ -45,7 +54,7 @@ public class Player {
         this.activeEngimonPosY=y;
     }
 
-    String getPlayerName(){
+    public String getPlayerName(){
         return this.playerName;
     }
     Inventory<Skill> getInventorySkill(){
@@ -116,10 +125,9 @@ public class Player {
     }
 
     void swapActiveEngimon(){
-        
+
     }
     void interactWithActiveEngimon(){
 
     }
-
 }
