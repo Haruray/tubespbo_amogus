@@ -25,7 +25,7 @@ public class Inventory<T extends Comparable<T>> extends BaseInventory{
         }
     };
 
-    public void addItem(T item){
+    public void addItem(T item) throws InventoryFullExc {
         if (!this.isFull()){
             this.items.add(item);
             if (this.items.get(0) instanceof Engimon) {
@@ -36,7 +36,7 @@ public class Inventory<T extends Comparable<T>> extends BaseInventory{
             currentCap++;
         }
         else{
-            //exception : inventory is full
+            throw new InventoryFullExc();
         }
     }
     public boolean isFull(){
@@ -47,17 +47,17 @@ public class Inventory<T extends Comparable<T>> extends BaseInventory{
         return this.items.stream().anyMatch(i->i.equals(item));
     }
 
-    public void deleteItem(int idx) throws InventoryException{
+    public void deleteItem(int idx) throws InventoryEmptyException{
         if (this.items.size()>0){
             this.items.remove(idx);
             currentCap--;
         }
         else{
-            throw new InventoryException();
+            throw new InventoryEmptyException();
         }
     }
 
-    public void deleteItem(String name) throws InventoryException{
+    public void deleteItem(String name) throws InventoryEmptyException{
         //khusus skill
         if (this.items.size()>0){
             if (this.items.get(0) instanceof Skill){
@@ -73,11 +73,11 @@ public class Inventory<T extends Comparable<T>> extends BaseInventory{
             }
         }
         else{
-            throw new InventoryException();
+            throw new InventoryEmptyException();
         }
     }
 
-    public void deleteItemEngimon(int id) throws InventoryException{
+    public void deleteItemEngimon(int id) throws InventoryEmptyException{
         //khusus engimon, berdasarkan id engimon
         if (this.items.size()>0){
             if (this.items.get(0) instanceof Engimon){
@@ -93,7 +93,7 @@ public class Inventory<T extends Comparable<T>> extends BaseInventory{
             }
         }
         else{
-            throw new InventoryException();
+            throw new InventoryEmptyException();
         }
     }
 
@@ -128,7 +128,7 @@ public class Inventory<T extends Comparable<T>> extends BaseInventory{
         }
     }
 
-    public void deleteItem(T item) throws ItemException, InventoryException{
+    public void deleteItem(T item) throws ItemException, InventoryEmptyException{
         if (this.items.size()>0 ){
             if (this.doesItemExist(item)){
                 this.items.remove(item);
@@ -139,7 +139,7 @@ public class Inventory<T extends Comparable<T>> extends BaseInventory{
             }
         }
         else{
-            throw new InventoryException();
+            throw new InventoryEmptyException();
         }
     }
 

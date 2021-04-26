@@ -257,7 +257,11 @@ public class Player {
         }
         //Untuk sementara engga ada random
         Engimon newEngimon = new Engimon(newname, e1, e2, newspecies, newskill, newelement, 1, 10000);
-        this.getInventoryEngimon().addItem(newEngimon);
+        try {
+            this.getInventoryEngimon().addItem(newEngimon);
+        } catch (InventoryFullExc e) {
+            e.showErrors();
+        }
 
     }
 
