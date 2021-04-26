@@ -3,7 +3,7 @@ package willywank.mainobjects;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Engimon {
+public class Engimon implements Comparable<Engimon> {
     int id;
     String name;
     List<Engimon> parents = new ArrayList<>();
@@ -61,6 +61,21 @@ public class Engimon {
 
         // Compare the data members and return accordingly
         return (id == e.id);
+    }
+
+    @Override
+    public int compareTo(Engimon e) {
+
+        if (this.elements.get(0).elementToNumber() == e.getElements().get(0).elementToNumber()) {
+            return 0;
+        }
+        if (this.elements.get(0).elementToNumber() < e.getElements().get(0).elementToNumber()) {
+            return -1;
+        }
+        if (this.elements.get(0).elementToNumber() > e.getElements().get(0).elementToNumber()) {
+            return 1;
+        }
+        return 0;
     }
 
     void setName(String name){

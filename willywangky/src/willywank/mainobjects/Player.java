@@ -116,18 +116,13 @@ public class Player {
         return false;
     }
 
-    void skillSelection(Engimon e1, Engimon e2, List<Skill> newSkill, List<Skill> skillList){
+    void skillSelection(Engimon e1, Engimon e2, List<Skill> newSkill, List<Skill> skillList) throws MasteryException{
         for (int i = 0; i < e1.getSkills().size() ; i++){
             if (e1.getSkills().get(i).getMasteryLevel() >= e2.getSkills().get(i).getMasteryLevel()){ //mastery skill parent 1 paling besar
                 if (e1.getSkills().get(i).getSkillName().equals(e2.getSkills().get(i).getSkillName())  && e1.getSkills().get(i).getMasteryLevel() == e2.getSkills().get(i).getMasteryLevel()){
                     //jika punya skill sama dan mastery level sama, maka mastery level anaknya adalah mastery level parent 1 +1
                     newSkill.add(e1.getSkills().get(i));
-                    try {
-                        newSkill.get(newSkill.size()-1).setMasteryLevel(newSkill.get(newSkill.size()-1).getMasteryLevel()+1);
-                    } catch (MasteryException e) {
-                        // TODO Auto-generated catch block
-                        e.showErrors();
-                    }
+                    newSkill.get(newSkill.size()-1).setMasteryLevel(newSkill.get(newSkill.size()-1).getMasteryLevel()+1);
                 }
                 else if (e1.getSkills().get(i).getSkillName().equals(e2.getSkills().get(i).getSkillName())  && e1.getSkills().get(i).getMasteryLevel() != e2.getSkills().get(i).getMasteryLevel()){
                     //jika skill sama tapi mastery level berbeda, maka diambil mastery level yg terbesar
@@ -235,11 +230,21 @@ public class Player {
         //Disini algoritma sorting ; nanti
         if (e1.getSkills().size() <= e2.getSkills().size()){
             //kalau jumlah skill e1 lebih kecil sama dengan jumlah skill e2, maka loop dibawah ini dilakukan
-            this.skillSelection(e1,e2,newskill,skillList);
+            try {
+                this.skillSelection(e1,e2,newskill,skillList);
+            } catch (MasteryException e) {
+                // TODO Auto-generated catch block
+                e.showErrors();;
+            }
         }
         else{
             //kalau jumlah skill e2 jauh lebih kecil, maka dilakukan sebaliknya
-            this.skillSelection(e2,e1,newskill,skillList);
+            try {
+                this.skillSelection(e2,e1,newskill,skillList);
+            } catch (MasteryException e) {
+                // TODO Auto-generated catch block
+                e.showErrors();
+            }
         }
 
         newelement.addAll(getMostAdvantageousElmt(e1.getElements(),e2.getElements()));
@@ -254,7 +259,6 @@ public class Player {
         try {
             this.getInventoryEngimon().addItem(newEngimon);
         } catch (InventoryFullExc e) {
-            // TODO Auto-generated catch block
             e.showErrors();
         }
 

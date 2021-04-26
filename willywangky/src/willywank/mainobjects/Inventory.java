@@ -13,13 +13,26 @@ abstract class BaseInventory{
     }
 }
 
-public class Inventory<T> extends BaseInventory{
+public class Inventory<T extends Comparable<T>> extends BaseInventory{
     List<T> items = new ArrayList<>();
     public Inventory(){
     }
-    public void addItem(T item) throws InventoryFullExc{
+
+    Comparator<T> customComparator = new Comparator<T>() {
+        @Override
+        public int compare(T i1, T i2) {
+            return i1.compareTo(i2);
+        }
+    };
+
+    public void addItem(T item) throws InventoryFullExc {
         if (!this.isFull()){
             this.items.add(item);
+            if (this.items.get(0) instanceof Engimon) {
+                Collections.sort(this.items, customComparator.reversed());
+            } else if (this.items.get(0) instanceof Skill) {
+                Collections.sort(this.items, customComparator.reversed());
+            }
             currentCap++;
         }
         else{
