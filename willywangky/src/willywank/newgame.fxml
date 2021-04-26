@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" styleClass="background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="600.0" prefWidth="630.0" style="-fx-background-color: rgba(0, 100, 100, 0.3);" stylesheets="@css/style.css" BorderPane.alignment="CENTER">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+               <font>
+                  <Font name="Century Gothic Bold" size="24.0" />
+               </font>
+            </Text>
+            <TextField maxWidth="600.0" prefHeight="25.0" prefWidth="282.0">
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Starter Engimon">
+               <font>
+                  <Font name="Century Gothic Bold Italic" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Text>
+            <HBox alignment="TOP_CENTER" prefHeight="300.0" prefWidth="600.0" style="-fx-border-color: #ebfebf; -fx-border-image-width: 4px, 0px, 0px, 0px;;">
+               <children>
+                  <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="431.0" prefWidth="200.0" style="-fx-background-color: #e4fbff;">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <Pane prefHeight="80.0" prefWidth="80.0" styleClass="JackFrost" stylesheets="@css/style.css">
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </Pane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Jack Frost">
+                           <font>
+                              <Font name="Century Gothic Bold Italic" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Species : Bufumon">
+                           <font>
+                              <Font name="Century Gothic" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Skill : Bufu">
+                           <font>
+                              <Font name="Century Gothic" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Element : Ice">
+                           <font>
+                              <Font name="Century Gothic" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Level 2">
+                           <font>
+                              <Font name="Century Gothic" size="14.0" />
+                           </font>
+                        </Text>
+                        <RadioButton mnemonicParsing="false" text="Select">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="StarterEngimon" />
+                           </toggleGroup>
+                        </RadioButton>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="329.0" prefWidth="200.0" style="-fx-background-color: #964B00;">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <Pane prefHeight="80.0" prefWidth="80.0" styleClass="Dababy" stylesheets="@css/style.css">
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </Pane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dababy">
+                           <font>
+                              <Font name="Century Gothic Bold Italic" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Species : Golem">
+                           <font>
+                              <Font name="Century Gothic" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Skill : Rock">
+                           <font>
+                              <Font name="Century Gothic" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Element : Ground">
+                           <font>
+                              <Font name="Century Gothic" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Level 2">
+                           <font>
+                              <Font name="Century Gothic" size="14.0" />
+                           </font>
+                        </Text>
+                        <RadioButton mnemonicParsing="false" text="Select" toggleGroup="$StarterEngimon">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </RadioButton>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #a4ebf3;">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <Pane prefHeight="80.0" prefWidth="80.0" styleClass="Waluigi" stylesheets="@css/style.css">
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </Pane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Walugi">
+                           <font>
+                              <Font name="Century Gothic Bold Italic" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Species : Koikingu">
+                           <font>
+                              <Font name="Century Gothic" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Skill : Waterfall">
+                           <font>
+                              <Font name="Century Gothic" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Element : Water">
+                           <font>
+                              <Font name="Century Gothic" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Level 2">
+                           <font>
+                              <Font name="Century Gothic" size="14.0" />
+                           </font>
+                        </Text>
+                        <RadioButton mnemonicParsing="false" text="Select" toggleGroup="$StarterEngimon">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </RadioButton>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="141.0" style="-fx-background-color: #dadced;" text="Start">
+               <font>
+                  <Font name="Century Gothic Bold Italic" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <top>
+      <Pane prefHeight="150.0" prefWidth="1600.0" BorderPane.alignment="CENTER" />
+   </top>
+   <right>
+      <Pane prefHeight="600.0" prefWidth="450.0" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <Pane prefHeight="150.0" prefWidth="1600.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <left>
+      <Pane prefHeight="600.0" prefWidth="450.0" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>
