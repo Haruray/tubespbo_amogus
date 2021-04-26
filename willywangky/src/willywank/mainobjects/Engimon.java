@@ -24,7 +24,15 @@ public class Engimon {
         setParent(p1,p2);
         setSpecies(species);
         addSkill(skills);
-        addSkill(species.getUniqueSkill());
+        try {
+            addSkill(species.getUniqueSkill());
+        } catch (SkillNotExist e) {
+            // TODO Auto-generated catch block
+            e.showErrors();
+        } catch (SkillOverload e) {
+            // TODO Auto-generated catch block
+            e.showErrors();
+        }
         addElement(elements);
         setLevel(level);
         setExp(0);
@@ -65,24 +73,32 @@ public class Engimon {
     void setSpecies(Species species){
         this.species = species;
     }
-    public void addSkill(Skill skill){
+    public void addSkill(Skill skill) throws SkillNotExist, SkillOverload{
         if (this.skills.size() < 4){
             if (!this.hasSkill(skill)){
                 this.skills.add(skill);
             }
             else{
-                //exception
+                throw new SkillNotExist();
             }
         }
         else{
-            //exception
+            throw new SkillOverload();
         }
 
     }
 
     public void addSkill(List<Skill> arr){
         for (Skill skill : arr) {
-            this.addSkill(skill);
+            try {
+                this.addSkill(skill);
+            } catch (SkillNotExist e) {
+                // TODO Auto-generated catch block
+                e.showErrors();
+            } catch (SkillOverload e) {
+                // TODO Auto-generated catch block
+                e.showErrors();
+            }
         }
     }
     public void addElement(Element E){

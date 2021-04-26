@@ -28,17 +28,17 @@ public class Inventory<T> extends BaseInventory{
         return this.items.stream().anyMatch(i->i.equals(item));
     }
 
-    public void deleteItem(int idx){
+    public void deleteItem(int idx) throws InventoryException{
         if (this.items.size()>0){
             this.items.remove(idx);
             currentCap--;
         }
         else{
-            //exception : inventory is empty
+            throw new InventoryException();
         }
     }
 
-    public void deleteItem(String name){
+    public void deleteItem(String name) throws InventoryException{
         //khusus skill
         if (this.items.size()>0){
             if (this.items.get(0) instanceof Skill){
@@ -54,11 +54,11 @@ public class Inventory<T> extends BaseInventory{
             }
         }
         else{
-            //exception : inventory is empty
+            throw new InventoryException();
         }
     }
 
-    public void deleteItemEngimon(int id){
+    public void deleteItemEngimon(int id) throws InventoryException{
         //khusus engimon, berdasarkan id engimon
         if (this.items.size()>0){
             if (this.items.get(0) instanceof Engimon){
@@ -74,22 +74,22 @@ public class Inventory<T> extends BaseInventory{
             }
         }
         else{
-            //exception : inventory is empty
+            throw new InventoryException();
         }
     }
 
-    public void deleteItem(T item){
+    public void deleteItem(T item) throws ItemException, InventoryException{
         if (this.items.size()>0 ){
             if (this.doesItemExist(item)){
                 this.items.remove(item);
                 currentCap--;
             }
             else{
-                //exception : item doesn't exist
+                throw new ItemException();
             }
         }
         else{
-            //exception : inventory is empty
+            throw new InventoryException();
         }
     }
 

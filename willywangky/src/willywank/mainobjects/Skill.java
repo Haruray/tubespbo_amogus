@@ -49,13 +49,13 @@ public class Skill {
     void setBasePower(int base){
         this.basePower = base;
     }
-    void setMasteryLevel(int mastery){
+    void setMasteryLevel(int mastery) throws MasteryException{
         // Update: mastery maks level 3
         if (mastery <= 3){
             this.masteryLevel = mastery;
         }
         else{
-            // exception mastery melebihi batas (?)
+            throw new MasteryException();
         }
     }
     void setElmtReq(List<Element> E){

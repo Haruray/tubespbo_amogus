@@ -47,6 +47,7 @@ public class Map {
                 j++;
             }
         }
+        fr.close();
     }
 
     public void generateMap() {

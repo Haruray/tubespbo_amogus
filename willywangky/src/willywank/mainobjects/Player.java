@@ -109,12 +109,12 @@ public class Player {
     void showSkillList(){
         this.getInventorySkill().printItems();
     }
-    public void useSkillItem(Skill s, Engimon e){
+    public void useSkillItem(Skill s, Engimon e) throws SkillNotExist{
         if (this.getInventorySkill().doesItemExist(s) && this.getInventoryEngimon().doesItemExist(e)){
             //learn something
         }
         else{
-            //exception : skill or engimon doesn't exist in inventory
+            throw new SkillNotExist();
         }
     }
 
