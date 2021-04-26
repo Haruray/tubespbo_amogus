@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="willywank.Move">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="willywank.Move">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -18,21 +18,26 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.columnIndex="1">
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
          <children>
-            <Button layoutX="54.0" layoutY="75.0" mnemonicParsing="false" onAction="#upClicked" text="Button" />
+            <Button alignment="CENTER" blendMode="EXCLUSION" layoutX="17.0" layoutY="17.0" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#upClicked" prefHeight="100.0" prefWidth="100.0" styleClass="arrowu" stylesheets="@css/style.css" />
          </children></Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.rowIndex="1">
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
          <children>
-            <Button layoutX="67.0" layoutY="75.0" mnemonicParsing="false" onAction="#leftClicked" text="Button" />
+            <Button blendMode="EXCLUSION" layoutX="17.0" layoutY="17.0" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#leftClicked" prefHeight="100.0" prefWidth="100.0" styleClass="arrowl" stylesheets="@css/style.css" />
          </children></Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <children>
-            <Button layoutX="63.0" layoutY="75.0" mnemonicParsing="false" onAction="#rightClicked" text="Button" />
+            <Button blendMode="EXCLUSION" layoutX="17.0" layoutY="17.0" mnemonicParsing="false" onAction="#rightClicked" prefHeight="100.0" prefWidth="100.0" styleClass="arrowr" stylesheets="@css/style.css" />
          </children></Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
-            <Button layoutX="54.0" layoutY="61.0" mnemonicParsing="false" onAction="#downClicked" text="Button" />
+            <Button blendMode="EXCLUSION" layoutX="17.0" layoutY="17.0" mnemonicParsing="false" onAction="#downClicked" prefHeight="100.0" prefWidth="100.0" styleClass="arrowd" stylesheets="@css/style.css" />
          </children></Pane>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Button blendMode="EXCLUSION" layoutX="27.0" layoutY="27.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
+         </children>
+      </Pane>
    </children>
 </GridPane>
