@@ -1,3 +1,23 @@
 .background {
     -fx-background-image: url("../img/forest.jpg");
 }
+
+.background2 {
+    -fx-background-image: url("../img/space.png");
+}
+
+.arrowu {
+    -fx-background-image: url("../img/arrowu.png");
+}
+
+.arrowd {
+    -fx-background-image: url("../img/arrowd.png");
+}
+
+.arrowr {
+    -fx-background-image: url("../img/arrowr.png");
+}
+
+.arrowl {
+    -fx-background-image: url("../img/arrowl.png");
+}

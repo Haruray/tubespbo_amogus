@@ -22,7 +22,7 @@
                   <Font name="Century Gothic" size="25.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0" text="Exit">
+            <Button mnemonicParsing="false" onAction="#exit" prefHeight="100.0" prefWidth="300.0" text="Exit">
                <font>
                   <Font name="Century Gothic" size="25.0" />
                </font>
