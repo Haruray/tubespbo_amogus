@@ -13,12 +13,22 @@ public class Skill {
     public Skill(){
         setSkillName("None");
         setBasePower(0);
-        setMasteryLevel(0);
+        try {
+            setMasteryLevel(0);
+        } catch (MasteryException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
     public Skill(String name, int base, int mastery, List<Element> E){
         setSkillName(name);
         setBasePower(base);
-        setMasteryLevel(mastery);
+        try {
+            setMasteryLevel(mastery);
+        } catch (MasteryException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         setElmtReq(E);
     }
 

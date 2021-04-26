@@ -2,6 +2,7 @@ package willywank.mainobjects;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Player {
     String playerName;
@@ -12,18 +13,6 @@ public class Player {
     int posY;
     int activeEngimonPosX;
     int activeEngimonPosY;
-
-    //    public Player(){
-//        this.setPlayerName("tes");
-//        Species s = new Species();
-//        Element Fire = new Element("Fire");
-//        List<Skill> ls = new ArrayList<>();
-//        List<Element> le= new ArrayList<>();
-//        Engimon e2 = new Engimon("cock2", null, null, s, ls, le, 10, 10);
-//        this.setActiveEngimon(e2);
-//        this.setPosition(0,0); //starting position nanti bisa dirubah
-//        this.setActiveEngPos(1, 0);
-//    }
     public Player(String name, Inventory<Skill> is, Inventory<Engimon> ie, Engimon ae, int x, int y){
         this.setPlayerName(name);
         this.setInventorySkill(is);
@@ -133,7 +122,12 @@ public class Player {
                 if (e1.getSkills().get(i).getSkillName().equals(e2.getSkills().get(i).getSkillName())  && e1.getSkills().get(i).getMasteryLevel() == e2.getSkills().get(i).getMasteryLevel()){
                     //jika punya skill sama dan mastery level sama, maka mastery level anaknya adalah mastery level parent 1 +1
                     newSkill.add(e1.getSkills().get(i));
-                    newSkill.get(newSkill.size()-1).setMasteryLevel(newSkill.get(newSkill.size()-1).getMasteryLevel()+1);
+                    try {
+                        newSkill.get(newSkill.size()-1).setMasteryLevel(newSkill.get(newSkill.size()-1).getMasteryLevel()+1);
+                    } catch (MasteryException e) {
+                        // TODO Auto-generated catch block
+                        e.showErrors();
+                    }
                 }
                 else if (e1.getSkills().get(i).getSkillName().equals(e2.getSkills().get(i).getSkillName())  && e1.getSkills().get(i).getMasteryLevel() != e2.getSkills().get(i).getMasteryLevel()){
                     //jika skill sama tapi mastery level berbeda, maka diambil mastery level yg terbesar
@@ -257,14 +251,26 @@ public class Player {
         }
         //Untuk sementara engga ada random
         Engimon newEngimon = new Engimon(newname, e1, e2, newspecies, newskill, newelement, 1, 10000);
-        this.getInventoryEngimon().addItem(newEngimon);
+        try {
+            this.getInventoryEngimon().addItem(newEngimon);
+        } catch (InventoryFullExc e) {
+            // TODO Auto-generated catch block
+            e.showErrors();
+        }
 
     }
 
     void swapActiveEngimon(){
-
+        int idx;
+        this.getInventoryEngimon().printItems();
+        Scanner s = new Scanner(System.in);
+        
+        do {
+            System.out.print("Pilih Engimon by Index: ");
+            idx = Integer.parseInt(s.nextLine());
+        } while (idx < 1 || idx > this.getInventoryEngimon().getSize());
     }
     void interactWithActiveEngimon(){
-
+        System.out.println("[" + this.getActiveEngimon().getName() + "]: " + this.getActiveEngimon().getSpecies().getSlogan());
     }
 }

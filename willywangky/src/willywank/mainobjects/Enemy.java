@@ -44,6 +44,26 @@ public class Enemy extends Engimon {
         this.level += 1;
     }
     void printDetail(){
-
+        System.out.println("Name: " + this.getName());
+        System.out.println("Species: " + this.getSpecies().getSpeciesName());
+        System.out.print("Element: ");
+        for (int i = 0; i < this.getElements().size(); i++) {
+            if (i < this.getElements().size() - 1){
+                System.out.print(this.getElements().get(i).getElementName() + ", ");
+            }
+            else{
+                System.out.println(this.getElements().get(i).getElementName());
+            }
+        }
+        System.out.println("Skill: ");
+        for (int i = 0; i < this.getSkills().size(); i++) {
+            if (i < this.getSkills().size() - 1){
+                System.out.print(this.getSkills().get(i).getSkillName() + ", ");
+            }
+            else{
+                System.out.println(this.getSkills().get(i).getSkillName());
+            }
+        }
+        System.out.println("Level: " + this.getLevel());
     }
 }
