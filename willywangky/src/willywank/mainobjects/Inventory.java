@@ -5,6 +5,12 @@ import java.util.*;
 abstract class BaseInventory{
     static int maxCap = 30;
     static int currentCap= 0;
+    public int getMaxCap(){
+        return maxCap;
+    }
+    public int getCurrentCap(){
+        return currentCap;
+    }
 }
 
 public class Inventory<T> extends BaseInventory{
@@ -75,6 +81,37 @@ public class Inventory<T> extends BaseInventory{
         }
         else{
             //exception : inventory is empty
+        }
+    }
+
+    public int countItem(T i){
+        int count = 0 ;
+        for ( T item : this.items ){
+            if (item.equals(i)){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public T getDifferentItemAtX(int idx){
+        //mencari item berdasarkan idx tapi harus beda --> khusus skill item
+        if (idx==0){
+            return this.items.get(0);
+        }
+        else{
+            T currentItem = this.items.get(0);
+            int currentIdx = 0;
+            for (int i = 1 ; i < this.items.size() ; i++){
+                if (!this.items.get(i).equals(currentItem)){
+                    currentIdx++;
+                    currentItem = this.items.get(i);
+                    if (currentIdx == idx){
+                        return currentItem;
+                    }
+                }
+            }
+            return currentItem;
         }
     }
 
