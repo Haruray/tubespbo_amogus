@@ -24,7 +24,7 @@ public class Map {
     }
 
     public void generateMapFromFile() throws FileNotFoundException, IOException {
-        File file = new File("Map.txt");
+        File file = new File(System.getProperty("user.dir")+"/src/willywank/mainobjects/Map.txt");
         FileReader fr = new FileReader(file);
         int c;
         int i = 0, j = 0;

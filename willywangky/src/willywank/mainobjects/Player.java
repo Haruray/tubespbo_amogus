@@ -2,7 +2,6 @@ package willywank.mainobjects;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Player {
     String playerName;
@@ -13,6 +12,18 @@ public class Player {
     int posY;
     int activeEngimonPosX;
     int activeEngimonPosY;
+
+    //    public Player(){
+//        this.setPlayerName("tes");
+//        Species s = new Species();
+//        Element Fire = new Element("Fire");
+//        List<Skill> ls = new ArrayList<>();
+//        List<Element> le= new ArrayList<>();
+//        Engimon e2 = new Engimon("cock2", null, null, s, ls, le, 10, 10);
+//        this.setActiveEngimon(e2);
+//        this.setPosition(0,0); //starting position nanti bisa dirubah
+//        this.setActiveEngPos(1, 0);
+//    }
     public Player(String name, Inventory<Skill> is, Inventory<Engimon> ie, Engimon ae, int x, int y){
         this.setPlayerName(name);
         this.setInventorySkill(is);
@@ -31,14 +42,14 @@ public class Player {
     void setInventoryEngimon(Inventory<Engimon> ie){
         this.engimonList.items.addAll(ie.items);
     }
-    void setActiveEngimon(Engimon ae){
+    public void setActiveEngimon(Engimon ae){
         this.activeEngimon=ae;
     }
-    void setPosition(int x,int y){
+    public void setPosition(int x,int y){
         this.posX=x;
         this.posY=y;
     }
-    void setActiveEngPos(int x, int y){
+    public void setActiveEngPos(int x, int y){
         this.activeEngimonPosX=x;
         this.activeEngimonPosY=y;
     }
@@ -213,7 +224,19 @@ public class Player {
         }
     }
 
-    void breeding(Engimon e1, Engimon e2, String newname){
+    public Species getRelevantSpecies(List<Element> thisEl){
+        Species selectedsp = new Species();
+        for (Species sp : EngimonUniverse.multElementSpecies){
+            if (sp.getUniqueSkill().getElmtReq().get(0).equals(thisEl.get(0)) || sp.getUniqueSkill().getElmtReq().get(0).equals(thisEl.get(1)) ){
+                if (sp.getUniqueSkill().getElmtReq().get(1).equals(thisEl.get(0)) || sp.getUniqueSkill().getElmtReq().get(1).equals(thisEl.get(1)) ){
+                    selectedsp = sp;
+                }
+            }
+        }
+        return selectedsp;
+    }
+
+    public Engimon breeding(Engimon e1, Engimon e2, String newname){
         List<Skill> newskill = new ArrayList<>();
         List<Element> newelement = new ArrayList<>();
         List<Skill> skillList = new ArrayList<>();
@@ -241,32 +264,27 @@ public class Player {
         if (compareVectorOfElements(newelement, e1.getElements())){
             newspecies = e1.getSpecies();
         }
-        else{
+        else if (compareVectorOfElements(newelement, e2.getElements())){
             newspecies = e2.getSpecies();
+        }
+        else{
+            newspecies = getRelevantSpecies(newelement);
         }
         //Untuk sementara engga ada random
         Engimon newEngimon = new Engimon(newname, e1, e2, newspecies, newskill, newelement, 1, 10000);
-        try {
+        try{
             this.getInventoryEngimon().addItem(newEngimon);
-        } catch (InventoryFullExc e) {
-            e.showErrors();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
 
+        return newEngimon;
     }
 
     void swapActiveEngimon(){
-        int idx;
-        this.getInventoryEngimon().printItems();
-        Scanner s = new Scanner(System.in);
-        
-        do {
-            System.out.print("Pilih Engimon by Index: ");
-            idx = Integer.parseInt(s.nextLine());
-        } while (idx < 1 || idx > this.getInventoryEngimon().getSize());
 
-        s.close();
     }
     void interactWithActiveEngimon(){
-        System.out.println("[" + this.getActiveEngimon().getName() + "]: " + this.getActiveEngimon().getSpecies().getSlogan());
+
     }
 }

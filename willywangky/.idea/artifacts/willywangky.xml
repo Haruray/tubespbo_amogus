@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="willywangky">
+    <output-path>$PROJECT_DIR$/out/artifacts/willywangky</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="willywank.Main" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="Willy Wank" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="willywangky.jar">
+        <element id="module-output" name="willywangky" />
+      </element>
+    </root>
+  </artifact>
+</component>

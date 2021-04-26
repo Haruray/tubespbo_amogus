@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import javafx.stage.StageStyle;
 
 import java.awt.*;
 
@@ -16,9 +17,10 @@ public class Move {
     public static void display() throws Exception{
         Parent root = FXMLLoader.load(Move.class.getResource("move.fxml"));
         Stage window = new Stage();
+        window.initStyle(StageStyle.UNDECORATED);
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Move");
-        window.setScene(new Scene(root, 600, 600));
+        window.setScene(new Scene(root, 400, 400));
         currWindow = window;
         window.showAndWait();
     }

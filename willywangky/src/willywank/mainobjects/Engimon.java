@@ -18,6 +18,19 @@ public class Engimon implements Comparable<Engimon> {
 
     static int totalEngimon = 0;
 
+    public Engimon(){
+        setName("None");
+        setParent(null,null);
+        setSpecies(new Species());
+        addElement(new Element());
+        setLevel(0);
+        setExp(0);
+        setCumulativeExp(getLevel()*100 - 100);
+        setExpLimit(0);
+        this.health = 3;
+        totalEngimon++;
+    }
+
     public Engimon(String name, Engimon p1, Engimon p2, Species species, List<Skill> skills, List<Element> elements, int level, int explimit){
         this.id = totalEngimon+1;
         setName(name);
@@ -38,6 +51,30 @@ public class Engimon implements Comparable<Engimon> {
         setExp(0);
         setCumulativeExp(getLevel()*100 - 100);
         setExpLimit(explimit);
+        this.health = 3;
+        totalEngimon++;
+    }
+
+    public Engimon(Engimon e){
+        this.id = e.id;
+        setName(e.getName());
+        setParent(e.getParents().get(0),e.getParents().get(1));
+        setSpecies(e.getSpecies());
+        addSkill(e.getSkills());
+        try {
+            addSkill(e.getSpecies().getUniqueSkill());
+        } catch (SkillNotExist exception) {
+            // TODO Auto-generated catch block
+            exception.showErrors();
+        } catch (SkillOverload exception) {
+            // TODO Auto-generated catch block
+            exception.showErrors();
+        }
+        addElement(e.getElements());
+        setLevel(e.getLevel());
+        setExp(0);
+        setCumulativeExp(this.getLevel()*100 - 100);
+        setExpLimit(e.getCumExpLimit());
         this.health = 3;
         totalEngimon++;
     }
@@ -78,14 +115,14 @@ public class Engimon implements Comparable<Engimon> {
         return 0;
     }
 
-    void setName(String name){
+    public void setName(String name){
         this.name = name;
     }
-    void setParent(Engimon p1, Engimon p2){
+    public void setParent(Engimon p1, Engimon p2){
         this.parents.add(p1);
         this.parents.add(p2);
     }
-    void setSpecies(Species species){
+    public void setSpecies(Species species){
         this.species = species;
     }
     public void addSkill(Skill skill) throws SkillNotExist, SkillOverload{
@@ -125,13 +162,13 @@ public class Engimon implements Comparable<Engimon> {
             this.addElement(element);
         }
     }
-    void levelUp(){
+    public void levelUp(){
         this.exp -= 100;
         this.level++;
         System.out.println("\nEngimon Level Up!");
         System.out.println(this.name + ", current level" + this.level);
     }
-    void setLevel(int level){
+    public void setLevel(int level){
         this.level = level;
         setCumulativeExp(this.level*100 - 100);
     }
@@ -141,17 +178,17 @@ public class Engimon implements Comparable<Engimon> {
         while (lvlUpEligibility()){
             levelUp();
         }
-        if (isDead()){
-            //idk, maybe some exception or something?
-        }
+//        if (isDead()){
+//            //idk, maybe some exception or something?
+//        }
     } //ini berpengaruh ke exp dan cumulative exp
-    void setExp(int exp){
+    public void setExp(int exp){
         this.exp = exp;
     }
-    void setCumulativeExp(int cumulative){
+    public void setCumulativeExp(int cumulative){
         this.cumulativeExp = cumulative;
     } //ini kurang perlu menurutku tapi jaga-jaga aja
-    void setExpLimit(int lim){
+    public void setExpLimit(int lim){
         this.explimit = lim;
     }
     public int getId(){
@@ -196,11 +233,11 @@ public class Engimon implements Comparable<Engimon> {
         }
         return maxSkill;
     }
-    Boolean lvlUpEligibility(){
+    public Boolean lvlUpEligibility(){
         return this.exp >= 100;
     } //refer to spek 1.c
     public Boolean isDead(){
-        return getCumulativeExp() >= getCumExpLimit();
+        return getCumulativeExp() >= getCumExpLimit() || this.health<=0;
     } //refer to spek 1.d
     public Boolean isElement(Element E){
         return this.elements.contains(E);
@@ -208,7 +245,9 @@ public class Engimon implements Comparable<Engimon> {
     public Boolean hasSkill(Skill S){
         return this.skills.contains(S);
     } //apakah engimon punya skill x
-
+    public void decreaseHealth(){
+        this.health--;
+    }
     //delete
     void replaceSkill(Skill S){
 

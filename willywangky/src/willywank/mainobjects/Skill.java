@@ -21,6 +21,12 @@ public class Skill implements Comparable<Skill> {
         setMasteryLevel(mastery);
         setElmtReq(E);
     }
+    public Skill(Skill s){
+        setSkillName(s.getSkillName());
+        setBasePower(s.getBasePower());
+        setMasteryLevel(s.getMasteryLevel());
+        setElmtReq(s.getElmtReq());
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -58,13 +64,13 @@ public class Skill implements Comparable<Skill> {
         return 0;
     }
 
-    void setSkillName(String name){
+    public void setSkillName(String name){
         this.skillName = name;
     }
-    void setBasePower(int base){
+    public void setBasePower(int base){
         this.basePower = base;
     }
-    void setMasteryLevel(int mastery){
+    public void setMasteryLevel(int mastery) {
         // Update: mastery maks level 3
         if (mastery <= 3){
             this.masteryLevel = mastery;
@@ -74,16 +80,16 @@ public class Skill implements Comparable<Skill> {
             this.masteryLevel = 3;
         }
     }
-    void setElmtReq(List<Element> E){
+    public void setElmtReq(List<Element> E){
         this.elmtReq.addAll(E);
     }
-    String getSkillName(){
+    public String getSkillName(){
         return this.skillName;
     }
-    int getBasePower(){
+    public int getBasePower(){
         return this.basePower;
     }
-    int getMasteryLevel(){
+    public int getMasteryLevel(){
         return this.masteryLevel;
     }
     public List<Element> getElmtReq(){
@@ -95,7 +101,7 @@ public class Skill implements Comparable<Skill> {
         return String.format(this.skillName + " / Base Power "+this.basePower+" / Master Lv."+this.masteryLevel);
     }
 
-    void printSkillDetail(){
+    public void printSkillDetail(){
         System.out.println("Skill Name: " + this.skillName);
         System.out.println("Base Power: " + this.basePower);
         System.out.println("Mastery Level: " + this.masteryLevel);

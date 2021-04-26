@@ -1,5 +1,7 @@
 package willywank.mainobjects;
 
+import javafx.scene.image.Image;
+
 import java.util.*;
 
 public class EngimonUniverse {
@@ -62,9 +64,62 @@ public static Species DisneyPrincess = new Species("Disney Princess", "Let it go
 public static Species Grounded = new Species("Grounded", "Get it? ahahahahAHHAHAHA", NoVoltage);
 public static Species ACDC = new Species("ACDC", "You see, in JoJo part 2, ACDC controls heat. So, we made ACDC controls electric now", ZapRequiem);
 public static Species Trump = new Species("Trump", "Make Americunt great again", Incest);
-public static List<Species> multElementSpecies = new ArrayList<Species>(Arrays.asList(BlueEyes, RedEyes, GreenEyes, Jakiro, Schnozer, CyberDragon, DisneyPrincess, Grounded, ACDC, Trump));
 
-//Engimon
+public static List<Species> singleElementSpecies = new ArrayList<Species>(Arrays.asList(Watortle, Koikingu, Impostor, Raishuu, Saider, Rizadon, Bufumon, IceCube, Golem, Diguda, Wyrm, Ymir, SuperSuit, BlueEyes, RedEyes, GreenEyes, Jakiro, Schnozer, CyberDragon, DisneyPrincess, Grounded, ACDC, Trump));
+public static List<Species> multElementSpecies = new ArrayList<Species>(Arrays.asList(BlueEyes, RedEyes, GreenEyes, Jakiro, Schnozer, CyberDragon, DisneyPrincess, Grounded, ACDC, Trump));
+//Species Images
+public static List<Image> speciesImages = new ArrayList<Image>(){{
+    add(new Image("file:assets/Watortle.png"));
+    add(new Image("file:assets/Koikingu.png"));
+    add(new Image("file:assets/Impostor.png"));
+    add(new Image("file:assets/Raishuu.png"));
+    add(new Image("file:assets/Cider.png"));
+    add(new Image("file:assets/Rizadon.png"));
+    add(new Image("file:assets/Bufumon.png"));
+    add(new Image("file:assets/IceCube.png"));
+    add(new Image("file:assets/Golem.png"));
+    add(new Image("file:assets/Diguda.png"));
+    add(new Image("file:assets/Wyrm.png"));
+    add(new Image("file:assets/Ymir.png"));
+    add(new Image("file:assets/SuperSuit.png"));
+
+   add(new Image("file:assets/BlueEyes.png"));
+    add(new Image("file:assets/RedEyes.png"));
+    add(new Image("file:assets/GreenEyes.png"));
+    add(new Image("file:assets/Jakiro.png"));
+    add(new Image("file:assets/Schnozer.png"));
+    add(new Image("file:assets/CyberDragon.png"));
+    add(new Image("file:assets/DisneyPrincess.png"));
+    add(new Image("file:assets/Grounded.png"));
+    add(new Image("file:assets/ACDC.png"));
+    add(new Image("file:assets/Trump.png"));
+}};
+    public static List<Image> speciesImagesInventory = new ArrayList<Image>(){{
+        add(new Image("file:assets/100x100/Watortle.png"));
+        add(new Image("file:assets/100x100/Koikingu.png"));
+        add(new Image("file:assets/100x100/Impostor.png"));
+        add(new Image("file:assets/100x100/Raishuu.png"));
+        add(new Image("file:assets/100x100/Cider.png"));
+        add(new Image("file:assets/100x100/Rizadon.png"));
+        add(new Image("file:assets/100x100/Bufumon.png"));
+        add(new Image("file:assets/100x100/IceCube.png"));
+        add(new Image("file:assets/100x100/Golem.png"));
+        add(new Image("file:assets/100x100/Diguda.png"));
+        add(new Image("file:assets/100x100/Wyrm.png"));
+        add(new Image("file:assets/100x100/Ymir.png"));
+        add(new Image("file:assets/100x100/SuperSuit.png"));
+
+        add(new Image("file:assets/100x100/BlueEyes.png"));
+        add(new Image("file:assets/100x100/RedEyes.png"));
+        add(new Image("file:assets/100x100/GreenEyes.png"));
+        add(new Image("file:assets/100x100/Jakiro.png"));
+        add(new Image("file:assets/100x100/Schnozer.png"));
+        add(new Image("file:assets/100x100/CyberDragon.png"));
+        add(new Image("file:assets/100x100/DisneyPrincess.png"));
+        add(new Image("file:assets/100x100/Grounded.png"));
+        add(new Image("file:assets/100x100/ACDC.png"));
+        add(new Image("file:assets/100x100/Trump.png"));
+    }};
 public static Engimon JackFrost = new Engimon("JackFrost", null, null, Bufumon, new ArrayList<Skill>(), new ArrayList<Element>() {{add(Ice);}}, 1, 10000);
 public static Engimon Raool = new Engimon("Raool", null, null, Saider, new ArrayList<Skill>(), new ArrayList<Element>() {{add(Fire);}}, 1, 10000);
 public static Engimon Dababy = new Engimon("Dababy", null, null, Golem, new ArrayList<Skill>(), new ArrayList<Element>() {{add(Ground);}}, 1, 10000);
@@ -94,6 +149,7 @@ public static Enemy MioE = new Enemy("Mio", null, null, Koikingu, new ArrayList<
 public static Enemy GaybonE = new Enemy("Gaybon", null, null, Watortle, new ArrayList<Skill>(), new ArrayList<Element>() {{add(Water);}}, 1, 10000, 0, 0);
 public static Enemy ErenE = new Enemy("Eren", null, null, Ymir, new ArrayList<Skill>(), new ArrayList<Element>() {{add(Ground);}}, 1 , 10000, 0, 0);
 public static Enemy FrozoneE = new Enemy("Frozone", null, null, SuperSuit, new ArrayList<Skill>(), new ArrayList<Element>() {{add(Ice);}}, 1, 10000, 0, 0);
-public static List<Enemy> enemies = new ArrayList<Enemy>(Arrays.asList(JackFrostE, RaoolE, DababyE, WaluigiE, RingoE, RaoqE, HilariousE, ValentineE, DioE, MioE, GaybonE, ErenE, FrozoneE));
-
+//public static List<Enemy> enemies = new ArrayList<Enemy>(Arrays.asList(JackFrostE, RaoolE, DababyE, WaluigiE, RingoE, RaoqE, HilariousE, ValentineE, DioE, MioE, GaybonE, ErenE, FrozoneE));
+public static List<Enemy> enemies = new ArrayList<>();
+public static List<Boolean> enemyReserved = new ArrayList<>();
 }

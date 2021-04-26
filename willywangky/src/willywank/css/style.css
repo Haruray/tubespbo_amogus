@@ -21,21 +21,3 @@
 .arrowl {
     -fx-background-image: url("../img/arrowl.png");
 }
-
-.Dababy {
-    -fx-background-image: url("../img/Golem.png");
-    -fx-border-color: #333333;
-    -fx-border-width: 1.5px;
-}
-
-.JackFrost {
-    -fx-background-image: url("../img/Bufumon.png");
-    -fx-border-color: #333333;
-    -fx-border-width: 1.5px;
-}
-
-.Waluigi {
-    -fx-background-image: url("../img/Koikingu.png");
-    -fx-border-color: #333333;
-    -fx-border-width: 1.5px;
-}

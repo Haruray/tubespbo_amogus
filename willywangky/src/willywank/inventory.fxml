@@ -29,7 +29,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Text>
-            <Text fill="WHITE" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacity : X/Y" textAlignment="CENTER">
+            <Text fx:id="capacity" fill="WHITE" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacity : X/Y" textAlignment="CENTER">
                <font>
                   <Font name="Century Gothic Italic" size="18.0" />
                </font>
@@ -60,12 +60,12 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0" style="-fx-background-color: rgb(0, 100, 100, 0.2);" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Use Item">
+            <Button mnemonicParsing="false" onAction="#deleteItems" prefHeight="50.0" prefWidth="150.0" text="Delete Item">
                <font>
                   <Font name="Century Gothic" size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Delete Item">
+            <Button mnemonicParsing="false" onAction="#close" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #d75f8f;" text="Close">
                <font>
                   <Font name="Century Gothic" size="14.0" />
                </font>

@@ -18,13 +18,13 @@ public class Cell {
         this.occupied = false;
         this.enemy = null;
     }
-    void setType(String type){
+    public void setType(String type){
         this.type = type;
     }
-    void setEnemy(Enemy E){
+    public void setEnemy(Enemy E){
         this.enemy = E;
     }
-    void setOccupy(boolean occ){
+    public void setOccupy(boolean occ){
         this.occupied = occ;
     }
 
@@ -43,7 +43,7 @@ public class Cell {
 
     //func
     void printSymbol(int var){
-        // ArrayList<Element> elemen;
+        ArrayList<Element> elemen;
         switch (var) {
             case 1:
                 System.out.print(" P |");
