@@ -13,22 +13,12 @@ public class Skill implements Comparable<Skill> {
     public Skill(){
         setSkillName("None");
         setBasePower(0);
-        try {
-            setMasteryLevel(0);
-        } catch (MasteryException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        setMasteryLevel(0);
     }
     public Skill(String name, int base, int mastery, List<Element> E){
         setSkillName(name);
         setBasePower(base);
-        try {
-            setMasteryLevel(mastery);
-        } catch (MasteryException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        setMasteryLevel(mastery);
         setElmtReq(E);
     }
 
@@ -74,14 +64,14 @@ public class Skill implements Comparable<Skill> {
     void setBasePower(int base){
         this.basePower = base;
     }
-    void setMasteryLevel(int mastery) throws MasteryException {
+    void setMasteryLevel(int mastery){
         // Update: mastery maks level 3
         if (mastery <= 3){
             this.masteryLevel = mastery;
         }
         else{
             // exception mastery melebihi batas (?)
-            throw new MasteryException();
+            this.masteryLevel = 3;
         }
     }
     void setElmtReq(List<Element> E){

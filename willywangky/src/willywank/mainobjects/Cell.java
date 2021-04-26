@@ -43,7 +43,7 @@ public class Cell {
 
     //func
     void printSymbol(int var){
-        ArrayList<Element> elemen;
+        // ArrayList<Element> elemen;
         switch (var) {
             case 1:
                 System.out.print(" P |");

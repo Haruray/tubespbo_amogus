@@ -116,7 +116,7 @@ public class Player {
         return false;
     }
 
-    void skillSelection(Engimon e1, Engimon e2, List<Skill> newSkill, List<Skill> skillList) throws MasteryException{
+    void skillSelection(Engimon e1, Engimon e2, List<Skill> newSkill, List<Skill> skillList){
         for (int i = 0; i < e1.getSkills().size() ; i++){
             if (e1.getSkills().get(i).getMasteryLevel() >= e2.getSkills().get(i).getMasteryLevel()){ //mastery skill parent 1 paling besar
                 if (e1.getSkills().get(i).getSkillName().equals(e2.getSkills().get(i).getSkillName())  && e1.getSkills().get(i).getMasteryLevel() == e2.getSkills().get(i).getMasteryLevel()){
@@ -230,21 +230,11 @@ public class Player {
         //Disini algoritma sorting ; nanti
         if (e1.getSkills().size() <= e2.getSkills().size()){
             //kalau jumlah skill e1 lebih kecil sama dengan jumlah skill e2, maka loop dibawah ini dilakukan
-            try {
-                this.skillSelection(e1,e2,newskill,skillList);
-            } catch (MasteryException e) {
-                // TODO Auto-generated catch block
-                e.showErrors();;
-            }
+            this.skillSelection(e1,e2,newskill,skillList);
         }
         else{
             //kalau jumlah skill e2 jauh lebih kecil, maka dilakukan sebaliknya
-            try {
-                this.skillSelection(e2,e1,newskill,skillList);
-            } catch (MasteryException e) {
-                // TODO Auto-generated catch block
-                e.showErrors();
-            }
+            this.skillSelection(e2,e1,newskill,skillList);
         }
 
         newelement.addAll(getMostAdvantageousElmt(e1.getElements(),e2.getElements()));
@@ -273,6 +263,8 @@ public class Player {
             System.out.print("Pilih Engimon by Index: ");
             idx = Integer.parseInt(s.nextLine());
         } while (idx < 1 || idx > this.getInventoryEngimon().getSize());
+
+        s.close();
     }
     void interactWithActiveEngimon(){
         System.out.println("[" + this.getActiveEngimon().getName() + "]: " + this.getActiveEngimon().getSpecies().getSlogan());
