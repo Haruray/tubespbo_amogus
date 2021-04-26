@@ -10,12 +10,12 @@ public class Skill {
     int masteryLevel;
     List<Element> elmtReq = new ArrayList<>();
 
-    Skill(){
+    public Skill(){
         setSkillName("None");
         setBasePower(0);
         setMasteryLevel(0);
     }
-    Skill(String name, int base, int mastery, List<Element> E){
+    public Skill(String name, int base, int mastery, List<Element> E){
         setSkillName(name);
         setBasePower(base);
         setMasteryLevel(mastery);
@@ -32,7 +32,7 @@ public class Skill {
 
         /* Check if o is an instance of Complex or not
           "null instanceof [type]" also returns false */
-        if (!(o instanceof Engimon)) {
+        if (!(o instanceof Skill)) {
             return false;
         }
 
@@ -49,13 +49,13 @@ public class Skill {
     void setBasePower(int base){
         this.basePower = base;
     }
-    void setMasteryLevel(int mastery) throws MasteryException{
+    void setMasteryLevel(int mastery){
         // Update: mastery maks level 3
         if (mastery <= 3){
             this.masteryLevel = mastery;
         }
         else{
-            throw new MasteryException();
+            // exception mastery melebihi batas (?)
         }
     }
     void setElmtReq(List<Element> E){
@@ -71,7 +71,7 @@ public class Skill {
         return this.masteryLevel;
     }
     public List<Element> getElmtReq(){
-        return getElmtReq();
+        return this.elmtReq;
     }
 
     @Override
