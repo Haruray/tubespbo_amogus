@@ -3,7 +3,7 @@ package willywank.mainobjects;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Skill {
+public class Skill implements Comparable<Skill> {
     final int masteryLimit = 3;
     String skillName;
     int basePower;
@@ -43,21 +43,36 @@ public class Skill {
         return (this.skillName.equals(s.skillName));
     }
 
+    @Override
+    public int compareTo(Skill s) {
+
+        if (this.basePower == s.basePower) {
+            return 0;
+        }
+        if (this.basePower < s.basePower) {
+            return -1;
+        }
+        if (this.basePower > s.basePower) {
+            return 1;
+        }
+        return 0;
+    }
+
     void setSkillName(String name){
         this.skillName = name;
     }
     void setBasePower(int base){
         this.basePower = base;
     }
-    void setMasteryLevel(int mastery) throws MasteryException{
-    // Update: mastery maks level 3
-    if (mastery <= 3){
-        this.masteryLevel = mastery;
-    }
-    else{
-        // exception mastery melebihi batas (?)
-        throw new MasteryException();
-    }
+    void setMasteryLevel(int mastery) {
+        // Update: mastery maks level 3
+        if (mastery <= 3){
+            this.masteryLevel = mastery;
+        }
+        else{
+            // exception mastery melebihi batas (?)
+            this.masteryLevel = 4;
+        }
     }
     void setElmtReq(List<Element> E){
         this.elmtReq.addAll(E);
